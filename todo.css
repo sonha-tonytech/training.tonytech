@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "roboto";
+  box-sizing: border-box;
+}
+
+header {
+  background: antiquewhite;
+  position: fixed;
+  width: 100%; 
+}
+
+footer{
+    background-color: #505050;
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+p {
+  color: grey;
+}
+
+p.title-content {
+  color: dimgray;
+  font-weight: bold;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row1 {
+  background-color: antiquewhite;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.logo img {
+  max-width: 150px;
+  height: auto;
+}
+
+.logo-facebook {
+  color: black;
+}
+
+.logo-facebook:hover {
+  color: white;
+}
+
+.logo-linkedin {
+  color: black;
+}
+
+.logo-linkedin:hover {
+  color: white;
+}
+
+.menu {
+  padding-top: 20px;
+}
+
+.menu ul {
+  display: flex;
+  text-align: center;
+}
+
+.menu ul li {
+  list-style: none;
+  margin-left: 50px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+}
+
+.menu ul li a:hover {
+  color: aliceblue;
+}
+
+.visit {
+  padding-top: 20px;
+}
+
+.visit a {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.btn-bap {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: green;
+}
+
+.btn-bsp {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: orange;
+}
+
+.btn-dua {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: blue;
+}
+
+.btn-dda {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: red;
+}
+
+.btn-dsa {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: aqua;
+}
+
+.btn-bwa {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: orangered;
+}
+
+.btn-blp {
+  margin: 10px;
+  text-align: center;
+  color: white;
+  background-color: green;
+}
+
+.btn-bn {
+  text-align: center;
+  color: white;
+  background-color: orange;
+}
+
+.table-homepage-1 {
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.homepage-f {
+  color: orange;
+}
+.homepage-f:hover {
+    text-decoration: none;
+    color: black;
+  }
+.homepage-fd {
+  color: orange;
+}
+.homepage-fd:hover {
+    text-decoration: none;
+    color: black;
+  }
+.homepage-pg {
+  color: orange;
+}
+.homepage-pg:hover{
+    text-decoration: none;
+    color: black;
+}
+.homepage-cu {
+  color: orange;
+}
+.homepage-cu:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.row2 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.title-row2 {
+  text-align: center;
+}
+
+.title-row2 .title1-title-row2 {
+  color: grey;
+}
+
+.row3 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.row4 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: antiquewhite;
+}
+
+.btn-gpua {
+  margin-top: 10px;
+  color: white;
+  background-color: green;
+}
+.btn-gpda {
+  margin-top: 10px;
+  color: white;
+  background-color: red;
+}
+.btn-gpsa {
+  margin-top: 10px;
+  color: white;
+  background-color: blue;
+}
+
+.row5 {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.title-row5 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.row6{
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
+.title-row6 {
+    text-align: center;
+    font-weight: bold;
+  }
+
+.footer-title{
+    font-weight: bold;
+    color: white;
+}
+  
+.btn-footer{
+    padding: 10px 20px 10px 20px;
+    color: white;
+    background-color: orange;
+    border-radius: 60px;
+    border: none;
+}
+
+.btn-footer:hover{
+    color: black;
+}
+
+footer p{
+    color: white;
+    font-size: 12px;
+    margin: 0;
+}
+
+footer a{
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    margin: 10px 0px 10px 0px;
+}
+
+footer a:hover{
+    text-decoration: none;
+    color: black;
+}
