@@ -2,19 +2,98 @@
   margin: 0;
   padding: 0;
   font-family: "roboto";
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+#menu > li {
+  float: left;
+  position: relative;
+}
+
+#menu > li > ul.dropdown-menu {
+  position: absolute;
+  list-style: none;
+  display: none;
+}
+
+#menu > li:hover > ul.dropdown-menu {
+  display: block;
+  background-color: gray;
+  width: 110%;
+  z-index: 100;
+}
+
+ul.dropdown-menu > li > ul.submenu {
+  position: absolute;
+  display: none;
+  list-style: none;
+  left: 100%;
+}
+
+ul.dropdown_menu > li {
+  position: relative;
+}
+
+ul.dropdown-menu > li:hover > ul.submenu {
+  z-index: 100;
+  display: block;
+  background-color: gray;
+  width: 110%;
+}
+
+.arrow {
+  display: inline-block;
+  color: black;
+}
+
+.arrow-down {
+  vertical-align: middle;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid;
+}
+
+.arrow-right {
+  margin-left: 2px;
+  border-left: 5px solid;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
 }
 
 header {
   background: antiquewhite;
   position: fixed;
-  width: 100%; 
+  width: 100%;
 }
 
-footer{
-    background-color: #505050;
-    padding-top: 20px;
-    padding-bottom: 60px;
+footer {
+  background-color: #505050;
+  padding-top: 20px;
+  padding-bottom: 60px;
 }
 
 p {
@@ -29,12 +108,6 @@ p.title-content {
 .header {
   display: flex;
   justify-content: space-between;
-}
-
-.row1 {
-  background-color: antiquewhite;
-  padding-top: 60px;
-  padding-bottom: 60px;
 }
 
 .logo img {
@@ -62,12 +135,7 @@ p.title-content {
   padding-top: 20px;
 }
 
-.menu ul {
-  display: flex;
-  text-align: center;
-}
-
-.menu ul li {
+.menu > ul > li {
   list-style: none;
   margin-left: 50px;
 }
@@ -79,7 +147,7 @@ p.title-content {
 }
 
 .menu ul li a:hover {
-  color: aliceblue;
+  color: white;
 }
 
 .visit {
@@ -91,186 +159,283 @@ p.title-content {
   text-decoration: none;
 }
 
-.btn-bap {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: green;
+.introduce-section {
+  background-color: antiquewhite;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
-.btn-bsp {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: orange;
+.content-introduce {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.content-introduce-1 {
+  width: 40%;
 }
 
-.btn-dua {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: blue;
+.content-introduce-2 {
+  width: 60%;
+  display: flex;
+  justify-content: center;
 }
 
-.btn-dda {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: red;
+.content-introduce-2 > div {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.btn-dsa {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: aqua;
+.content-introduce-2 > div img {
+  display: block;
 }
 
-.btn-bwa {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: orangered;
+.content-introduce {
+  display: flex;
+  justify-content: space-between;
 }
 
-.btn-blp {
-  margin: 10px;
-  text-align: center;
-  color: white;
-  background-color: green;
+.btn-introduce {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.btn-bn {
-  text-align: center;
-  color: white;
-  background-color: orange;
-}
-
-.table-homepage-1 {
+.table-introduce-1 {
   background: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-introduce-1-logo {
+  padding-top: 20px;
+}
+
+.table-introduce-1 > a {
+  text-decoration: none;
+  color: orange;
+}
+
+.table-introduce-1 > a:hover {
+  color: black;
 }
 
 .homepage-f {
   color: orange;
 }
 .homepage-f:hover {
-    text-decoration: none;
-    color: black;
-  }
+  text-decoration: none;
+  color: black;
+}
 .homepage-fd {
   color: orange;
 }
 .homepage-fd:hover {
-    text-decoration: none;
-    color: black;
-  }
-.homepage-pg {
-  color: orange;
-}
-.homepage-pg:hover{
-    text-decoration: none;
-    color: black;
-}
-.homepage-cu {
-  color: orange;
-}
-.homepage-cu:hover{
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
-.row2 {
+.top-features-section {
   padding-top: 60px;
   padding-bottom: 60px;
 }
-.title-row2 {
+.title-top-features {
   text-align: center;
 }
 
-.title-row2 .title1-title-row2 {
+.title-top-features .title1-title-top-features {
   color: grey;
 }
 
-.row3 {
+.content-top-features {
+  display: flex;
+  justify-content: space-around;
+}
+
+.content-top-features > div {
+  width: 32%;
+}
+
+.content-top-features-content {
+  display: flex;
+}
+
+.content-top-features-content-logo {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.grocery-section {
   padding-top: 60px;
   padding-bottom: 60px;
 }
 
-.row4 {
+.grocery-section-content {
+  display: flex;
+  justify-content: space-between;
+}
+.grocery-section-1 {
+  width: 50%;
+  text-align: center;
+}
+.grocery-section-2 {
+  width: 50%;
+}
+
+.grocery-section-2-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.grocery-section-2-content-content {
+  width: 32%;
+}
+
+.food-delivery-app-section {
   padding-top: 60px;
   padding-bottom: 60px;
   background-color: antiquewhite;
 }
 
-.btn-gpua {
-  margin-top: 10px;
-  color: white;
-  background-color: green;
-}
-.btn-gpda {
-  margin-top: 10px;
-  color: white;
-  background-color: red;
-}
-.btn-gpsa {
-  margin-top: 10px;
-  color: white;
-  background-color: blue;
+.food-delivery-app-section-content {
+  display: flex;
 }
 
-.row5 {
+.food-delivery-app-section-1 {
+  width: 50%;
+  text-align: center;
+}
+
+.food-delivery-app-section-2 {
+  width: 50%;
+}
+
+.btn-food-delivery-app-section-2 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-food-delivery-app-section-2 > button {
+  margin: 10px;
+}
+
+.integrated-payment-gateways-section {
   padding-top: 60px;
   padding-bottom: 100px;
 }
 
-.title-row5 {
+.integrated-payment-gateways-section-title {
   text-align: center;
   font-weight: bold;
 }
 
-.row6{
-    padding-top: 100px;
-    padding-bottom: 60px;
+.integrated-payment-gateways-section-content-content {
+  display: flex;
+  text-align: center;
 }
 
-.title-row6 {
-    text-align: center;
-    font-weight: bold;
-  }
-
-.footer-title{
-    font-weight: bold;
-    color: white;
-}
-  
-.btn-footer{
-    padding: 10px 20px 10px 20px;
-    color: white;
-    background-color: orange;
-    border-radius: 60px;
-    border: none;
+.integrated-payment-gateways-section-content-content > div {
+  width: 16.66666%;
 }
 
-.btn-footer:hover{
-    color: black;
+.integrated-sms-gateways-section {
+  padding-top: 100px;
+  padding-bottom: 60px;
 }
 
-footer p{
-    color: white;
-    font-size: 12px;
-    margin: 0;
+.integrated-sms-gateways-section-title {
+  text-align: center;
+  font-weight: bold;
 }
 
-footer a{
-    text-decoration: none;
-    color: white;
-    font-size: 12px;
-    margin: 10px 0px 10px 0px;
+.integrated-sms-gateways-section-content-content {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-footer a:hover{
-    text-decoration: none;
-    color: black;
+.footer-section-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-title {
+  width: 40%;
+  font-weight: bold;
+  color: white;
+}
+
+.btn {
+  margin: 10px;
+  padding: 10px 20px 10px 20px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+}
+
+.btn-green {
+  background-color: green;
+}
+
+.btn-orange {
+  background-color: orange;
+}
+
+.btn-blue {
+  background-color: blue;
+}
+
+.btn-red {
+  background-color: #993300;
+}
+
+.btn-aqua {
+  background-color: #6666ff;
+}
+
+.btn-brown {
+  background-color: #cc3300;
+}
+
+.btn:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.btn-footer {
+  padding: 10px 20px 10px 20px;
+  color: white;
+  background-color: orange;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-footer:hover {
+  color: black;
+}
+
+.footer-section-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-section-2-content {
+  width: 20%;
+}
+
+footer p {
+  color: white;
+  font-size: 12px;
+  margin: 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+  margin: 10px 0px 10px 0px;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: black;
 }

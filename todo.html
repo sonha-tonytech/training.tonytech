@@ -10,208 +10,643 @@
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
   <body>
     <header>
-        <div class="container">
-          <div class="header">
-            <div class="logo">
-              <img src="files-images/logo2.png" alt="Logo 6Tech" />
-            </div>
-            <div class="menu">
-              <ul class="heading">
-                <li><a href="# " class="heading-home">Home</a></li>
-                <li><a href="# " class="heading-project">Project</a></li>
-                <li><a href="# " class="heading-aboutus">About Us</a></li>
-                <li><a href="# " class="heading-contactus">Contact Us</a></li>
+      <div class="header container">
+        <div class="logo">
+          <img src="files-images/logo2.png" alt="Logo 6Tech" />
+        </div>
+        <div class="menu">
+          <ul id="menu">
+            <li><a href="# ">Home</a></li>
+            <li>
+              <a href="# ">
+                Project
+                <span class="arrow arrow-down"></span>
+              </a>
+              <ul class="dropdown-menu">
                 <li>
-                  <a href="# " class="heading-installationplans"
-                    >Installation Plans</a
-                  >
+                  <a href="#">Project 1</a>
                 </li>
                 <li>
-                  <a href="# " class="heading-documentation">Documentation</a>
+                  <ul class="submenu">
+                    <li>
+                      <a href="#">Project 2.1</a>
+                    </li>
+                    <li>
+                      <a href="#">Project 2.2</a>
+                    </li>
+                    <li>
+                      <a href="#">Project 2.3</a>
+                    </li>
+                  </ul>
+                  <a href="#"
+                    >Project 2<span class="arrow arrow-right"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="#">Project 3</a>
                 </li>
               </ul>
-            </div>
-            <div class="visit">
-              <a href="#" class="logo-facebook">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-facebook"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
-                  />
-                </svg>
-              </a>
-              <a href="#" class="logo-linkedin">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-linkedin"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
+            </li>
+            <li><a href="# ">About Us</a></li>
+            <li><a href="# ">Contact Us</a></li>
+            <li>
+              <a href="# ">Installation Plans</a>
+            </li>
+            <li>
+              <a href="# ">Documentation</a>
+            </li>
+          </ul>
         </div>
+        <div class="visit">
+          <a href="#" class="logo-facebook">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-facebook"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="logo-linkedin">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-linkedin"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
     </header>
-    <div class="row1">
+    <div class="introduce-section">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-5">
+        <div class="content-introduce">
+          <div class="content-introduce-1">
             <h2>
               6amMart - Multivendor Food, Grocery, eCommerce, Parcel, Pharmacy
               delivery app with Admin & Website
             </h2>
+            <br />
             <p>
               6amMart is a Larvarel and Flutter Framwork-based multi-vendor
               food, grocety, eCommerce, parcel, and pharmacy delivery system. It
               has six modules to cover all your business functionality.
             </p>
-            <div class="row">
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-bap">
-                  Browse Admin Panel
-                </button>
-              </div>
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-bsp">
-                  Browse Store Panel
-                </button>
-              </div>
+            <br />
+            <div class="btn-introduce">
+              <button type="button " class="btn btn-green">
+                Browse Admin Panel
+              </button>
+              <button type="button " class="btn btn-orange">
+                Browse Store Panel
+              </button>
             </div>
-            <div class="row">
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-dua">
-                  Download User App
-                </button>
-              </div>
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-dda">
-                  Download Deliveryman App
-                </button>
-              </div>
+            <div class="btn-introduce">
+              <button type="button " class="btn btn-blue">
+                Download User App
+              </button>
+              <button type="button " class="btn btn-red">
+                Download Deliveryman App
+              </button>
             </div>
-            <div class="row">
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-dsa">
-                  Download Store App
-                </button>
-              </div>
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-bwa">
-                  Browse Web App
-                </button>
-              </div>
+            <div class="btn-introduce">
+              <button type="button " class="btn btn-aqua">
+                Download Store App
+              </button>
+              <button type="button " class="btn btn-brown">
+                Browse Web App
+              </button>
             </div>
-            <div class="row">
-              <div class="col-sm-5">
-                <button type="button " class="btn btn-blp">
-                  Browse Landing Page
-                </button>
-              </div>
+            <div class="btn-introduce">
+              <button type="button " class="btn btn-green">
+                Browse Landing Page
+              </button>
             </div>
           </div>
-          <div class="col-sm-7">
-            <div class="row">
-              <div class="col-sm-4">
-                <img
-                  src="files-images/left_1_6e85f91918.png "
-                  alt="img 1 "
-                  style="height: 150px;  margin-top: 20px"
-                />
-                <img
-                  src="files-images/left_2_43fe73d4f7.png "
-                  alt="img 2 "
-                  style="height: 220px;"
-                />
-              </div>
-              <div class="col-sm-4">
-                <img
-                  src="files-images/main_b411908630.png "
-                  alt="img 3 "
-                  style="height: 400px;"
-                />
-              </div>
-              <div class="col-sm-4">
-                <img
-                  src="files-images/right_1_fc6e1d54d2.png "
-                  alt="img 4 "
-                  style="height: 50px; margin: 40px 0px 10px 0px"
-                />
-                <img
-                  src="files-images/right_2_7d452b14d3.png "
-                  alt="img 5 "
-                  style="height: 150px; margin-bottom:10px;"
-                />
-                <img
-                  src="files-images/right_3_3e977d5ccd.png "
-                  alt="img 6 "
-                  style="height: 90px;"
-                />
-              </div>
+          <div class="content-introduce-2">
+            <div class="img-introduce-1">
+              <img
+                src="files-images/left_1_6e85f91918.png "
+                alt="Introduce image "
+                style="height: 150px; margin-top: 20px"
+              />
+              <img
+                src="files-images/left_2_43fe73d4f7.png "
+                alt="Introduce image "
+                style="height: 220px"
+              />
+            </div>
+            <div class="img-introduce-2">
+              <img
+                src="files-images/main_b411908630.png "
+                alt="Introduce image "
+                style="height: 400px"
+              />
+            </div>
+            <div class="img-introduce-3">
+              <img
+                src="files-images/right_1_fc6e1d54d2.png "
+                alt="Introduce image "
+                style="height: 50px; margin: 40px 0px 10px 0px"
+              />
+              <img
+                src="files-images/right_2_7d452b14d3.png "
+                alt="Introduce image "
+                style="height: 150px; margin-bottom: 10px"
+              />
+              <img
+                src="files-images/right_3_3e977d5ccd.png "
+                alt="Introduce image "
+                style="height: 90px"
+              />
             </div>
           </div>
         </div>
         <div
-          class="row table-homepage-1"
-          style="border-bottom: 1px solid gainsboro; margin-top: 40px;"
+          class="table-introduce-1"
+          style="border-bottom: 1px solid gainsboro"
         >
-          <div class="col-sm-2" style="text-align: center">
+          <div class="table-introduce-1-logo">
             <img src="files-images/img.png " alt="img " style="height: 20px" />
           </div>
-          <div class="col-sm-8"></div>
-          <div class="col-sm-2" style="text-align: center">
-            <button type="button " class="btn btn-bn">Buy Now</button>
+          <div class="table-introduce-1-btn">
+            <button type="button " class="btn btn-orange">Buy Now</button>
           </div>
         </div>
-        <div class="row table-homepage-1">
-          <div class="col-sm-2" style="text-align: center">
-            <a href="# " class="homepage-f">Features</a>
+        <div class="table-introduce-1">
+          <a href="# ">Features</a>
+          <a href="# ">Frontend Design</a>
+          <a href="# ">Payment Gateway</a>
+          <a href="# ">Contact us</a>
+        </div>
+      </div>
+    </div>
+    <div class="top-features-section">
+      <div class="container">
+        <div class="title-top-features">
+          <p class="title1-title-top-features">
+            TOP FEATURES OF ADMIN & STORE PANEL
+          </p>
+          <h2 class="title2-title-top-features">
+            <b>All on one Powerful Complete Multivendor Online</b>
+          </h2>
+          <h2 class="title3-title-top-features"><b>Food Delivery Script</b></h2>
+        </div>
+        <br />
+        <div class="content-top-features">
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Accurate Business Zone Map</p>
+              <p>
+                You can messsage numerous zones for your business converage area
+                in the admin panel. The map drawing tool can assist you in
+                precisely drawing your converage. These zones can have stones
+                added to them. Items can only be ordered by users who are
+                covered in that location.
+              </p>
+            </div>
           </div>
-          <div class="col-sm-4" style="text-align: center">
-            <a href="# " class="homepage-fd">Frontend Design</a>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Multiple Stores</p>
+              <p>
+                6amMart - food delivery app can overate multiple stores
+                according to your needs. As a result, you can create an endless
+                number of stores and easily manage them from the admin panel.
+              </p>
+            </div>
           </div>
-          <div class="col-sm-4" style="text-align: center">
-            <a href="# " class="homepage-pg">Payment Gateway</a>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">OTP integration through SMS</p>
+              <p>
+                This Food delivery system is developed with all modern
+                technologies. OTP is significant among them for security and
+                spam protection. You can easily integrate and verify your user.
+              </p>
+            </div>
           </div>
-          <div class="col-sm-2" style="text-align: center">
-            <a href="# " class="homepage-cu">Contact us</a>
+        </div>
+        <br />
+        <div class="content-top-features">
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Management of Items</p>
+              <p>
+                You may manage categories and subcategories, attributes,
+                add-ons, and move in item area. Any store can have items added
+                by themselves. A function for managing items will also be added
+                to the Store panel.
+              </p>
+            </div>
+          </div>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Advanced Order Management</p>
+              <p>
+                This Multivendor delivery system has an advanced order
+                management process for both admin and store manager and delivery
+                man. You can have live experience by using our demo.
+              </p>
+            </div>
+          </div>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Management of Dispatch</p>
+              <p>
+                Dispatch Management can assist you in swiftly determing which
+                orders are active and which order are awaiting delivery. These
+                features will definitely help you to accelerate your business
+                process.
+              </p>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="content-top-features">
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Delivery Men Apps</p>
+              <p>
+                You may establish an endless number of delivery men, who can
+                quickly accept orders, delivery them, and earn money using the
+                delivery men app. It is a great opportunity to earn money
+                through this app. From the admin panel, you may choose between a
+                freelance delivery man and a salaried delivery man.
+              </p>
+            </div>
+          </div>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Manual assign of delivery man</p>
+              <p>
+                The 6amMart admin panel will provide you with yet another useful
+                feature, you can assign an available delivery man immediately.
+              </p>
+            </div>
+          </div>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Marketing Section</p>
+              <p>
+                This online food delivery app script will offer you a
+                feature-rich admin panel from with you can manage all of the
+                primary marketing aspects. Campaigns, ads, coupons, and push
+                notifications are just a few of the features that will help you
+                build your business quickly.
+              </p>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="content-top-features">
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Section of Accounts</p>
+              <p>
+                You can see the store and delivery men's earnings, handle
+                withdrawals, physically collect amounts of cash, and manage a
+                large number of employees. Nothing is impossible in this PHP
+                Lavarel-based delivery app script.
+              </p>
+            </div>
+          </div>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Statistics and Reporting</p>
+              <p>
+                Full of Statistics and reports, you'll get a visual report of
+                your company's cash flow and financial status. This will be
+                shown as day and item-wise reports.
+              </p>
+            </div>
+          </div>
+          <div class="content-top-features-content">
+            <div
+              class="content-top-features-content-logo"
+              style="padding-top: 15px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                class="bi bi-map"
+                viewBox="0 0 16 16"
+                id="IconChangeColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                  id="mainIconPathAttribute"
+                  fill="#737373"
+                  stroke-width="0"
+                  stroke="#ff0000"
+                ></path>
+              </svg>
+            </div>
+            <div class="content-top-features-content-content">
+              <p class="title-content">Employee Management</p>
+              <p>
+                If you are facing any problem in employee managements, you can
+                solve this issue by using the employee section. You can manage
+                the role of employees and make a list of your new employees.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row2">
+    <div class="grocery-section">
       <div class="container">
-        <div class="title-row2">
-          <p class="title1-title-row2">TOP FEATURES OF ADMIN & STORE PANEL</p>
-          <h2 class="title2-title-row2">
-            <b>All on one Powerful Complete Multivendor Online</b>
-          </h2>
-          <h2 class="title3-title-row2"><b>Food Delivery Script</b></h2>
-        </div>
-        <div class="row content-row2">
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
+        <div class="grocery-section-content">
+          <div class="grocery-section-1">
+            <img
+              src="files-images/group_17004_27ccb34afc.png"
+              alt="img-row3"
+              style="height: 500px"
+            />
+          </div>
+          <div class="grocery-section-2">
+            <h2><b>Complete Multi-purpose Grocery Delivery Script</b></h2>
+            <br />
+            <p>
+              We develop this script for the multipurpose delivery system. You
+              can use it as food delivery app or use it as a grocery, parcel
+              delivery app, no matter what your business type is. You will get
+              all the above-mentioned features along with these unique business
+              features.
+            </p>
+            <br />
+            <div class="grocery-section-2-content">
+              <div class="grocery-section-2-content-content">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
@@ -230,431 +665,6 @@
                     stroke="#ff0000"
                   ></path>
                 </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Accurate Business Zone Map</p>
-                <p>
-                  You can messsage numerous zones for your business converage
-                  area in the admin panel. The map drawing tool can assist you
-                  in precisely drawing your converage. These zones can have
-                  stones added to them. Items can only be ordered by users who
-                  are covered in that location.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Multiple Stores</p>
-                <p>
-                  6amMart - food delivery app can overate multiple stores
-                  according to your needs. As a result, you can create an
-                  endless number of stores and easily manage them from the admin
-                  panel.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">OTP integration through SMS</p>
-                <p>
-                  This Food delivery system is developed with all modern
-                  technologies. OTP is significant among them for security and
-                  spam protection. You can easily integrate and verify your
-                  user.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div class="row content-row2">
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Management of Items</p>
-                <p>
-                  You may manage categories and subcategories, attributes,
-                  add-ons, and move in item area. Any store can have items added
-                  by themselves. A function for managing items will also be
-                  added to the Store panel.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Advanced Order Management</p>
-                <p>
-                  This Multivendor delivery system has an advanced order
-                  management process for both admin and store manager and
-                  delivery man. You can have live experience by using our demo.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Management of Dispatch</p>
-                <p>
-                  Dispatch Management can assist you in swiftly determing which
-                  orders are active and which order are awaiting delivery. These
-                  features will definitely help you to accelerate your business
-                  process.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div class="row content-row2">
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Delivery Men Apps</p>
-                <p>
-                  You may establish an endless number of delivery men, who can
-                  quickly accept orders, delivery them, and earn money using the
-                  delivery men app. It is a great opportunity to earn money
-                  through this app. From the admin panel, you may choose between
-                  a freelance delivery man and a salaried delivery man.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Manual assign of delivery man</p>
-                <p>
-                  The 6amMart admin panel will provide you with yet another
-                  useful feature, you can assign an available delivery man
-                  immediately.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Marketing Section</p>
-                <p>
-                  This online food delivery app script will offer you a
-                  feature-rich admin panel from with you can manage all of the
-                  primary marketing aspects. Campaigns, ads, coupons, and push
-                  notifications are just a few of the features that will help
-                  you build your business quickly.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div class="row content-row2">
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Section of Accounts</p>
-                <p>
-                  You can see the store and delivery men's earnings, handle
-                  withdrawals, physically collect amounts of cash, and manage a
-                  large number of employees. Nothing is impossible in this PHP
-                  Lavarel-based delivery app script.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Statistics and Reporting</p>
-                <p>
-                  Full of Statistics and reports, you'll get a visual report of
-                  your company's cash flow and financial status. This will be
-                  shown as day and item-wise reports.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="row">
-              <div class="col-sm-1" style="padding-top: 15px">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
-              </div>
-              <div class="col-sm-11">
-                <p class="title-content">Employee Management</p>
-                <p>
-                  If you are facing any problem in employee managements, you can
-                  solve this issue by using the employee section. You can manage
-                  the role of employees and make a list of your new employees.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row3">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 img-row3">
-            <img
-              src="files-images/group_17004_27ccb34afc.png"
-              alt="img-row3"
-              style="height: 500px"
-            />
-          </div>
-          <div class="col-sm-6 content-row3">
-            <h2><b>Complete Multi-purpose Grocery Delivery Script</b></h2>
-            <p>
-              We develop this script for the multipurpose delivery system. You
-              can use it as food delivery app or use it as a grocery, parcel
-              delivery app, no matter what your business type is. You will get
-              all the above-mentioned features along with these unique business
-              features.
-            </p>
-            <div class="row">
-              <div class="col-sm-4">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
                 <p class="title-content">Business Set-up</p>
                 <p>
                   Business Settings can assist you in establishing your company
@@ -662,25 +672,25 @@
                   for customizing your business.
                 </p>
               </div>
-              <div class="col-sm-4">
+              <div class="grocery-section-2-content-content">
                 <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-map"
+                  viewBox="0 0 16 16"
+                  id="IconChangeColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                    id="mainIconPathAttribute"
+                    fill="#737373"
+                    stroke-width="0"
+                    stroke="#ff0000"
+                  ></path>
+                </svg>
                 <p class="title-content">Complete Featured User App</p>
                 <p>
                   This bundle includes the source code for the 6amMart mobile
@@ -688,25 +698,25 @@
                   both Android and iOS.
                 </p>
               </div>
-              <div class="col-sm-4">
+              <div class="grocery-section-2-content-content">
                 <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                class="bi bi-map"
-                viewBox="0 0 16 16"
-                id="IconChangeColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
-                  id="mainIconPathAttribute"
-                  fill="#737373"
-                  stroke-width="0"
-                  stroke="#ff0000"
-                ></path>
-              </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-map"
+                  viewBox="0 0 16 16"
+                  id="IconChangeColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"
+                    id="mainIconPathAttribute"
+                    fill="#737373"
+                    stroke-width="0"
+                    stroke="#ff0000"
+                  ></path>
+                </svg>
                 <p class="title-content">Multiple Payment Gateways</p>
                 <p>
                   6amMart has several payment gateways built in. All of them are
@@ -720,204 +730,200 @@
         </div>
       </div>
     </div>
-    <div class="row4">
+    <div class="food-delivery-app-section">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-6 img-row4">
+        <div class="food-delivery-app-section-content">
+          <div class="food-delivery-app-section-1">
             <img
               src="files-images/2441_1_260b6d51e4.png"
               alt="img-row4"
               style="height: 280px"
             />
           </div>
-          <div class="col-sm-6 content-row4">
+          <div class="food-delivery-app-section-2">
             <h2>
               <b
                 >Both iOS and Android Supported Food Delivery App Script(Flutter
                 App).</b
               >
             </h2>
+            <br />
             <p>
               6amMart mobile app is developed through extensive UI/UX design. So
               the app is very user-friendly and your user will be satisfied
               after they install the app. Go through our demo.
             </p>
-            <div class="row">
-              <div class="col-sm-4">
-                <button type="button " class="btn btn-gpua">
-                  Google Play(User App)
-                </button>
-              </div>
-              <div class="col-sm-4">
-                <button type="button " class="btn btn-gpda">
-                  Google Play(Delivery App)
-                </button>
-              </div>
+            <br />
+            <div class="btn-food-delivery-app-section-2">
+              <button type="button " class="btn btn-green">
+                Google Play(User App)
+              </button>
+              <button type="button " class="btn btn-brown">
+                Google Play(Delivery App)
+              </button>
             </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <button type="button " class="btn btn-gpsa">
-                  Google Play(Store App)
-                </button>
-              </div>
+            <div class="btn-food-delivery-app-section-2">
+              <button type="button " class="btn btn-aqua">
+                Google Play(Store App)
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row5">
+    <div class="integrated-payment-gateways-section">
       <div class="container">
-        <h5 class="title-row5">INTEGRATED PAYMENT GATEWAYS</h5>
-        <br />
-        <div class="row">
-          <div class="col-sm-2">
-            <img
-              src="files-images/2_aa6ae7aaa9.png"
-              alt="img-row5"
-              style="height: 50px"
-            />
+        <div class="integrated-payment-gateways-section-content">
+          <h5 class="integrated-payment-gateways-section-title">
+            INTEGRATED PAYMENT GATEWAYS
+          </h5>
+          <br />
+          <div class="integrated-payment-gateways-section-content-content">
+            <div class="integrated-payment-gateways-section-content-img-1">
+              <img
+                src="files-images/2_aa6ae7aaa9.png"
+                alt="img-row5"
+                style="height: 50px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-2">
+              <img
+                src="files-images/3_a8ba83772d.png"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-3">
+              <img
+                src="files-images/1_1358322ed3.png"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-4">
+              <img
+                src="files-images/6_05a6b4a536.png"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-5">
+              <img
+                src="files-images/5_112b5b8fa2.jpeg"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-6">
+              <img
+                src="files-images/4_49a84ec53e.png"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
           </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/3_a8ba83772d.png"
-              alt="img-row5"
-              style="height: 30px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/1_1358322ed3.png"
-              alt="img-row5"
-              style="height: 30px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/6_05a6b4a536.png"
-              alt="img-row5"
-              style="height: 30px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/5_112b5b8fa2.jpeg"
-              alt="img-row5"
-              style="height: 30px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/4_49a84ec53e.png"
-              alt="img-row5"
-              style="height: 30px"
-            />
-          </div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-sm-2">
-            <img
-              src="files-images/7_f5ac614d33.png"
-              alt="img-row5"
-              style="height: 50px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/8_84cec1232a.png"
-              alt="img-row5"
-              style="height: 50px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/10_3d03c02108.png"
-              alt="img-row5"
-              style="height: 50px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/11_c824981033.png"
-              alt="img-row5"
-              style="height: 50px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/12_a3985dae42.png"
-              alt="img-row5"
-              style="height: 30px"
-            />
-          </div>
-          <div class="col-sm-2">
-            <img
-              src="files-images/9_56fddefd48.png"
-              alt="img-row5"
-              style="height: 30px"
-            />
+          <br />
+          <div class="integrated-payment-gateways-section-content-content">
+            <div class="integrated-payment-gateways-section-content-img-7">
+              <img
+                src="files-images/7_f5ac614d33.png"
+                alt="img-row5"
+                style="height: 50px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-8">
+              <img
+                src="files-images/8_84cec1232a.png"
+                alt="img-row5"
+                style="height: 50px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-9">
+              <img
+                src="files-images/10_3d03c02108.png"
+                alt="img-row5"
+                style="height: 50px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-10">
+              <img
+                src="files-images/11_c824981033.png"
+                alt="img-row5"
+                style="height: 50px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-11">
+              <img
+                src="files-images/12_a3985dae42.png"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
+            <div class="integrated-payment-gateways-section-content-img-12">
+              <img
+                src="files-images/9_56fddefd48.png"
+                alt="img-row5"
+                style="height: 30px"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row6">
+    <div class="integrated-sms-gateways-section">
       <div class="container">
-        <h5 class="title-row6">INTEGRATED SMS GATEWAYS</h5>
-        <br />
-        <div class="row">
-          <div class="col-sm-3">
-            <img
-              src="files-images/1_1_05f48f6021.png"
-              alt="img-row6"
-              style="height: 60px"
-            />
-          </div>
-          <div class="col-sm-3">
-            <img
-              src="files-images/4_1_accb67b4cb.png"
-              alt="img-row6"
-              style="height: 40px"
-            />
-          </div>
-          <div class="col-sm-3">
-            <img
-              src="files-images/2_1_29542a1c92.png"
-              alt="img-row6"
-              style="height: 40px"
-            />
-          </div>
-          <div class="col-sm-3">
-            <img
-              src="files-images/3_1_894e5d3f8c.png"
-              alt="img-row6"
-              style="height: 80px"
-            />
+        <div class="integrated-sms-gateways-section-content">
+          <h5 class="integrated-sms-gateways-section-title">
+            INTEGRATED SMS GATEWAYS
+          </h5>
+          <br />
+          <div class="integrated-sms-gateways-section-content-content">
+            <div class="integrated-sms-gateways-section-content-img-1">
+              <img
+                src="files-images/1_1_05f48f6021.png"
+                alt="img-row6"
+                style="height: 60px"
+              />
+            </div>
+            <div class="integrated-sms-gateways-section-content-img-2">
+              <img
+                src="files-images/4_1_accb67b4cb.png"
+                alt="img-row6"
+                style="height: 40px"
+              />
+            </div>
+            <div class="integrated-sms-gateways-section-content-img-3">
+              <img
+                src="files-images/2_1_29542a1c92.png"
+                alt="img-row6"
+                style="height: 40px"
+              />
+            </div>
+            <div class="integrated-sms-gateways-section-content-img-4">
+              <img
+                src="files-images/3_1_894e5d3f8c.png"
+                alt="img-row6"
+                style="height: 80px"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
     <footer>
-      <div class="container">
+      <div class="footer container">
         <div
-          class="row"
+          class="footer-section-1"
           style="border-bottom: 1px solid gainsboro; padding-bottom: 10px"
         >
-          <div class="col-sm-6">
-            <h3 class="footer-title">
-              We are exclusive seller in codecanyon, Explore our products and
-              purchases.
-            </h3>
-          </div>
-          <div class="col-sm-4"></div>
-          <div
-            class="col-sm-2"
-            style="padding-top: 20px; padding-bottom: 20px; text-align: right"
-          >
-            <button type="button " class="btn-footer">Explore Now</button>
-          </div>
+          <h3 class="footer-title">
+            We are exclusive seller in codecanyon, Explore our products and
+            purchases.
+          </h3>
+          <button type="button " class="btn-footer">Explore Now</button>
         </div>
-        <div class="row" style="padding-top: 20px">
-          <div class="col-sm-3">
+        <div class="footer-section-2" style="padding-top: 20px">
+          <div class="footer-section-2-content">
             <img
               src="files-images/logo3.png"
               alt="footer img"
@@ -927,12 +933,12 @@
             <p>© 2020-2023 6amTech</p>
             <p>All right reserved.</p>
           </div>
-          <div class="col-sm-3">
+          <div class="footer-section-2-content">
             <p><b>For any kind of sport</b></p>
             <br />
             <a href="#">Open a ticket</a>
           </div>
-          <div class="col-sm-3">
+          <div class="footer-section-2-content">
             <p><b>Learn more</b></p>
             <br />
             <a href="#">About us</a><br />
@@ -940,7 +946,7 @@
             <a href="#">Privacy Policy</a><br />
             <a href="#">Projects</a>
           </div>
-          <div class="col-sm-3">
+          <div class="footer-section-2-content">
             <p><b>Our Newsletter</b></p>
             <br />
             <p>
