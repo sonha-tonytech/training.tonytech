@@ -1,5 +1,5 @@
 function dropMenuRight() {
-  document.getElementById("mobile-menu-dropright").style.cssText = "right:0%;"
+  document.getElementById("mobile-menu-dropright").style.cssText = "right:20%;"
 }
 
 

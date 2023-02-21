@@ -68,7 +68,7 @@ header {
 }
 .mobile-menu {
   height: 100vh;
-  width: 100vw;
+  width: 80vw;
   background-color: var(--navBackground);
   padding-left: 10px;
   position: fixed;
@@ -90,13 +90,12 @@ header {
   width: 100%;
   font-weight: bold;
   margin-top: 5px;
-  border-bottom: solid 1px var(--borderTable);
 }
 
 .mobile-menu ul li a {
   text-decoration: none;
   font-size: 20px;
-  color: white;
+  color: #646464;
   text-align: left;
 }
 
@@ -105,7 +104,7 @@ header {
 }
 
 #mobile-menu a:hover  {
-  color: black;
+  color: white;
 }
 
 #mobile-menu > li > ul.dropdown-mobile-menu {
@@ -217,7 +216,6 @@ ul.dropdown-mobile-menu > li:hover > ul.mobile-submenu {
 .table-introduce-1 {
   border: 1px solid var(--borderTable);
   background: var(--linkHover);
-  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -276,6 +274,9 @@ ul.dropdown-mobile-menu > li:hover > ul.mobile-submenu {
     font-size: 20px;
     margin-bottom: 10px;
   }
+  .table-introduce-1{
+    padding: 20px 40px;
+  }
 }
 
 /* Introduce Section CSS Mobile */
@@ -312,6 +313,9 @@ ul.dropdown-mobile-menu > li:hover > ul.mobile-submenu {
     margin-top: 10px;
     font-size: 20px;
     margin-bottom: 10px;
+  }
+  .table-introduce-1{
+    padding: 50px 10px;
   }
 }
 
