@@ -1,0 +1,128 @@
+/* Add Customer Section CSS */
+
+.pop-up-form{
+  display: none;
+  position: fixed;
+  top: 50px;
+  width: 700px;
+  padding: 30px 15px;
+  border: 1px solid var(--borderGray);
+  background-color: var(--backgroundWhite);
+  border-radius: 5px;
+  z-index: 2;
+}
+
+#background-after-form{
+  display: none;
+  position: fixed;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.customer-add-section-title {
+  display: flex;
+  border-bottom: 1px solid var(--borderGray);
+  height: 100px;
+}
+
+.title-add-user {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.title-add-user h1 {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 30px;
+}
+
+.exit-button {
+  text-align: right;
+}
+
+.form-add-user > div {
+  margin-top: 10px;
+}
+
+.form-add-user > div input {
+  border: 1px solid var(--borderGray) !important;
+  border-radius: 5px;
+  border: none;
+  margin-top: 5px;
+  height: 50px;
+}
+
+.form_action-buton {
+  text-align: right;
+}
+
+.form_action-buton input:first-of-type {
+  background-color: var(--backgroundWhite);
+  color: black;
+}
+
+/* User Detail Section CSS */
+
+.customer-detail-section{
+  background-color: var(--backgroundWhite);
+  padding: 50px 0px;
+}
+
+.customer-detail-section-title {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+
+.title-customer-detail, .title-customer-detail b{
+    font-size: 30px;
+}
+
+.search-customer-detail{
+    text-align: right;
+    padding-right: 30px;
+}
+.search-customer-detail input{
+    border: 1px solid var(--borderGray);
+    border-radius: 15px;
+    height: 30px;
+}
+
+.btn-insert-user{
+  padding: 0 10px;
+}
+
+table.list{
+    width: 100%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+table.list{
+  width: 100%;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+table.list th{
+    height: 40px;
+    border: 1px solid;
+}
+
+table.list td{
+    padding: 15px 5px;
+    border: 1px solid;
+}
+
+.btn-actions{
+  text-align: center;
+}
+.btn-actions i{
+  margin: 0 5%;
+}
+
+

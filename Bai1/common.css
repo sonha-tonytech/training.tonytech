@@ -125,11 +125,6 @@ ul.dropdown-menu > li:hover > ul.submenu {
 
 /* Social Logo CSS */
 
-.logo img {
-  max-width: 100%;
-  height: auto;
-}
-
 .logo-facebook {
   color: black;
 }
