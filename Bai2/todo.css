@@ -1,26 +1,28 @@
 /* Add Customer Section CSS */
 
+body {
+  background-color: rgba(0, 0, 0, 0.164);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
 .pop-up-form{
   display: none;
   position: fixed;
   top: 50px;
   width: 700px;
   padding: 30px 15px;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid var(--borderGray);
   background-color: var(--backgroundWhite);
   border-radius: 5px;
-  z-index: 2;
+  z-index: 1;
 }
 
-#background-after-form{
-  display: none;
-  position: fixed;
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.5;
-}
 
 .customer-add-section-title {
   display: flex;
@@ -29,6 +31,8 @@
 }
 
 .title-add-user {
+  display: flex;
+  justify-content: start;
   margin-top: auto;
   margin-bottom: auto;
 }

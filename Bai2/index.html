@@ -5,22 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bai2</title>
-    <link rel="stylesheet" href="todo.css" />
-    <link rel="stylesheet" href="common.css" />
     <link rel="stylesheet" href="variable.css" />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="todo.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
   </head>
   <body>
+    <div class="customer-detail-section" id="customer-detail-section">
+      <div class="container">
+        <div class="customer-detail-section-title">
+          <div class="title-customer-detail col-des-6">
+            Customer <b>Details</b>
+          </div>
+          <div class="search-customer-detail col-des-6">
+            <input
+              id="btn-add-new-user"
+              type="button"
+              class="btn btn-green btn-insert-user"
+              value="+"
+            />
+            <input type="search" id="search" placeholder="Search" />
+          </div>
+        </div>
+        <div class="customer-detail-section-content" id="posts-customer-detail">
+          <table class="list" id="storeList">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Pin Code</th>
+              <th>Country</th>
+              <th>Actions</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
     <div class="pop-up-form" id="pop-up-form">
       <div class="customer-add-section-title">
         <div class="title-add-user col-des-6">
-          <h1>Contact Form</h1>
+          <h1 class="col-des-8">Contact Form</h1>
+          <input type="number" id="index-add-user" class="col-des-2" style="text-align: center;"/>
         </div>
         <div class="exit-button col-des-6">
-          <a id="exit" onclick="closeForm()">
+          <a id="btn-exit">
             <svg
               style="color: white"
               xmlns="http://www.w3.org/2000/svg"
@@ -94,8 +126,8 @@
           <div class="form_action-buton">
             <input
               type="button"
+              id="btn-close"
               class="btn col-des-2"
-              onclick="closeForm()"
               value="Close"
             />
             <input
@@ -108,38 +140,8 @@
         </form>
       </div>
     </div>
-    <div id="background-after-form"></div>
-    <div class="customer-detail-section">
-      <div class="container">
-        <div class="customer-detail-section-title">
-          <div class="title-customer-detail col-des-6">
-            Customer <b>Details</b>
-          </div>
-          <div class="search-customer-detail col-des-6">
-            <input
-              type="button"
-              class="btn btn-green btn-insert-user"
-              onclick="openForm()"
-              value="+"
-            />
-            <input type="search" id="search" placeholder="Search" />
-          </div>
-        </div>
-        <div class="customer-detail-section-content" id="posts-customer-detail">
-          <table class="list" id="storeList">
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>Pin Code</th>
-              <th>Country</th>
-              <th>Actions</th>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
+    
     <script src="todo.js"></script>
+    
   </body>
 </html>

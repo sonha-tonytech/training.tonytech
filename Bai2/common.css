@@ -52,14 +52,6 @@
     font-size: 18px;
 }
 
-body{
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
 form label{
     font-weight: bold;
 }
