@@ -27,7 +27,12 @@
               class="btn btn-green btn-insert-user"
               value="+"
             />
-            <input type="search" id="search" placeholder="Search" />
+            <input
+              type="search"
+              class="ip-search"
+              id="ip_search"
+              placeholder="Search..."
+            />
           </div>
         </div>
         <div class="customer-detail-section-content" id="posts-customer-detail">
@@ -43,13 +48,34 @@
             </tr>
           </table>
         </div>
+        <div class="page-pagination-section">
+          <div class="pageselectors col-des-2" id="page_selectors"></div>
+          <div class="pagenumbers col-des-2" id="page_numbers">
+            <div class="left-arrow"><a class="pagination-number" href=""><i class="fas fa-chevron-left"></i></a></div>
+            <ul class="pagination">
+              <!-- <li class=""></li> -->
+              <li class="active"><a class="pagination-number" href="">1</a></li>
+              <li class="disative"><a class="pagination-number" href="">2</a></li>
+              <li class="disative"><a class="pagination-number" href="">3</a></li>
+              <li class="disative"><a class="pagination-number" href="">4</a></li>
+              <li class="disative"><a class="pagination-number" href="">5</a></li>
+              <!-- <li class=""></li> -->
+            </ul>
+            <div class="right-arrow"><a class="pagination-number" href=""><i class="fas fa-chevron-right"></i></a></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="pop-up-form" id="pop-up-form">
       <div class="customer-add-section-title">
         <div class="title-add-user col-des-6">
           <h1 class="col-des-8">Contact Form</h1>
-          <input type="number" id="index-add-user" class="col-des-2" style="text-align: center;"/>
+          <input
+            type="number"
+            id="index-add-user"
+            class="col-des-2"
+            style="text-align: center"
+          />
         </div>
         <div class="exit-button col-des-6">
           <a id="btn-exit">
@@ -72,6 +98,8 @@
       </div>
       <div class="content-add-user col-des-12">
         <form class="form-add-user" id="form-add-user">
+          <input type="hidden" id="ip_user_id" name="id" />
+
           <div>
             <label for="userName">Name</label>
             <input
@@ -140,8 +168,10 @@
         </form>
       </div>
     </div>
-    
-    <script src="todo.js"></script>
-    
+
+    <script src="variables.js"></script>
+    <script src="utils.js"></script>
+    <script src="service.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
