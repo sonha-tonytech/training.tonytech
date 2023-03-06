@@ -1,5 +1,8 @@
 :root{
+    --backgroundBlack: rgba(0, 0, 0, 0.164);
     --borderGray: gray;
     --backgroundWhite: white;
     --btnGreen: green;
+    --selectPage: gray;
+    --notSelectPage: black;
 }

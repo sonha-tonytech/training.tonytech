@@ -37,31 +37,37 @@
         </div>
         <div class="customer-detail-section-content" id="posts-customer-detail">
           <table class="list" id="storeList">
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>Pin Code</th>
-              <th>Country</th>
-              <th>Actions</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Pin Code</th>
+                <th>Country</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
           </table>
         </div>
         <div class="page-pagination-section">
-          <div class="pageselectors col-des-2" id="page_selectors"></div>
+          <div class="pageselectors col-des-3" id="page_selectors">
+            <select name="row-select" id="ip_row_select">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+            </select>
+            <div class="show-total-country"></div>
+          </div>
           <div class="pagenumbers col-des-2" id="page_numbers">
-            <div class="left-arrow"><a class="pagination-number" href=""><i class="fas fa-chevron-left"></i></a></div>
-            <ul class="pagination">
-              <!-- <li class=""></li> -->
-              <li class="active"><a class="pagination-number" href="">1</a></li>
-              <li class="disative"><a class="pagination-number" href="">2</a></li>
-              <li class="disative"><a class="pagination-number" href="">3</a></li>
-              <li class="disative"><a class="pagination-number" href="">4</a></li>
-              <li class="disative"><a class="pagination-number" href="">5</a></li>
-              <!-- <li class=""></li> -->
-            </ul>
-            <div class="right-arrow"><a class="pagination-number" href=""><i class="fas fa-chevron-right"></i></a></div>
+            <div class="left-arrow" id="left-arrow">
+              <i class="fas fa-chevron-left"></i>
+            </div>
+            <ul class="pagination" id="pagination"></ul>
+            <div class="right-arrow" id="right-arrow">
+              <i class="fas fa-chevron-right"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -99,7 +105,6 @@
       <div class="content-add-user col-des-12">
         <form class="form-add-user" id="form-add-user">
           <input type="hidden" id="ip_user_id" name="id" />
-
           <div>
             <label for="userName">Name</label>
             <input

@@ -15,6 +15,12 @@ const addData = (data) => {
     }
     users[index - 1] = data;
   }
+  if (users.length % currentRow === 1) {
+    location.reload();
+  } else {
+    table[0].innerHTML = "";
+    renderUsersTable(users);
+  }
 };
 
 //  Update data
@@ -32,6 +38,8 @@ const updateUser = (id, form) => {
     users[index - 1].pinCode = form.pinCode;
     users[index - 1].country = form.country;
     closeForm();
+    table[0].innerHTML = "";
+    renderUsersTable(users);
   }
 };
 
@@ -43,24 +51,10 @@ const deleteUser = (id) => {
   }
   resetForm();
   localStorage.setItem("listUser", JSON.stringify(users));
-  location.reload();
-};
-
-// Search data
-const searchUser = () => {
-  var input = document.getElementById("ip_search").value;
-  var listUserNameAfterSearch = users
-    .filter((user) => user.userName.toUpperCase().includes(input.toUpperCase()))
-    .map((user) => user.userName);
-  console.log(listUserNameAfterSearch);
-  var table = document.getElementById("storeList");
-  var tr = table.getElementsByTagName("tr");
-  for (i = 1; i < tr.length; i++) {
-    var td = tr[i].getElementsByTagName("td")[1];
-    if (listUserNameAfterSearch.some((userName) => userName === td.innerText)) {
-      tr[i].style.display = "";
-    } else {
-      tr[i].style.display = "none";
-    }
+  if ((indexUser + 1) % currentRow === 1) {
+    location.reload();
+  } else {
+    table[0].innerHTML = "";
+    renderUsersTable(users);
   }
 };

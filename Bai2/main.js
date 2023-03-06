@@ -1,32 +1,3 @@
-const validateForm = () => {
-  const formData = readFormUser();
-  let index = Number(document.getElementById("index-add-user").value);
-  let msg = document.getElementById("msg-add-user");
-
-  if (
-    formData.userName === "" ||
-    formData.address === "" ||
-    formData.city === "" ||
-    formData.pinCode === "" ||
-    formData.country === ""
-  ) {
-    msg.innerHTML = "Information cannot be blank";
-  } else if (index < 0 || index > users.length + 1) {
-    msg.innerHTML = "invalid index value";
-  } else {
-    msg.innerHTML = "";
-    if (flag === 0) {
-      formData.id = randomId();
-      addData(formData);
-      closeForm();
-    } else {
-      updateUser(formData.id, formData);
-    }
-    localStorage.setItem("listUser", JSON.stringify(users));
-    location.reload();
-  }
-};
-
 // Retrive data
 const readFormUser = () => {
   var formData = {};
@@ -54,52 +25,170 @@ const showFormUserEdit = (id) => {
   openForm();
 };
 
-const renderUsersTable = () => {
-  // render list users to table
-  if (users.length > 0) {
-    users.forEach((element, index) => {
-      var table = document.getElementById("storeList");
-      var newRow = table.insertRow(table.rows.length);
-      var cell0 = newRow.insertCell(0);
-      cell0.style = "text-align: center;";
-      cell0.innerHTML = newRow.rowIndex;
-      var cell1 = newRow.insertCell(1);
-      cell1.style = "padding-left: 1%;";
-      cell1.innerHTML = element.userName;
-      var cell2 = newRow.insertCell(2);
-      cell2.style = "padding-left: 1%;";
-      cell2.innerHTML = element.address;
-      var cell3 = newRow.insertCell(3);
-      cell3.style = "padding-left: 1%;";
-      cell3.innerHTML = element.city;
-      var cell4 = newRow.insertCell(4);
-      cell4.style = "padding-left: 1%;";
-      cell4.innerHTML = element.pinCode;
-      var cell5 = newRow.insertCell(5);
-      cell5.style = "padding-left: 1%;";
-      cell5.innerHTML = element.country;
-      var cell6 = newRow.insertCell(6);
-      cell6.className = "btn-actions";
-      cell6.innerHTML = `<i class="fas fa-edit" id="btn-edit-${index}"></i> <i class="fas fa-trash" id="btn-delete-${index}"></i>`;
+// innerHTML User table after select Row and Page
+const getRowUser = (listusers) => {
+  let queryUsers = listusers.map(
+    (user) =>
+      `<tr>
+    <td style="text-align: center;">${users.indexOf(user) + 1}</td>
+    <td style="padding-left: 1%;">${user.userName}</td>
+    <td style="padding-left: 1%;">${user.address}</td>
+    <td style="padding-left: 1%;">${user.city}</td>
+    <td style="padding-left: 1%;">${user.pinCode}</td>
+    <td style="padding-left: 1%;">${user.country}</td>
+    <td class="btn-actions">
+      <i class="fas fa-edit" id="btn-edit-${user.id}"></i>
+      <i class="fas fa-trash" id="btn-delete-${user.id}"></i>
+    </td>
+  </tr>`
+  );
+  return queryUsers;
+};
+
+const getPageNumber = (listUsers, rowNumber) => {
+  pageNumber[0].innerHTML = "";
+  let pageNumberUsers = getPageNumberUsers(listUsers, rowNumber);
+  for (let i = 0; i < pageNumberUsers; i++) {
+    pageNumber[0].innerHTML += `<li class="disative" id="page_number_${
+      i + 1
+    }">${i + 1}</li>`;
+  }
+};
+
+// Get sum of each country
+const getSumUserCountry = (listUsers) => {
+  let newListUserCountry = listUsers.map((user) => user.country);
+  document.getElementsByClassName("show-total-country")[0].innerHTML = "";
+  ["viet nam", "america"].forEach((country) => {
+    let sumCountry = newListUserCountry.reduce((acc, item) => {
+      if (item === country) {
+        acc++;
+      }
+      return acc;
+    }, 0);
+
+    document.getElementsByClassName(
+      "show-total-country"
+    )[0].innerHTML += `<div>Sum of ${country}: ${sumCountry}</div>`;
+  });
+};
+
+// render list users to table
+const renderUsersTable = (listUsers) => {
+  document.getElementById("ip_row_select").value =
+    localStorage.getItem("selectedRow");
+  currentRow = Number(localStorage.getItem("selectedRow"));
+  currentPage = Number(localStorage.getItem("selectedPage"));
+
+  if (listUsers.length > 0) {
+    let start = currentRow * (currentPage - 1);
+    let end = start + currentRow;
+    let newListUsers = listUsers.slice(start, end);
+
+    var queryUsers = getRowUser(newListUsers);
+    queryUsers.forEach((element) => {
+      table[0].innerHTML += element;
     });
+
+    getSumUserCountry(listUsers);
 
     // listen edit button events
     const btnEdits = document.querySelectorAll(".fa-edit");
-    btnEdits.forEach((node, index) => {
-      node.addEventListener("click", () => {
-        showFormUserEdit(users[index].id);
+    btnEdits.forEach((node) => {
+      node.addEventListener("click", (e) => {
+        let id = Number(e.target.id.slice(9));
+        showFormUserEdit(id);
       });
     });
 
     // listen delete button events
     const btnDeletes = document.querySelectorAll(".fa-trash");
-    btnDeletes.forEach((node, index) => {
-      node.addEventListener("click", () => {
-        deleteUser(users[index].id);
+    btnDeletes.forEach((node) => {
+      node.addEventListener("click", (e) => {
+        let id = Number(e.target.id.slice(11));
+        deleteUser(id);
       });
     });
+  }
+};
 
+// Search data
+const searchUser = () => {
+  var input = document.getElementById("ip_search").value;
+  var listUserAfterSearch = users.filter(
+    (user) =>
+      user.userName.toUpperCase().includes(input.toUpperCase()) ||
+      user.address.toUpperCase().includes(input.toUpperCase()) ||
+      user.city.toUpperCase().includes(input.toUpperCase()) ||
+      user.pinCode.toUpperCase().includes(input.toUpperCase()) ||
+      user.country.toUpperCase().includes(input.toUpperCase())
+  );
+  table[0].innerHTML = "";
+  renderUsersTable(listUserAfterSearch);
+};
 
+// Select Row to show table
+const selectRowTable = () => {
+  let rowNumber = document.getElementById("ip_row_select").value;
+  localStorage.setItem("selectedRow", rowNumber);
+  location.reload();
+};
+
+//Page pagination
+const pagingUsersTable = (id) => {
+  document.querySelectorAll(".active").forEach((node) => {
+    node.classList.remove("active");
+    node.classList.add("disative");
+    node.addEventListener("click", (e) => {
+      pagingUsersTable(e.target.id);
+      node.classList.remove("disative");
+      node.classList.add("active");
+    });
+  });
+
+  let newCurrentPage = document.getElementById(id).innerHTML;
+  let rowNumber = localStorage.getItem("selectedRow");
+  if (Number(newCurrentPage) === 1) {
+    document.getElementById("left-arrow").style.color = "var(--selectPage)";
+  }
+  else if (Number(newCurrentPage) === getPageNumberUsers(users, rowNumber)) {
+    document.getElementById("right-arrow").style.color = "var(--selectPage)";
+  }
+  localStorage.setItem("selectedPage", newCurrentPage);
+  table[0].innerHTML = "";
+  renderUsersTable(users);
+};
+
+//Handle Left Arrow in Pagination
+const handleLeftArrow = () => {
+  let currentPageNumber = Number(localStorage.getItem("selectedPage"));
+
+  if (currentPageNumber !== 1) {
+    currentPageNumber--;
+    var id = `page_number_${currentPageNumber}`;
+    pagingUsersTable(id);
+    document.getElementById(id).classList.add("active");
+    document.getElementById(id).classList.remove("disative");
+    if (currentPageNumber === 1) {
+      document.getElementById("left-arrow").style.color = "var(--selectPage)";
+    }
+    document.getElementById("right-arrow").style.color = "var(--notSelectPage)";
+  }
+};
+
+//Handle Right Arrow in Pagination
+const handleRightArrow = () => {
+  let rowNumber = localStorage.getItem("selectedRow");
+  let pageNumberUsers = getPageNumberUsers(users, rowNumber);
+  let currentPageNumber = Number(localStorage.getItem("selectedPage"));
+
+  if (currentPageNumber !== pageNumberUsers) {
+    currentPageNumber++;
+    var id = `page_number_${currentPageNumber}`;
+    pagingUsersTable(id);
+    document.getElementById(id).classList.add("active");
+    document.getElementById(id).classList.remove("disative");
+    document.getElementById("left-arrow").style.color = "var(--notSelectPage)";
   }
 };
 
@@ -117,7 +206,37 @@ const openForm = () => {
 
 const closeForm = () => {
   document.getElementById("pop-up-form").style.display = "none";
+  document.getElementById("index-add-user").value = "";
   resetForm();
+};
+
+// Vadidate Data
+const validateForm = () => {
+  const formData = readFormUser();
+  let index = Number(document.getElementById("index-add-user").value);
+  let msg = document.getElementById("msg-add-user");
+
+  if (
+    formData.userName === "" ||
+    formData.address === "" ||
+    formData.city === "" ||
+    formData.pinCode === "" ||
+    formData.country === ""
+  ) {
+    msg.innerHTML = "Information cannot be blank";
+  } else if (index < 0 || index > users.length + 1) {
+    msg.innerHTML = "invalid index value";
+  } else {
+    msg.innerHTML = "";
+    if (flag === 0) {
+      formData.id = randomId();
+      addData(formData);
+      closeForm();
+    } else {
+      updateUser(formData.id, formData);
+    }
+    localStorage.setItem("listUser", JSON.stringify(users));
+  }
 };
 
 // Main
@@ -134,14 +253,21 @@ const main = () => {
     console.log("err", err);
   }
 
-  renderUsersTable();
-  // pagingUsersTable();
+  localStorage.setItem("selectedPage", "1");
 
+  renderUsersTable(users);
+  getPageNumber(users, currentRow);
+
+  // Change classname page 1
+  let firstNumberPage = document.getElementById("page_number_1");
+  firstNumberPage.classList.remove("disative");
+  firstNumberPage.classList.add("active");
+
+  // submit form user
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     validateForm();
   });
-
 
   // Listen elements
   document.getElementById("btn-add-new-user").addEventListener("click", () => {
@@ -154,43 +280,31 @@ const main = () => {
     });
   });
 
-  document.getElementById("ip_search").addEventListener("keyup", () => {
+  document.getElementById("ip_search").addEventListener("change", () => {
     searchUser();
   });
-  
+
+  document.getElementById("ip_row_select").addEventListener("change", () => {
+    selectRowTable();
+  });
+
+  document.getElementById("left-arrow").addEventListener("click", () => {
+    handleLeftArrow();
+  });
+
+  document.getElementById("right-arrow").addEventListener("click", () => {
+    handleRightArrow();
+  });
+
+  let btnPageNumbers = document.querySelectorAll("li.disative");
+  btnPageNumbers.forEach((node) => {
+    node.addEventListener("click", (e) => {
+      document.getElementById("left-arrow").style.color = "var(--notSelectPage)";
+      pagingUsersTable(e.target.id);
+      node.classList.remove("disative");
+      node.classList.add("active");
+    });
+  });
 };
 
-//////////////////////////////////////////////////// Page pagination
-  const pagingUsersTable = () => {
-    // var rowNumber = Number(document.getElementById("page_selectors").value);
-    // var pageNumber = document.getElementById("page_numbers");
-    // currentPage--;
-
-    // let start = currentRow * currentPage;
-    // let end = start + currentRow;
-    // let paginatedItems = users.slice(start, end);
-    // console.log(paginatedItems);
-
-    // for (let i=0; i<paginatedItems.length; i++){
-      
-    // }
-
-    let pageLinks = document.querySelectorAll(".pagination-number");
-    let activePageNumber;
-    let clickedLink;
-    let nextPage;
-    let leftArrow;
-    let rightArrow;
-
-    console.log(pageLinks);
-
-    pageLinks.forEach((element) => {
-      element.addEventListener("click", () => {
-        leftArrow = document.querySelector(".left-arrow");
-        rightArrow = document.querySelector(".right-arrow");
-        activeLink = document.querySelector(".active");
-      });
-    });
-  }
-/////////////////////////////////////////////////////////////////////////// 
 main();

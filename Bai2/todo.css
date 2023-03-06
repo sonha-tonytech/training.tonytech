@@ -1,7 +1,7 @@
 /* Add Customer Section CSS */
 
 body {
-  background-color: rgba(0, 0, 0, 0.164);
+  background-color: var(--backgroundBlack);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,12 +144,12 @@ table.list td {
 }
 
 .pageselectors{
-  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
 }
 
 .pagenumbers{
   display: flex;
-  background-color: aqua;
 }
 
 .pagination{
@@ -161,13 +161,25 @@ table.list td {
   margin: 0px 5px;
 }
 
-.pagination > li.active{
-  background-color: orange;
+.pagenumbers .active{
+  color: var(--selectPage);
 }
 
-.pagination > li > a{
+.pagination > li {
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.left-arrow{
+  color: var(--selectPage);
+}
+
+.left-arrow:hover,.right-arrow:hover,.pagination > li:hover {
+  cursor: pointer;
+}
+
+.fa-chevron-left, .fa-chevron-right{
+  font-size: 12px;
 }
 
 
