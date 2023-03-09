@@ -21,12 +21,17 @@
             Customer <b>Details</b>
           </div>
           <div class="search-customer-detail col-des-6">
-            <input
+            <button
               id="btn-add-new-user"
-              type="button"
               class="btn btn-green btn-insert-user"
-              value="+"
-            />
+            >+</button>
+            <button
+              id="btn-delete-all-users"
+              type="button"
+              class="btn btn-red btn-delete-all-users"
+            >
+              Delete Users
+            </button>
             <input
               type="search"
               class="ip-search"
@@ -39,6 +44,7 @@
           <table class="list" id="storeList">
             <thead>
               <tr>
+                <th><input type="checkbox" id="id_select_all_users" /></th>
                 <th>#</th>
                 <th>Name</th>
                 <th>Address</th>
@@ -58,17 +64,9 @@
               <option value="10">10</option>
               <option value="15">15</option>
             </select>
-            <div class="show-total-country"></div>
+            <div id="show-total-country"></div>
           </div>
-          <div class="pagenumbers col-des-2" id="page_numbers">
-            <div class="left-arrow" id="left-arrow">
-              <i class="fas fa-chevron-left"></i>
-            </div>
-            <ul class="pagination" id="pagination"></ul>
-            <div class="right-arrow" id="right-arrow">
-              <i class="fas fa-chevron-right"></i>
-            </div>
-          </div>
+          <div class="pagenumbers col-des-2" id="page_numbers"></div>
         </div>
       </div>
     </div>

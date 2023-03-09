@@ -7,13 +7,13 @@ const readFormUser = () => {
   formData["city"] = document.getElementById("city").value;
   formData["pinCode"] = document.getElementById("pinCode").value;
   formData["country"] = document.getElementById("country").value;
+  formData["selected"] = false;
   return formData;
 };
 
 // Edit data
 const showFormUserEdit = (id) => {
-  flag = 1;
-  var userUpdate = getUserById(id);
+  userUpdate = getUserById(id);
   document.getElementById("ip_user_id").value = userUpdate.id;
   document.getElementById("index-add-user").value =
     users.indexOf(userUpdate) + 1;
@@ -26,10 +26,13 @@ const showFormUserEdit = (id) => {
 };
 
 // innerHTML User table after select Row and Page
-const getRowUser = (listusers) => {
+const getRowUsersHTML = (listusers) => {
   let queryUsers = listusers.map(
     (user) =>
       `<tr>
+    <td style="text-align: center;"><input ${
+      user.selected ? "checked" : ""
+    } class="ip-checkbox" type="checkbox" id="id_checkbox_${user.id}"/></td>
     <td style="text-align: center;">${users.indexOf(user) + 1}</td>
     <td style="padding-left: 1%;">${user.userName}</td>
     <td style="padding-left: 1%;">${user.address}</td>
@@ -42,61 +45,194 @@ const getRowUser = (listusers) => {
     </td>
   </tr>`
   );
-  return queryUsers;
+  return queryUsers.join("");
 };
 
-const getPageNumber = (listUsers, rowNumber) => {
-  pageNumber[0].innerHTML = "";
-  let pageNumberUsers = getPageNumberUsers(listUsers, rowNumber);
-  for (let i = 0; i < pageNumberUsers; i++) {
-    pageNumber[0].innerHTML += `<li class="disative" id="page_number_${
-      i + 1
-    }">${i + 1}</li>`;
+//Page pagination
+const pagingUsersTable = (listUsers, id) => {
+  document.querySelectorAll(".active").forEach((node) => {
+    node.classList.remove("active");
+    node.classList.add("disative");
+    node.addEventListener("click", (e) => {
+      pagingUsersTable(listUsers, e.target.id);
+    });
+  });
+
+  currentPage = Number(document.getElementById(id).innerHTML);
+  clearEventListeners();
+  document.getElementById("id_select_all_users").checked = false;
+  listUsers.forEach((user)=>{
+    if (user.selected){
+      user.selected = false;
+    }
+  })
+  table[0].innerHTML = "";
+  renderUsersTable(listUsers);
+};
+
+//Handle Left Arrow and Right Arrow in Pagination
+const handlePageArrow = (listUsers, currPage, id) => {
+  pageNumberUsers = getPageNumberUsers(listUsers, currentRow);
+  if (id === "left-arrow") {
+    if (currPage !== 1) {
+      currPage--;
+      if (currPage === 1) {
+        document.getElementById("left-arrow").style.color = "var(--selectPage)";
+      }
+      document.getElementById("right-arrow").style.color =
+        "var(--notSelectPage)";
+    }
   }
+  if (id === "right-arrow") {
+    if (currPage !== pageNumberUsers) {
+      currPage++;
+      document.getElementById("left-arrow").style.color =
+        "var(--notSelectPage)";
+      if (currPage === pageNumberUsers) {
+        document.getElementById("right-arrow").style.color =
+          "var(--selectPage)";
+      }
+    }
+  }
+  var id = `page_number_${currPage}`;
+  pagingUsersTable(listUsers, id);
+  document.getElementById(id).classList.add("active");
+  document.getElementById(id).classList.remove("disative");
+};
+
+// clear arrow Event before action
+const clearEventListeners = () => {
+  document
+    .getElementById("btn-delete-all-users")
+    .removeEventListener("click", deleteManyUsers);
+  document
+    .getElementById("id_select_all_users")
+    .removeEventListener("change", checkTableUsers);
+};
+
+const getPageNumber = (listUsers, rowNumber, currPage) => {
+  pageNumbers.innerHTML = ` <i class="fas fa-chevron-left page-arrow" id="left-arrow"></i>
+                            <ul class="pagination" id="pagination"></ul>
+                            <i class="fas fa-chevron-right page-arrow" id="right-arrow"></i>`;
+
+  let pageNumber = document.getElementById("pagination");
+  let pageNumberUsers = getPageNumberUsers(listUsers, rowNumber);
+
+  for (let i = 0; i < pageNumberUsers; i++) {
+    pageNumber.innerHTML += `<li class="disative" id="page_number_${i + 1}">${
+      i + 1
+    }</li>`;
+  }
+
+  let id = `page_number_${currPage}`;
+  // Change classname selected page
+  document.getElementById(id).classList.add("active");
+  document.getElementById(id).classList.remove("disative");
+
+  // custom CSS for left and right arrows
+  if (
+    currentPage === 1 &&
+    currentPage === getPageNumberUsers(users, currentRow)
+  ) {
+    document.getElementById("left-arrow").style.color = "var(--selectPage)";
+    document.getElementById("right-arrow").style.color = "var(--selectPage)";
+  } else if (
+    currentPage === 1 &&
+    currentPage !== getPageNumberUsers(users, currentRow)
+  ) {
+    document.getElementById("left-arrow").style.color = "var(--selectPage)";
+    document.getElementById("right-arrow").style.color = "var(--notSelectPage)";
+  } else if (
+    currentPage === getPageNumberUsers(users, currentRow) &&
+    currentPage !== 1
+  ) {
+    document.getElementById("left-arrow").style.color = "var(--notSelectPage)";
+    document.getElementById("right-arrow").style.color = "var(--selectPage)";
+  } else {
+    document.getElementById("left-arrow").style.color = "var(--notSelectPage)";
+    document.getElementById("right-arrow").style.color = "var(--notSelectPage)";
+  }
+
+  let btnPageNumbers = document.querySelectorAll("li.disative");
+  btnPageNumbers.forEach((node) => {
+    node.addEventListener("click", (e) => {
+      pagingUsersTable(listUsers, e.target.id);
+    });
+  });
+
+  let btnPageArrows = document.querySelectorAll(".page-arrow");
+  btnPageArrows.forEach((node) => {
+    node.addEventListener("click", (e) => {
+      handlePageArrow(listUsers, currPage, e.target.id);
+    });
+  });
 };
 
 // Get sum of each country
-const getSumUserCountry = (listUsers) => {
-  let newListUserCountry = listUsers.map((user) => user.country);
-  document.getElementsByClassName("show-total-country")[0].innerHTML = "";
-  ["viet nam", "america"].forEach((country) => {
-    let sumCountry = newListUserCountry.reduce((acc, item) => {
-      if (item === country) {
-        acc++;
-      }
-      return acc;
-    }, 0);
+const showSumUserCountry = (listUsers) => {
+  document.getElementById("show-total-country").innerHTML = "";
+  const object = listUsers.reduce((obj, user) => {
+    obj[user.country] = (obj[user.country] || 0) + 1;
+    return obj;
+  }, {});
 
-    document.getElementsByClassName(
+  for (const country in object) {
+    document.getElementById(
       "show-total-country"
-    )[0].innerHTML += `<div>Sum of ${country}: ${sumCountry}</div>`;
-  });
+    ).innerHTML += `<div> Sum of ${country}: ${object[country]}</div>`;
+  }
+
+  const total = Object.values(object).reduce((sum, value) => sum + value, 0);
+
+  document.getElementById(
+    "show-total-country"
+  ).innerHTML += `<div style="text-align:center">Sum of all country: ${total}</div>`;
 };
 
 // render list users to table
 const renderUsersTable = (listUsers) => {
-  document.getElementById("ip_row_select").value =
-    localStorage.getItem("selectedRow");
-  currentRow = Number(localStorage.getItem("selectedRow"));
-  currentPage = Number(localStorage.getItem("selectedPage"));
-
   if (listUsers.length > 0) {
     let start = currentRow * (currentPage - 1);
     let end = start + currentRow;
     let newListUsers = listUsers.slice(start, end);
 
-    var queryUsers = getRowUser(newListUsers);
-    queryUsers.forEach((element) => {
-      table[0].innerHTML += element;
-    });
+    var htmlUsers = getRowUsersHTML(newListUsers);
+    table[0].innerHTML = htmlUsers;
 
-    getSumUserCountry(listUsers);
+    getPageNumber(listUsers, currentRow, currentPage);
+    showSumUserCountry(listUsers);
+
+    //listen checkbox events
+    const ipCheckbox = document.getElementById("id_select_all_users");
+    ipCheckbox.addEventListener(
+      "change",
+      (checkTableUsers = () => {
+        newListUsers.forEach((user) => {
+          user.selected = ipCheckbox.checked;
+          document.getElementById(`id_checkbox_${user.id}`).checked =
+            user.selected;
+        });
+      })
+    );
+
+    const ipCheckboxes = document.querySelectorAll(".ip-checkbox");
+    ipCheckboxes.forEach((node) => {
+      node.addEventListener("change", (e) => {
+        let id = cutString(e.target.id, `id_checkbox_`);
+        let userCheckboxUser = getUserById(id);
+        if (node.checked) {
+          userCheckboxUser.selected = true;
+        } else {
+          userCheckboxUser.selected = false;
+        }
+      });
+    });
 
     // listen edit button events
     const btnEdits = document.querySelectorAll(".fa-edit");
     btnEdits.forEach((node) => {
       node.addEventListener("click", (e) => {
-        let id = Number(e.target.id.slice(9));
+        let id = cutString(e.target.id, `btn-edit-`);
         showFormUserEdit(id);
       });
     });
@@ -105,15 +241,57 @@ const renderUsersTable = (listUsers) => {
     const btnDeletes = document.querySelectorAll(".fa-trash");
     btnDeletes.forEach((node) => {
       node.addEventListener("click", (e) => {
-        let id = Number(e.target.id.slice(11));
-        deleteUser(id);
+        if (confirm("Do you want to delete this row?")) {
+          let id = cutString(e.target.id, `btn-delete-`);
+          let userDelete = getUserById(id);
+          let indexUser = users.indexOf(userDelete) + 1;
+          deleteUser(id);
+          if (indexUser % currentRow === 1 && currentPage > 1) {
+            currentPage--;
+          }
+        }
+        clearEventListeners();
+        localStorage.setItem("listUser", JSON.stringify(users));
+        table[0].innerHTML = "";
+        renderUsersTable(users);
       });
     });
+
+    // Delete many users
+    const btnDeleteUsers = document.getElementById("btn-delete-all-users");
+    btnDeleteUsers.addEventListener(
+      "click",
+      (deleteManyUsers = () => {
+        newListUsers.forEach((user) => {
+          if (user.selected === true) {
+            deleteUser(user.id);
+          }
+        });
+        if (
+          users.length % currentRow === 0 &&
+          users.length !== 0 &&
+          currentPage > 1
+        ) {
+          currentPage--;
+        }
+        clearEventListeners();
+        document.getElementById("id_select_all_users").checked = false;
+        listUsers.forEach((user)=> {
+          if (user.selected){
+            user.selected = false;
+          }
+        });
+        localStorage.setItem("listUser", JSON.stringify(users));
+        table[0].innerHTML = "";
+        renderUsersTable(listUsers);
+      })
+    );
   }
 };
 
 // Search data
 const searchUser = () => {
+  currentPage = 1;
   var input = document.getElementById("ip_search").value;
   var listUserAfterSearch = users.filter(
     (user) =>
@@ -123,80 +301,40 @@ const searchUser = () => {
       user.pinCode.toUpperCase().includes(input.toUpperCase()) ||
       user.country.toUpperCase().includes(input.toUpperCase())
   );
+
+  //delete all event before render list user after searching
+  clearEventListeners();
+
   table[0].innerHTML = "";
   renderUsersTable(listUserAfterSearch);
+
+  // add event listener for row table
+  document.getElementById("ip_row_select").addEventListener(
+    "change",
+    (changeCurrentRow = () => {
+      selectRowTable(listUserAfterSearch);
+    })
+  );
 };
 
 // Select Row to show table
-const selectRowTable = () => {
-  let rowNumber = document.getElementById("ip_row_select").value;
-  localStorage.setItem("selectedRow", rowNumber);
-  location.reload();
-};
-
-//Page pagination
-const pagingUsersTable = (id) => {
-  document.querySelectorAll(".active").forEach((node) => {
-    node.classList.remove("active");
-    node.classList.add("disative");
-    node.addEventListener("click", (e) => {
-      pagingUsersTable(e.target.id);
-      node.classList.remove("disative");
-      node.classList.add("active");
-    });
-  });
-
-  let newCurrentPage = document.getElementById(id).innerHTML;
-  let rowNumber = localStorage.getItem("selectedRow");
-  if (Number(newCurrentPage) === 1) {
-    document.getElementById("left-arrow").style.color = "var(--selectPage)";
+const selectRowTable = (listUsers) => {
+  let rowNumber = Number(document.getElementById("ip_row_select").value);
+  if (getPageNumberUsers(listUsers, rowNumber) < currentPage) {
+    currentPage = getPageNumberUsers(listUsers, rowNumber);
   }
-  else if (Number(newCurrentPage) === getPageNumberUsers(users, rowNumber)) {
-    document.getElementById("right-arrow").style.color = "var(--selectPage)";
-  }
-  localStorage.setItem("selectedPage", newCurrentPage);
+  currentRow = rowNumber;
+  //delete all event before render list user after searching
+  clearEventListeners();
   table[0].innerHTML = "";
-  renderUsersTable(users);
-};
-
-//Handle Left Arrow in Pagination
-const handleLeftArrow = () => {
-  let currentPageNumber = Number(localStorage.getItem("selectedPage"));
-
-  if (currentPageNumber !== 1) {
-    currentPageNumber--;
-    var id = `page_number_${currentPageNumber}`;
-    pagingUsersTable(id);
-    document.getElementById(id).classList.add("active");
-    document.getElementById(id).classList.remove("disative");
-    if (currentPageNumber === 1) {
-      document.getElementById("left-arrow").style.color = "var(--selectPage)";
-    }
-    document.getElementById("right-arrow").style.color = "var(--notSelectPage)";
-  }
-};
-
-//Handle Right Arrow in Pagination
-const handleRightArrow = () => {
-  let rowNumber = localStorage.getItem("selectedRow");
-  let pageNumberUsers = getPageNumberUsers(users, rowNumber);
-  let currentPageNumber = Number(localStorage.getItem("selectedPage"));
-
-  if (currentPageNumber !== pageNumberUsers) {
-    currentPageNumber++;
-    var id = `page_number_${currentPageNumber}`;
-    pagingUsersTable(id);
-    document.getElementById(id).classList.add("active");
-    document.getElementById(id).classList.remove("disative");
-    document.getElementById("left-arrow").style.color = "var(--notSelectPage)";
-  }
+  renderUsersTable(listUsers);
 };
 
 // reset the form data
 const resetForm = () => {
   let form = document.getElementById("form-add-user");
   form.reset();
-  flag = 0;
+  userUpdate = {};
 };
 
 // Button events
@@ -228,14 +366,24 @@ const validateForm = () => {
     msg.innerHTML = "invalid index value";
   } else {
     msg.innerHTML = "";
-    if (flag === 0) {
+    if (Object.values(userUpdate).length === 0) {
       formData.id = randomId();
-      addData(formData);
+      addData(formData, index);
       closeForm();
     } else {
-      updateUser(formData.id, formData);
+      let userCheck = updateUser(formData.id, formData, index);
+      if (userCheck === false) {
+        msg.innerHTML = "invalid user information";
+      } else {
+        closeForm();
+      }
+    }
+    if (users.length !== 1) {
+      clearEventListeners();
     }
     localStorage.setItem("listUser", JSON.stringify(users));
+    table[0].innerHTML = "";
+    renderUsersTable(users);
   }
 };
 
@@ -253,15 +401,7 @@ const main = () => {
     console.log("err", err);
   }
 
-  localStorage.setItem("selectedPage", "1");
-
   renderUsersTable(users);
-  getPageNumber(users, currentRow);
-
-  // Change classname page 1
-  let firstNumberPage = document.getElementById("page_number_1");
-  firstNumberPage.classList.remove("disative");
-  firstNumberPage.classList.add("active");
 
   // submit form user
   form.addEventListener("submit", (e) => {
@@ -280,30 +420,15 @@ const main = () => {
     });
   });
 
+  document.getElementById("ip_row_select").addEventListener(
+    "change",
+    (changeCurrentRow = () => {
+      selectRowTable(users);
+    })
+  );
+
   document.getElementById("ip_search").addEventListener("change", () => {
     searchUser();
-  });
-
-  document.getElementById("ip_row_select").addEventListener("change", () => {
-    selectRowTable();
-  });
-
-  document.getElementById("left-arrow").addEventListener("click", () => {
-    handleLeftArrow();
-  });
-
-  document.getElementById("right-arrow").addEventListener("click", () => {
-    handleRightArrow();
-  });
-
-  let btnPageNumbers = document.querySelectorAll("li.disative");
-  btnPageNumbers.forEach((node) => {
-    node.addEventListener("click", (e) => {
-      document.getElementById("left-arrow").style.color = "var(--notSelectPage)";
-      pagingUsersTable(e.target.id);
-      node.classList.remove("disative");
-      node.classList.add("active");
-    });
   });
 };
 

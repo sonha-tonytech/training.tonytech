@@ -105,7 +105,11 @@ input.ip-search {
 }
 
 .btn-insert-user {
-  padding: 0 10px;
+  padding: 5px 10px;
+}
+
+.btn-delete-all-users{
+  padding: 5px 10px;
 }
 
 table.list {
@@ -137,6 +141,10 @@ table.list td {
   margin: 0 5%;
 }
 
+#ip_row_select{
+  height: 50px;
+}
+
 .page-pagination-section{
   display: flex;
   margin: 20px 10px;
@@ -150,6 +158,7 @@ table.list td {
 
 .pagenumbers{
   display: flex;
+  align-items: center;
 }
 
 .pagination{
@@ -174,7 +183,7 @@ table.list td {
   color: var(--selectPage);
 }
 
-.left-arrow:hover,.right-arrow:hover,.pagination > li:hover {
+.page-arrow:hover,.pagination > li:hover {
   cursor: pointer;
 }
 
