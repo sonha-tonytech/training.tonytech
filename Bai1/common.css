@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "thicccboi";
+  font-size: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+p {
+  color: #7d8392;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+p.title-content {
+  color: #454f61;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Submenu CSS */
+
+#menu {
+  display: flex;
+}
+
+#menu > li {
+  position: relative;
+}
+
+#menu > li > ul.dropdown-menu {
+  position: absolute;
+  list-style: none;
+  display: none;
+}
+
+#menu > li:hover > ul.dropdown-menu {
+  display: block;
+  background-color: #ededec;
+  width: 120%;
+  z-index: 100;
+}
+
+ul.dropdown-menu > li > ul.submenu {
+  position: absolute;
+  display: none;
+  list-style: none;
+  left: 100%;
+}
+
+ul.dropdown-menu > li {
+  position: relative;
+}
+
+ul.dropdown-menu > li:hover > ul.submenu {
+  z-index: 100;
+  display: block;
+  background-color: #ededec;
+  width: 100%;
+}
+
+/* Arrow Submenu CSS */
+
+.arrow {
+  display: inline-block;
+  color: #fab75a;
+}
+
+.arrow-down {
+  vertical-align: middle;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid;
+}
+
+.arrow-right {
+  margin-left: 2px;
+  border-left: 5px solid;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* Button CSS */
+
+.btn {
+  margin: 10px;
+  padding: 15px 20px 15px 20px;
+  color: var(--button);
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn-green {
+  background-color: var(--btnGreen);
+}
+
+.btn-orange {
+  background-color: var(--btnOrange);
+}
+
+.btn-blue {
+  background-color: var(--btnBlue);
+}
+
+.btn-red {
+  background-color: var(--btnRed);
+}
+
+.btn-aqua {
+  background-color: var(--btnAqua);
+}
+
+.btn-brown {
+  background-color: var(--btnBrown);
+}
+
+.btn:hover {
+  color: var(--btnHover);
+  cursor: pointer;
+}
+
+/* Social Logo CSS */
+
+.logo-facebook {
+  color: black;
+}
+
+.logo-facebook:hover {
+  color: var(--linkHover);
+}
+
+.logo-linkedin {
+  color: black;
+}
+
+.logo-linkedin:hover {
+  color: var(--linkHover);
+}
+
+.visit a {
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.visit{
+  display: flex;
+  align-items: center;
+}

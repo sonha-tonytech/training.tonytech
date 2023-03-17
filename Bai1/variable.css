@@ -1,0 +1,19 @@
+:root {
+  --linkHover: #ffffff;
+  --backgroudLinen: #fff8ef;
+  --backgroundWhite: #fefefe;
+  --borderTable: #ededec;
+  --linkTable: #fab75a;
+  --titleTopFeatures: #acb2be;
+  --titleIntergratedGateway: #374255;
+  --btnHover: black;
+  --titleFooter: white;
+  --button: white;
+  --btnGreen: #6dbea3;
+  --btnOrange: #fab75a;
+  --btnBlue: #4179e0;
+  --btnRed: #d16d86;
+  --btnAqua: #56a8c7;
+  --btnBrown: #f78b78;
+  --navBackground: #111111;
+}

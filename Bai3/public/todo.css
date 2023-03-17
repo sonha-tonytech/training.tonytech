@@ -1,0 +1,194 @@
+/* Add Customer Section CSS */
+
+body {
+  background-color: var(--backgroundBlack);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.pop-up-form {
+  display: none;
+  position: fixed;
+  top: 50px;
+  width: 700px;
+  padding: 30px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--borderGray);
+  background-color: var(--backgroundWhite);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.customer-add-section-title {
+  display: flex;
+  border-bottom: 1px solid var(--borderGray);
+  height: 100px;
+}
+
+.title-add-user {
+  display: flex;
+  justify-content: start;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.title-add-user h1 {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 30px;
+}
+
+.exit-button {
+  text-align: right;
+}
+
+.form-add-user > div {
+  margin-top: 10px;
+}
+
+.form-add-user > div input {
+  border: 1px solid var(--borderGray) !important;
+  border-radius: 5px;
+  border: none;
+  margin-top: 5px;
+  height: 50px;
+}
+
+.form_action-buton {
+  text-align: right;
+}
+
+.form_action-buton input:first-of-type {
+  background-color: var(--backgroundWhite);
+  color: black;
+}
+
+/* User Detail Section CSS */
+
+.customer-detail-section {
+  background-color: var(--backgroundWhite);
+  padding: 50px 0px;
+}
+
+.customer-detail-section-title {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.title-customer-detail,
+.title-customer-detail b {
+  font-size: 30px;
+}
+
+.search-customer-detail {
+  text-align: right;
+  padding-right: 30px;
+}
+.search-customer-detail input {
+  border: 1px solid var(--borderGray);
+  height: 30px;
+}
+
+input[type="search"] {
+  border-radius: 15px;
+  padding: 0px 15px;
+}
+
+input.ip-search {
+  padding-left: 40px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+    no-repeat 12px center;
+}
+
+.btn-insert-user {
+  padding: 5px 10px;
+}
+
+.btn-delete-all-users{
+  padding: 5px 10px;
+}
+
+table.list {
+  width: 100%;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+table.list {
+  width: 100%;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+table.list th {
+  height: 40px;
+  border: 1px solid;
+}
+
+table.list td {
+  padding: 15px 5px;
+  border: 1px solid;
+}
+
+.btn-actions {
+  text-align: center;
+}
+.btn-actions i {
+  margin: 0 5%;
+}
+
+#ip_row_select{
+  height: 50px;
+}
+
+.page-pagination-section{
+  display: flex;
+  margin: 20px 10px;
+  justify-content: space-between;
+}
+
+.pageselectors{
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagenumbers{
+  display: flex;
+  align-items: center;
+}
+
+.pagination{
+  display: flex;
+}
+
+.pagination > li{
+  list-style: none;
+  margin: 0px 5px;
+}
+
+.pagenumbers .active{
+  color: var(--selectPage);
+}
+
+.pagination > li {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.left-arrow{
+  color: var(--selectPage);
+}
+
+.page-arrow:hover,.pagination > li:hover {
+  cursor: pointer;
+}
+
+.fa-chevron-left, .fa-chevron-right{
+  font-size: 12px;
+}
+
+
