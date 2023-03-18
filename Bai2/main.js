@@ -62,9 +62,7 @@ const pagingUsersTable = (listUsers, id) => {
   clearEventListeners();
   document.getElementById("id_select_all_users").checked = false;
   listUsers.forEach((user)=>{
-    if (user.selected){
-      user.selected = false;
-    }
+    user.selected ? false : user.selected;
   })
   table[0].innerHTML = "";
   renderUsersTable(listUsers);
@@ -277,9 +275,7 @@ const renderUsersTable = (listUsers) => {
         clearEventListeners();
         document.getElementById("id_select_all_users").checked = false;
         listUsers.forEach((user)=> {
-          if (user.selected){
-            user.selected = false;
-          }
+          user.selected ? false : user.selected
         });
         localStorage.setItem("listUser", JSON.stringify(users));
         table[0].innerHTML = "";
