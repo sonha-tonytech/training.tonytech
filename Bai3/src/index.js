@@ -78,6 +78,7 @@ http
                   { index: user.index }
                 );
               }
+              console.log("hello 1");
               await UserModel.updateOne(
                 { _id: id },
                 {
@@ -89,6 +90,7 @@ http
                   country: userUpdate.country,
                 }
               );
+              console.log("hello 1");
             } catch (error) {
               res.writeHead(400, { "Content-Type": "application/json" });
               res.end(JSON.stringify({ message: "Invalid JSON" }));
@@ -98,7 +100,6 @@ http
         }
         case "DELETE":
         default: {
-          return;
         }
       }
     }
