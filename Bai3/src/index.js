@@ -78,7 +78,6 @@ http
                   { index: user.index }
                 );
               }
-              console.log("hello 1");
               await UserModel.updateOne(
                 { _id: id },
                 {
@@ -90,7 +89,6 @@ http
                   country: userUpdate.country,
                 }
               );
-              console.log("hello 1");
             } catch (error) {
               res.writeHead(400, { "Content-Type": "application/json" });
               res.end(JSON.stringify({ message: "Invalid JSON" }));
@@ -98,8 +96,13 @@ http
           });
           break;
         }
-        case "DELETE":
+        case "DELETE": {
+          let id = req.url.slice("/api/users/".length);
+          await UserModel.deleteOne({ _id: id });
+          break;
+        }
         default: {
+          break;
         }
       }
     }

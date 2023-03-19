@@ -36,7 +36,11 @@ const updateUser = async (form) => {
 };
 
 // Delete data
-const deleteUser = (id) => {
-  let indexUser = users.findIndex((user) => user._id === id);
-  users.splice(indexUser, 1);
+const deleteUser = async (id) => {
+  await fetch(`http://localhost:3001/api/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };

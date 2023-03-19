@@ -114,6 +114,9 @@ const clearEventListeners = () => {
   document
     .getElementById("id_select_all_users")
     .removeEventListener("change", checkTableUsers);
+  document
+    .getElementById("ip_row_select")
+    .removeEventListener("change", changeCurrentRow);
 };
 
 const getPageNumber = (listUsers, rowNumber, currPage) => {
@@ -246,17 +249,17 @@ const renderUsersTable = (listUsers) => {
     // listen delete button events
     const btnDeletes = document.querySelectorAll(".fa-trash");
     btnDeletes.forEach((node) => {
-      node.addEventListener("click", (e) => {
+      node.addEventListener("click", async (e) => {
         if (confirm("Do you want to delete this row?")) {
           let id = cutString(e.target.id, `btn-delete-`);
           let userDelete = getUserById(id);
-          let indexUser = users.indexOf(userDelete) + 1;
           deleteUser(id);
-          if (indexUser % currentRow === 1 && currentPage > 1) {
+          if (userDelete.index % currentRow === 1 && currentPage > 1) {
             currentPage--;
           }
         }
         clearEventListeners();
+        users = await fetchData();
         table[0].innerHTML = "";
         renderUsersTable(users);
       });
@@ -264,17 +267,19 @@ const renderUsersTable = (listUsers) => {
 
     // Delete many users
     const btnDeleteUsers = document.getElementById("btn-delete-all-users");
+    let userLength = users.length;
     btnDeleteUsers.addEventListener(
       "click",
-      (deleteManyUsers = () => {
+      (deleteManyUsers = async () => {
         newListUsers.forEach((user) => {
           if (user.selected === true) {
             deleteUser(user._id);
+            userLength--;
           }
         });
         if (
-          users.length % currentRow === 0 &&
-          users.length !== 0 &&
+          userLength % currentRow === 0 &&
+          userLength !== 0 &&
           currentPage > 1
         ) {
           currentPage--;
@@ -284,8 +289,17 @@ const renderUsersTable = (listUsers) => {
         listUsers.forEach((user) => {
           user.selected ? false : user.selected;
         });
+        listUsers = await fetchData();
         table[0].innerHTML = "";
         renderUsersTable(listUsers);
+      })
+    );
+
+    // Change current row
+    document.getElementById("ip_row_select").addEventListener(
+      "change",
+      (changeCurrentRow = () => {
+        selectRowTable(listUsers);
       })
     );
   }
@@ -420,13 +434,6 @@ const main = async () => {
       closeForm();
     });
   });
-
-  document.getElementById("ip_row_select").addEventListener(
-    "change",
-    (changeCurrentRow = () => {
-      selectRowTable(users);
-    })
-  );
 
   document.getElementById("ip_search").addEventListener("change", () => {
     searchUser();
