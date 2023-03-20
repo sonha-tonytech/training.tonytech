@@ -41,7 +41,11 @@ http
     if (req.url.indexOf("/api/users") === 0) {
       switch (req.method) {
         case "GET": {
-          let users = await UserModel.find().sort({ index: 1 });
+          let id = req.url.slice("/api/users/".length);
+          let users;
+          id === ""
+            ? (users = await UserModel.find().sort({ index: 1 }))
+            : (users = await UserModel.findById(id));
           res.writeHead(200, { "Content-Type": "application/json" });
           res.end(JSON.stringify(users));
           break;

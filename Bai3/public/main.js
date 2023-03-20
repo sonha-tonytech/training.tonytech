@@ -21,8 +21,8 @@ const readFormUser = () => {
 };
 
 // Edit data
-const showFormUserEdit = (id) => {
-  userUpdate = getUserById(id);
+const showFormUserEdit = async (id) => {
+  userUpdate = await getUserById(id);
   document.getElementById("ip_user_id").value = userUpdate._id;
   document.getElementById("index-add-user").value = userUpdate.index;
   document.getElementById("userName").value = userUpdate.userName;
@@ -226,9 +226,9 @@ const renderUsersTable = (listUsers) => {
 
     const ipCheckboxes = document.querySelectorAll(".ip-checkbox");
     ipCheckboxes.forEach((node) => {
-      node.addEventListener("change", (e) => {
+      node.addEventListener("change", async (e) => {
         let id = cutString(e.target.id, `id_checkbox_`);
-        let userCheckboxUser = getUserById(id);
+        let userCheckboxUser = await getUserById(id);
         if (node.checked) {
           userCheckboxUser.selected = true;
         } else {
@@ -252,7 +252,7 @@ const renderUsersTable = (listUsers) => {
       node.addEventListener("click", async (e) => {
         if (confirm("Do you want to delete this row?")) {
           let id = cutString(e.target.id, `btn-delete-`);
-          let userDelete = getUserById(id);
+          let userDelete = await getUserById(id);
           deleteUser(id);
           if (userDelete.index % currentRow === 1 && currentPage > 1) {
             currentPage--;

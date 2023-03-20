@@ -3,8 +3,12 @@ const getAllUsers = () => {
 };
 
 //  get User by id
-const getUserById = (id) => {
-  let user = users.find((user) => user._id === id);
+const getUserById = async (id) => {
+  const res = await fetch(`http://localhost:3001/api/users/${id}`, {
+    method: "GET",
+  });
+
+  const user = await res.json();
   return user;
 };
 
