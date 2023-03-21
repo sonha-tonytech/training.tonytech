@@ -7,7 +7,6 @@ const getUserById = async (id) => {
   const res = await fetch(`http://localhost:3001/api/users/${id}`, {
     method: "GET",
   });
-
   const user = await res.json();
   return user;
 };
@@ -24,8 +23,8 @@ const addUser = async (form) => {
 };
 
 //  Update data
-const updateUser = async (form) => {
-  if (form.index < 1 || form.index > users.length) {
+const updateUser = async (form, index) => {
+  if (index < 1 || index > users.length) {
     return false;
   } else {
     await fetch(`http://localhost:3001/api/users/${userUpdate._id}`, {
@@ -42,9 +41,6 @@ const updateUser = async (form) => {
 // Delete data
 const deleteUser = async (id) => {
   await fetch(`http://localhost:3001/api/users/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    method: "DELETE"
   });
 };

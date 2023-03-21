@@ -10,7 +10,7 @@ const fetchData = async () => {
 // Retrive data
 const readFormUser = () => {
   var formData = {};
-  formData["index"] = Number(document.getElementById("index-add-user").value);
+  formData["index"] = 0;
   formData["userName"] = document.getElementById("userName").value;
   formData["address"] = document.getElementById("address").value;
   formData["city"] = document.getElementById("city").value;
@@ -21,10 +21,10 @@ const readFormUser = () => {
 };
 
 // Edit data
-const showFormUserEdit = async (id) => {
+const showFormUserEdit = async (id, index) => {
   userUpdate = await getUserById(id);
   document.getElementById("ip_user_id").value = userUpdate._id;
-  document.getElementById("index-add-user").value = userUpdate.index;
+  document.getElementById("index-add-user").value = index;
   document.getElementById("userName").value = userUpdate.userName;
   document.getElementById("address").value = userUpdate.address;
   document.getElementById("city").value = userUpdate.city;
@@ -41,13 +41,16 @@ const getRowUsersHTML = (listusers) => {
     <td style="text-align: center;"><input ${
       user.selected ? "checked" : ""
     } class="ip-checkbox" type="checkbox" id="id_checkbox_${user._id}"/></td>
-    <td style="text-align: center;">${user.index}</td>
+    <td style="text-align: center;">${users.indexOf(user) + 1}</td>
     <td style="padding-left: 1%;">${user.userName}</td>
     <td style="padding-left: 1%;">${user.address}</td>
     <td style="padding-left: 1%;">${user.city}</td>
     <td style="padding-left: 1%;">${user.pinCode}</td>
     <td style="padding-left: 1%;">${user.country}</td>
     <td class="btn-actions">
+      <input type='hidden' id="index-field-${
+        user._id
+      }" name='index-user' value="${users.indexOf(user) + 1}" />
       <i class="fas fa-edit" id="btn-edit-${user._id}"></i>
       <i class="fas fa-trash" id="btn-delete-${user._id}"></i>
     </td>
@@ -228,12 +231,10 @@ const renderUsersTable = (listUsers) => {
     ipCheckboxes.forEach((node) => {
       node.addEventListener("change", async (e) => {
         let id = cutString(e.target.id, `id_checkbox_`);
-        let userCheckboxUser = await getUserById(id);
-        if (node.checked) {
-          userCheckboxUser.selected = true;
-        } else {
-          userCheckboxUser.selected = false;
-        }
+        let userCheckboxUser = listUsers.find((user) => user._id === id);
+        node.checked
+          ? (userCheckboxUser.selected = true)
+          : (userCheckboxUser.selected = false);
       });
     });
 
@@ -242,7 +243,8 @@ const renderUsersTable = (listUsers) => {
     btnEdits.forEach((node) => {
       node.addEventListener("click", (e) => {
         let id = cutString(e.target.id, `btn-edit-`);
-        showFormUserEdit(id);
+        let index = document.getElementById(`index-field-${id}`).value;
+        showFormUserEdit(id, index);
       });
     });
 
@@ -252,9 +254,9 @@ const renderUsersTable = (listUsers) => {
       node.addEventListener("click", async (e) => {
         if (confirm("Do you want to delete this row?")) {
           let id = cutString(e.target.id, `btn-delete-`);
-          let userDelete = await getUserById(id);
-          deleteUser(id);
-          if (userDelete.index % currentRow === 1 && currentPage > 1) {
+          let indexUserDelete = users.findIndex((user) => user._id === id) + 1;
+          await deleteUser(id);
+          if (indexUserDelete % currentRow === 1 && currentPage > 1) {
             currentPage--;
           }
         }
@@ -267,19 +269,18 @@ const renderUsersTable = (listUsers) => {
 
     // Delete many users
     const btnDeleteUsers = document.getElementById("btn-delete-all-users");
-    let userLength = users.length;
     btnDeleteUsers.addEventListener(
       "click",
       (deleteManyUsers = async () => {
-        newListUsers.forEach((user) => {
+        newListUsers.forEach(async (user) => {
           if (user.selected === true) {
-            deleteUser(user._id);
-            userLength--;
+            await deleteUser(user._id);
           }
         });
+        users = await fetchData();
         if (
-          userLength % currentRow === 0 &&
-          userLength !== 0 &&
+          users.length % currentRow === 0 &&
+          users.length !== 0 &&
           currentPage > 1
         ) {
           currentPage--;
@@ -289,9 +290,8 @@ const renderUsersTable = (listUsers) => {
         listUsers.forEach((user) => {
           user.selected ? false : user.selected;
         });
-        listUsers = await fetchData();
         table[0].innerHTML = "";
-        renderUsersTable(listUsers);
+        renderUsersTable(users);
       })
     );
 
@@ -382,11 +382,29 @@ const validateForm = async () => {
   } else {
     msg.innerHTML = "";
     if (Object.values(userUpdate).length === 0) {
-      formData.index = users.length + 1;
+      users.length === 0
+        ? formData.index++
+        : (formData.index = users[users.length - 1].index + 1);
       addUser(formData);
       closeForm();
     } else {
-      let userCheck = await updateUser(formData);
+      let indexUser =
+        Number(document.getElementById("index-add-user").value) - 1;
+      formData.index = userUpdate.index;
+      if (
+        indexUser + 1 !==
+          Number(
+            document.getElementById(`index-field-${userUpdate._id}`).value
+          ) &&
+        indexUser < 0 &&
+        indexUser > users.length
+      ) {
+        indexUser === 0
+          ? (formData.index = users[indexUser].index / 2)
+          : (formData.index =
+              (users[indexUser].index + users[indexUser - 1].index) / 2);
+      }
+      let userCheck = await updateUser(formData, indexUser + 1);
       if (userCheck === false) {
         msg.innerHTML = "invalid user information";
       } else {
