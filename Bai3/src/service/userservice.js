@@ -3,7 +3,7 @@ const UserModel = require("../models/user");
 module.exports = class UserService {
   static getAllUsers = async () => {
     try {
-      const allUsers = await UserModel.find();
+      const allUsers = await UserModel.find().sort({index: 1});
       return allUsers;
     } catch (error) {
       console.log(`Could not fetch users ${error}`);

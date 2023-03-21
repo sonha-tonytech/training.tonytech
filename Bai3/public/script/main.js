@@ -392,12 +392,12 @@ const validateForm = async () => {
         Number(document.getElementById("index-add-user").value) - 1;
       formData.index = userUpdate.index;
       if (
-        indexUser + 1 !==
+        (indexUser + 1 !==
           Number(
             document.getElementById(`index-field-${userUpdate._id}`).value
-          ) &&
-        indexUser < 0 &&
-        indexUser > users.length
+          )) &&
+        (indexUser >= 0) &&
+        (indexUser < users.length)
       ) {
         indexUser === 0
           ? (formData.index = users[indexUser].index / 2)
