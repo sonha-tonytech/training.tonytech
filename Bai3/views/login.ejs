@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="public/stylesheet/variable.css" />
+    <link rel="stylesheet" href="public/stylesheet/login.common.css" />
+    <link rel="stylesheet" href="public/stylesheet/login.css" />
+  </head>
+  <body>
+    <div class="login-section">
+      <div class="container">
+        <div class="login-section-title">
+          <h1>Login</h1>
+        </div>
+        <div class="login-section-content">
+          <form class="form-login" id="form_login">
+            <div>
+              <label for="userName">Username</label>
+              <input
+                type="text"
+                id="ip_user_name"
+                class="col-des-12"
+                name="userName"
+                placeholder="Type your username"
+              />
+            </div>
+            <div>
+              <label for="passWord">Password</label>
+              <input
+                type="password"
+                id="ip_password"
+                class="col-des-12"
+                name="passWord"
+                placeholder="Type your password"
+              />
+            </div>
+            <div id="msg_login"></div>
+            <div>
+              <button
+                type="submit"
+                class="col-des-12 btn btn-green btn-login"
+                id="btn_login"
+              >Login</button>
+            </div>
+          </form>
+          <div class="register-account">
+            <h4>Or Sign Up Using</h4>
+            <button class="btn btn-green btn-register">SIGN UP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src=""></script>
+    <script src="public/script/login.js"></script>
+  </body>
+</html>

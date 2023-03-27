@@ -1,6 +1,12 @@
 const fetchData = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const res = await fetch("http://localhost:3001/api/users", {
     method: "GET",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': token.token,
+    }
   });
 
   const data = await res.json();
@@ -11,11 +17,12 @@ const fetchData = async () => {
 const readFormUser = () => {
   var formData = {};
   formData["index"] = 0;
-  formData["userName"] = document.getElementById("userName").value;
-  formData["address"] = document.getElementById("address").value;
-  formData["city"] = document.getElementById("city").value;
-  formData["pinCode"] = document.getElementById("pinCode").value;
-  formData["country"] = document.getElementById("country").value;
+  formData["userName"] = document.getElementById("ip_user_name").value;
+  formData["passWord"] = document.getElementById("ip_password").value;
+  formData["email"] = document.getElementById("ip_email").value;
+  formData["firstName"] = document.getElementById("ip_firstname").value;
+  formData["lastName"] = document.getElementById("ip_lastname").value;
+  formData["country"] = document.getElementById("ip_country").value;
   formData["selected"] = false;
   return formData;
 };
@@ -24,12 +31,13 @@ const readFormUser = () => {
 const showFormUserEdit = async (id, index) => {
   userUpdate = await getUserById(id);
   document.getElementById("ip_user_id").value = userUpdate._id;
-  document.getElementById("index-add-user").value = index;
-  document.getElementById("userName").value = userUpdate.userName;
-  document.getElementById("address").value = userUpdate.address;
-  document.getElementById("city").value = userUpdate.city;
-  document.getElementById("pinCode").value = userUpdate.pinCode;
-  document.getElementById("country").value = userUpdate.country;
+  document.getElementById("index_add_user").value = index;
+  document.getElementById("ip_user_name").value = userUpdate.userName;
+  document.getElementById("ip_password").value = userUpdate.passWord;
+  document.getElementById("ip_email").value = userUpdate.email;
+  document.getElementById("ip_firstname").value = userUpdate.firstName;
+  document.getElementById("ip_lastname").value = userUpdate.lastName;
+  document.getElementById("ip_country").value = userUpdate.country;
   openForm();
 };
 
@@ -43,9 +51,10 @@ const getRowUsersHTML = (listusers) => {
     } class="ip-checkbox" type="checkbox" id="id_checkbox_${user._id}"/></td>
     <td style="text-align: center;">${users.indexOf(user) + 1}</td>
     <td style="padding-left: 1%;">${user.userName}</td>
-    <td style="padding-left: 1%;">${user.address}</td>
-    <td style="padding-left: 1%;">${user.city}</td>
-    <td style="padding-left: 1%;">${user.pinCode}</td>
+    <td style="padding-left: 1%; -webkit-text-security: disc;">password</td>
+    <td style="padding-left: 1%;">${user.email}</td>
+    <td style="padding-left: 1%;">${user.firstName}</td>
+    <td style="padding-left: 1%;">${user.lastName}</td>
     <td style="padding-left: 1%;">${user.country}</td>
     <td class="btn-actions">
       <input type='hidden' id="index-field-${
@@ -204,10 +213,10 @@ const showSumUserCountry = (listUsers) => {
 // render list users to table
 const renderUsersTable = (listUsers) => {
   if (listUsers.length > 0) {
+    let newListUsers = []
     let start = currentRow * (currentPage - 1);
     let end = start + currentRow;
-    let newListUsers = listUsers.slice(start, end);
-
+    newListUsers = listUsers.slice(start, end);
     var htmlUsers = getRowUsersHTML(newListUsers);
     table[0].innerHTML = htmlUsers;
 
@@ -312,9 +321,10 @@ const searchUser = () => {
   var listUserAfterSearch = users.filter(
     (user) =>
       user.userName.toUpperCase().includes(input.toUpperCase()) ||
-      user.address.toUpperCase().includes(input.toUpperCase()) ||
-      user.city.toUpperCase().includes(input.toUpperCase()) ||
-      user.pinCode.toString().toUpperCase().includes(input.toUpperCase()) ||
+      user.passWord.toUpperCase().includes(input.toUpperCase()) ||
+      user.email.toUpperCase().includes(input.toUpperCase()) ||
+      user.firstName.toUpperCase().includes(input.toUpperCase()) ||
+      user.lastName.toUpperCase().includes(input.toUpperCase()) ||
       user.country.toUpperCase().includes(input.toUpperCase())
   );
 
@@ -348,7 +358,7 @@ const selectRowTable = (listUsers) => {
 
 // reset the form data
 const resetForm = () => {
-  let form = document.getElementById("form-add-user");
+  let form = document.getElementById("form_add_user");
   form.reset();
   userUpdate = {};
 };
@@ -360,20 +370,22 @@ const openForm = () => {
 
 const closeForm = () => {
   document.getElementById("pop-up-form").style.display = "none";
-  document.getElementById("index-add-user").value = "";
+  document.getElementById("index_add_user").value = "";
   resetForm();
 };
 
 // Vadidate Data
 const validateForm = async () => {
   const formData = readFormUser();
-  let msg = document.getElementById("msg-add-user");
+  let msg = document.getElementById("msg_add_user");
 
   if (
     formData.userName === "" ||
-    formData.address === "" ||
-    formData.city === "" ||
-    formData.pinCode === "" ||
+    formData.passWord === "" ||
+    formData.email === "" ||
+    formData.firstName === "" ||
+    formData.firstName === "" ||
+    formData.lastName === "" ||
     formData.country === ""
   ) {
     msg.innerHTML = "Information cannot be blank";
@@ -389,7 +401,7 @@ const validateForm = async () => {
       closeForm();
     } else {
       let indexUser =
-        Number(document.getElementById("index-add-user").value) - 1;
+        Number(document.getElementById("index_add_user").value) - 1;
       formData.index = userUpdate.index;
       if (
         (indexUser + 1 !==
@@ -422,12 +434,11 @@ const validateForm = async () => {
 
 // Main
 const main = async () => {
-  let form = document.getElementById("form-add-user");
+  let form = document.getElementById("form_add_user");
 
   try {
     let listUsers = await fetchData();
-
-    if (listUsers != null) {
+    if (typeof listUsers !== "string") {
       users = listUsers;
     }
   } catch (err) {

@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bai3</title>
-    <link rel="stylesheet" href="../../public/stylesheet/variable.css" />
-    <link rel="stylesheet" href="../../public/stylesheet/common.css" />
-    <link rel="stylesheet" href="../../public/stylesheet/todo.css" />
+    <link rel="stylesheet" href="public/stylesheet/variable.css" />
+    <link rel="stylesheet" href="public/stylesheet/common.css" />
+    <link rel="stylesheet" href="public/stylesheet/todo.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -46,10 +46,11 @@
               <tr>
                 <th><input type="checkbox" id="id_select_all_users" /></th>
                 <th>#</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Pin Code</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Country</th>
                 <th>Actions</th>
               </tr>
@@ -76,7 +77,7 @@
           <h1 class="col-des-8">Contact Form</h1>
           <input
             type="number"
-            id="index-add-user"
+            id="index_add_user"
             class="col-des-2"
             style="text-align: center"
           />
@@ -101,59 +102,69 @@
         </div>
       </div>
       <div class="content-add-user col-des-12">
-        <form class="form-add-user" id="form-add-user">
+        <form class="form-add-user" id="form_add_user">
           <input type="hidden" id="ip_user_id" name="id" />
           <div>
-            <label for="userName">Name</label>
-            <input
-              type="text"
-              id="userName"
-              class="col-des-12"
-              name="userName"
-              placeholder="Nguyen Van A"
-            />
-          </div>
-          <div>
-            <label for="address">Address</label>
-            <input
-              type="text"
-              id="address"
-              class="col-des-12"
-              name="address"
-              placeholder="12 Duong So 1"
-            />
-          </div>
-          <div>
-            <label for="city">City</label>
-            <input
-              type="text"
-              id="city"
-              class="col-des-12"
-              name="city"
-              placeholder="Dong Ha"
-            />
-          </div>
-          <div>
-            <label for="pinCode">Pin Code</label>
-            <input
-              type="number"
-              id="pinCode"
-              class="col-des-12"
-              name="pinCode"
-              placeholder="12345"
-            />
-          </div>
-          <div>
-            <label for="country">Country</label>
-            <input
-              type="text"
-              id="country"
-              class="col-des-12"
-              name="country"
-              placeholder="USA"
-            />
-          </div>
-          <div class="msg-add-user" id="msg-add-user"></div>
+          <label for="userName">Username</label>
+                <input
+                  type="text"
+                  id="ip_user_name"
+                  class="col-des-12"
+                  name="userName"
+                  placeholder="Type your username"
+                />
+              </div>
+              <div>
+                <label for="passWord">Password</label>
+                <input
+                  type="password"
+                  id="ip_password"
+                  class="col-des-12"
+                  name="passWord"
+                  placeholder="Type your password"
+                />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="ip_email"
+                  class="col-des-12"
+                  name="email"
+                  placeholder="Type your email"
+                />
+              </div>
+              <div>
+                <label for="firstName">First Name</label>
+                <input
+                  type="text"
+                  id="ip_firstname"
+                  class="col-des-12"
+                  name="firstName"
+                  placeholder="Type your firstname"
+                />
+              </div>
+              <div>
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="ip_lastname"
+                  class="col-des-12"
+                  name="lastName"
+                  placeholder="Type your lastname"
+                />
+              </div>
+              <div>
+                <label for="country">Country</label>
+                <input
+                  type="text"
+                  id="ip_country"
+                  class="col-des-12"
+                  name="country"
+                  placeholder="Type your country"
+                />
+              </div>
+          <div class="msg-add-user" id="msg_add_user"></div>
           <div class="form_action-buton">
             <input
               type="button"
@@ -172,9 +183,9 @@
       </div>
     </div>
 
-    <script src="../../public/script/variables.js"></script>
-    <script src="../../public/script/utils.js"></script>
-    <script src="../../public/script/service.js"></script>
-    <script src="../../public/script/main.js"></script>
+    <script src="/public/script/variables.js"></script>
+    <script src="/public/script/utils.js"></script>
+    <script src="/public/script/service.js"></script>
+    <script src="/public/script/main.js"></script>
   </body>
 </html>
