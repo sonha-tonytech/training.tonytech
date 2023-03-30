@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const ContactSchema = Schema({
   index: {
     type: Number,
+    required: true,
   },
   userName: {
     type: String,
@@ -33,8 +34,13 @@ const ContactSchema = Schema({
     type: Boolean,
   },
   status: {
-    type: String
-  }
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("User", ContactSchema);

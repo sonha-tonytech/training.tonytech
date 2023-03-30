@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -14,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname));
-app.use('/', require("./routes/login"));
+app.use(cookieParser());
+app.use('/', require("./routes/loginRoute"));
 app.use('/', require("./routes/contactRoute"));
 app.set('view engine', 'ejs');
 
 
 app.get("/", (req,res) => {
-  res.render("index");
-  // res.redirect("/login");
+  res.redirect("/index");
 });
 
 

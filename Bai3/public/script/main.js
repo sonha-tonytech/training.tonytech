@@ -1,12 +1,10 @@
 const fetchData = async () => {
-  const token = JSON.parse(localStorage.getItem("token"));
   const res = await fetch("http://localhost:3001/api/users", {
     method: "GET",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'x-access-token': token.token,
-    }
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
   });
 
   const data = await res.json();
@@ -213,7 +211,7 @@ const showSumUserCountry = (listUsers) => {
 // render list users to table
 const renderUsersTable = (listUsers) => {
   if (listUsers.length > 0) {
-    let newListUsers = []
+    let newListUsers = [];
     let start = currentRow * (currentPage - 1);
     let end = start + currentRow;
     newListUsers = listUsers.slice(start, end);
@@ -264,7 +262,8 @@ const renderUsersTable = (listUsers) => {
         if (confirm("Do you want to delete this row?")) {
           let id = cutString(e.target.id, `btn-delete-`);
           let indexUserDelete = users.findIndex((user) => user._id === id) + 1;
-          await deleteUser(id);
+          const notice = await deleteUser(id);
+          if (notice !== "Success") alert(notice);
           if (indexUserDelete % currentRow === 1 && currentPage > 1) {
             currentPage--;
           }
@@ -283,9 +282,10 @@ const renderUsersTable = (listUsers) => {
       (deleteManyUsers = async () => {
         newListUsers.forEach(async (user) => {
           if (user.selected === true) {
-            await deleteUser(user._id);
+            const notice = await deleteUser(user._id);
           }
         });
+        // if (notice !== "Success") alert(notice);
         users = await fetchData();
         if (
           users.length % currentRow === 0 &&
@@ -370,8 +370,15 @@ const openForm = () => {
 
 const closeForm = () => {
   document.getElementById("pop-up-form").style.display = "none";
+  document.getElementById("index_add_user").type = "Number";
   document.getElementById("index_add_user").value = "";
+  document.getElementById("msg_add_user").innerHTML = "";
   resetForm();
+};
+
+const logoutUser = () => {
+  localStorage.clear();
+  window.location = "/logout";
 };
 
 // Vadidate Data
@@ -392,35 +399,49 @@ const validateForm = async () => {
   } else if (formData.index < 0 || formData.index > users.length + 1) {
     msg.innerHTML = "invalid index value";
   } else {
-    msg.innerHTML = "";
     if (Object.values(userUpdate).length === 0) {
       users.length === 0
         ? formData.index++
         : (formData.index = users[users.length - 1].index + 1);
-      addUser(formData);
-      closeForm();
+      const notice = await addUser(formData);
+      notice === "Success" ? closeForm() : (msg.innerHTML = notice);
     } else {
       let indexUser =
         Number(document.getElementById("index_add_user").value) - 1;
       formData.index = userUpdate.index;
       if (
-        (indexUser + 1 !==
+        indexUser + 1 !==
           Number(
             document.getElementById(`index-field-${userUpdate._id}`).value
-          )) &&
-        (indexUser >= 0) &&
-        (indexUser < users.length)
+          ) &&
+        indexUser >= 0 &&
+        indexUser < users.length
       ) {
-        indexUser === 0
-          ? (formData.index = users[indexUser].index / 2)
-          : (formData.index =
-              (users[indexUser].index + users[indexUser - 1].index) / 2);
+        if (indexUser === 0) formData.index = users[indexUser].index / 2;
+        else if (indexUser === users.length - 1)
+          formData.index = users[indexUser].index + 1;
+        else if (
+          indexUser <
+          Number(document.getElementById(`index-field-${userUpdate._id}`).value)
+        )
+          formData.index =
+            (users[indexUser].index + users[indexUser - 1].index) / 2;
+        else
+          formData.index =
+            (users[indexUser].index + users[indexUser + 1].index) / 2;
       }
       let userCheck = await updateUser(formData, indexUser + 1);
-      if (userCheck === false) {
-        msg.innerHTML = "invalid user information";
-      } else {
-        closeForm();
+      switch (userCheck) {
+        case true: {
+          closeForm();
+          break;
+        }
+        case false: {
+          msg.innerHTML = "invalid user information";
+          break;
+        }
+        default:
+          msg.innerHTML = userCheck;
       }
     }
     if (users.length !== 0) {
@@ -434,13 +455,12 @@ const validateForm = async () => {
 
 // Main
 const main = async () => {
+  document.getElementById("customer_name").innerHTML =
+    localStorage.getItem("lastname");
   let form = document.getElementById("form_add_user");
 
   try {
-    let listUsers = await fetchData();
-    if (typeof listUsers !== "string") {
-      users = listUsers;
-    }
+    users = await fetchData();
   } catch (err) {
     console.log("err", err);
   }
@@ -455,6 +475,7 @@ const main = async () => {
 
   // Listen elements
   document.getElementById("btn-add-new-user").addEventListener("click", () => {
+    document.getElementById("index_add_user").type = "hidden";
     openForm();
   });
 
@@ -466,6 +487,10 @@ const main = async () => {
 
   document.getElementById("ip_search").addEventListener("change", () => {
     searchUser();
+  });
+
+  document.getElementById("user_logout").addEventListener("click", () => {
+    logoutUser();
   });
 };
 

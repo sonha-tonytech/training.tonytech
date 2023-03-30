@@ -26,21 +26,15 @@ const vadidateForm = async () => {
   ) {
     msg.innerHTML = "Information cannot be blank";
   } else if (rePassword !== formData.passWord) {
-    msg.innerHTML = "Type your repeat password again";
+    msg.innerHTML = "Your repeat password is wrong";
   } else {
-    msg.innerHTML = "";
-    const user = await getUserByName(formData.userName);
-    if (Object.values(user).length !== 0) {
-      msg.innerHTML = "User already exists";
+    const notice = await addContact(formData);
+    console.log(notice);
+    if (notice === "Success") {
+      alert("Sign up user successfully!");
+      window.location = "/login";
     } else {
-      const lastUser = await getLastUser();
-      lastUser.length === 0
-        ? formData.index
-        : (formData.index = lastUser[0].index + 1);
-      const token = await addToken(formData);
-      await addContact(token);
-      alert("sign up user successfully!");
-      window.location.replace("http://localhost:3001/login");
+      msg.innerHTML = notice;
     }
   }
 };
@@ -51,6 +45,11 @@ const main = async () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     vadidateForm();
+  });
+
+  document.getElementById("btn_login").addEventListener("click", () => {
+    form.reset();
+    window.location = "/login";
   });
 };
 

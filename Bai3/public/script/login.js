@@ -5,26 +5,9 @@ const readUser = () => {
   return user;
 };
 
-const loginUser = async (data) => {
-  const res = await fetch("http://localhost:3001/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  const token = await res.json();
-  return token;
-};
-
-const viewIndexPage = async (token) => {
-  await fetch("http://localhost:3001/index", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(token),
-  });
+const viewIndexPage = async (notice) => {
+  localStorage.setItem("lastname", notice.lastName);
+  window.location = "/index";
 };
 
 const vadidateForm = async () => {
@@ -34,11 +17,10 @@ const vadidateForm = async () => {
     msg.innerHTML = "Information cannot be blank";
   } else {
     msg.innerHTML = "";
-    const token = await loginUser(userLogin);
-    localStorage.setItem("token", JSON.stringify(token));
-    typeof token === "object"
-      ? await viewIndexPage(token)
-      : (msg.innerHTML = "Invalid User");
+    const notice = await loginUser(userLogin);
+    typeof notice === "object"
+      ? await viewIndexPage(notice)
+      : (msg.innerHTML = notice);
   }
 };
 
@@ -48,6 +30,11 @@ const main = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     vadidateForm();
+  });
+
+  document.getElementById("btn_register").addEventListener("click", () => {
+    form.reset();
+    window.location = "/register";
   });
 };
 

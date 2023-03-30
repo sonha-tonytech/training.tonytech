@@ -22,6 +22,29 @@ body {
   z-index: 1;
 }
 
+.customer-detail-section-logout{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+#customer_name{
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.btn-logout {
+  margin-left: 5px;
+  background-color: var(--backgroundWhite);
+  border: none;
+}
+
+.btn-logout:hover {
+  cursor: pointer;
+  color: gray;;
+}
+
+
 .customer-add-section-title {
   display: flex;
   border-bottom: 1px solid var(--borderGray);

@@ -21,3 +21,7 @@ create a model
     lastName
     status: 'active'
 } 
+
+
+
+39.24

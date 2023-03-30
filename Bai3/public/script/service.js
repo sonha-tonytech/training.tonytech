@@ -13,13 +13,16 @@ const getUserById = async (id) => {
 
 // Insert data
 const addUser = async (form) => {
-  await fetch("http://localhost:3001/api/users", {
+  const res = await fetch("http://localhost:3001/api/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(form),
   });
+
+  const notice = await res.json();
+  return notice;
 };
 
 //  Update data
@@ -27,20 +30,27 @@ const updateUser = async (form, index) => {
   if (index < 1 || index > users.length) {
     return false;
   } else {
-    await fetch(`http://localhost:3001/api/users/${userUpdate._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form)
-    });
+    const res = await fetch(
+      `http://localhost:3001/api/users/${userUpdate._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      }
+    );
+    const notice = await res.json();
+    if (notice === "Success") return true;
+    else return notice;
   }
-  return true;
 };
 
 // Delete data
 const deleteUser = async (id) => {
-  await fetch(`http://localhost:3001/api/users/${id}`, {
-    method: "DELETE"
+  const res = await fetch(`http://localhost:3001/api/users/${id}`, {
+    method: "DELETE",
   });
+  const notice = res.json();
+  return notice;
 };
