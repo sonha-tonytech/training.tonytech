@@ -28,11 +28,10 @@ const vadidateForm = async () => {
   } else if (rePassword !== formData.passWord) {
     msg.innerHTML = "Your repeat password is wrong";
   } else {
-    const notice = await addContact(formData);
-    console.log(notice);
+    const notice = await registerUser(formData);
     if (notice === "Success") {
       alert("Sign up user successfully!");
-      window.location = "/login";
+      window.location = "/auth/login";
     } else {
       msg.innerHTML = notice;
     }
@@ -49,7 +48,7 @@ const main = async () => {
 
   document.getElementById("btn_login").addEventListener("click", () => {
     form.reset();
-    window.location = "/login";
+    window.location = "/auth/login";
   });
 };
 

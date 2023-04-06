@@ -7,7 +7,7 @@ const readUser = () => {
 
 const viewIndexPage = async (notice) => {
   localStorage.setItem("lastname", notice.lastName);
-  window.location = "/index";
+  window.location = "/";
 };
 
 const vadidateForm = async () => {
@@ -34,7 +34,7 @@ const main = () => {
 
   document.getElementById("btn_register").addEventListener("click", () => {
     form.reset();
-    window.location = "/register";
+    window.location = "/auth/register";
   });
 };
 

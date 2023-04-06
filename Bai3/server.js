@@ -16,14 +16,12 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname));
 app.use(cookieParser());
-app.use('/', require("./routes/loginRoute"));
-app.use('/', require("./routes/contactRoute"));
+
+app.use('/api', require("./routes/api"));
+app.use('/', require("./routes/web"));
+
 app.set('view engine', 'ejs');
 
-
-app.get("/", (req,res) => {
-  res.redirect("/index");
-});
 
 
 app.listen(process.env.API_PORT);

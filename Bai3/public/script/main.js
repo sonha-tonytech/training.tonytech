@@ -1,16 +1,3 @@
-const fetchData = async () => {
-  const res = await fetch("http://localhost:3001/api/users", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await res.json();
-  return data;
-};
-
 // Retrive data
 const readFormUser = () => {
   var formData = {};
@@ -119,7 +106,7 @@ const handlePageArrow = (listUsers, currPage, id) => {
 // clear arrow Event before action
 const clearEventListeners = () => {
   document
-    .getElementById("btn-delete-all-users")
+    .getElementById("btn_delete_all_users")
     .removeEventListener("click", deleteManyUsers);
   document
     .getElementById("id_select_all_users")
@@ -219,7 +206,7 @@ const renderUsersTable = (listUsers) => {
     table[0].innerHTML = htmlUsers;
 
     getPageNumber(listUsers, currentRow, currentPage);
-    showSumUserCountry(listUsers);
+    // showSumUserCountry(listUsers);
 
     //listen checkbox events
     const ipCheckbox = document.getElementById("id_select_all_users");
@@ -260,33 +247,36 @@ const renderUsersTable = (listUsers) => {
     btnDeletes.forEach((node) => {
       node.addEventListener("click", async (e) => {
         if (confirm("Do you want to delete this row?")) {
-          let id = cutString(e.target.id, `btn-delete-`);
-          let indexUserDelete = users.findIndex((user) => user._id === id) + 1;
+          const id = cutString(e.target.id, `btn-delete-`);
+          const indexUserDelete =
+            users.findIndex((user) => user._id === id) + 1;
+          loader.classList.remove("loader-hidden");
           const notice = await deleteUser(id);
-          if (notice !== "Success") alert(notice);
+          loader.classList.add("loader-hidden");
+          if (notice !== true) {
+            alert(notice);
+          }
           if (indexUserDelete % currentRow === 1 && currentPage > 1) {
             currentPage--;
           }
         }
         clearEventListeners();
-        users = await fetchData();
         table[0].innerHTML = "";
         renderUsersTable(users);
       });
     });
-
     // Delete many users
-    const btnDeleteUsers = document.getElementById("btn-delete-all-users");
+    const btnDeleteUsers = document.getElementById("btn_delete_all_users");
     btnDeleteUsers.addEventListener(
       "click",
       (deleteManyUsers = async () => {
-        newListUsers.forEach(async (user) => {
-          if (user.selected === true) {
-            const notice = await deleteUser(user._id);
-          }
-        });
-        // if (notice !== "Success") alert(notice);
-        users = await fetchData();
+        loader.classList.remove("loader-hidden");
+        await Promise.all(
+          newListUsers
+            .filter((user) => user.selected === true)
+            .map((user) => deleteUser(user._id))
+        );
+        loader.classList.add("loader-hidden");
         if (
           users.length % currentRow === 0 &&
           users.length !== 0 &&
@@ -296,9 +286,6 @@ const renderUsersTable = (listUsers) => {
         }
         clearEventListeners();
         document.getElementById("id_select_all_users").checked = false;
-        listUsers.forEach((user) => {
-          user.selected ? false : user.selected;
-        });
         table[0].innerHTML = "";
         renderUsersTable(users);
       })
@@ -333,14 +320,6 @@ const searchUser = () => {
 
   table[0].innerHTML = "";
   renderUsersTable(listUserAfterSearch);
-
-  // add event listener for row table
-  document.getElementById("ip_row_select").addEventListener(
-    "change",
-    (changeCurrentRow = () => {
-      selectRowTable(listUserAfterSearch);
-    })
-  );
 };
 
 // Select Row to show table
@@ -378,17 +357,18 @@ const closeForm = () => {
 
 const logoutUser = () => {
   localStorage.clear();
-  window.location = "/logout";
+  window.location = "/auth/logout";
 };
 
 // Vadidate Data
 const validateForm = async () => {
   const formData = readFormUser();
+  const indexUser = Number(document.getElementById("index_add_user").value);
   let msg = document.getElementById("msg_add_user");
 
   if (
     formData.userName === "" ||
-    formData.passWord === "" ||
+    (formData.passWord === "" && Object.values(userUpdate).length === 0) ||
     formData.email === "" ||
     formData.firstName === "" ||
     formData.firstName === "" ||
@@ -396,43 +376,34 @@ const validateForm = async () => {
     formData.country === ""
   ) {
     msg.innerHTML = "Information cannot be blank";
-  } else if (formData.index < 0 || formData.index > users.length + 1) {
+  } else if (
+    Object.values(userUpdate).length !== 0 &&
+    (indexUser < 1 || indexUser > users.length)
+  ) {
     msg.innerHTML = "invalid index value";
   } else {
     if (Object.values(userUpdate).length === 0) {
       users.length === 0
         ? formData.index++
         : (formData.index = users[users.length - 1].index + 1);
+      loader.classList.remove("loader-hidden");
       const notice = await addUser(formData);
-      notice === "Success" ? closeForm() : (msg.innerHTML = notice);
+      loader.classList.add("loader-hidden");
+      if (notice === true) {
+        alert("User has been created successfully");
+        closeForm();
+      } else msg.innerHTML = notice;
     } else {
-      let indexUser =
-        Number(document.getElementById("index_add_user").value) - 1;
-      formData.index = userUpdate.index;
-      if (
-        indexUser + 1 !==
-          Number(
-            document.getElementById(`index-field-${userUpdate._id}`).value
-          ) &&
-        indexUser >= 0 &&
-        indexUser < users.length
-      ) {
-        if (indexUser === 0) formData.index = users[indexUser].index / 2;
-        else if (indexUser === users.length - 1)
-          formData.index = users[indexUser].index + 1;
-        else if (
-          indexUser <
-          Number(document.getElementById(`index-field-${userUpdate._id}`).value)
-        )
-          formData.index =
-            (users[indexUser].index + users[indexUser - 1].index) / 2;
-        else
-          formData.index =
-            (users[indexUser].index + users[indexUser + 1].index) / 2;
-      }
-      let userCheck = await updateUser(formData, indexUser + 1);
+      formData._id = userUpdate._id;
+      const position = Number(
+        document.getElementById(`index-field-${userUpdate._id}`).value
+      );
+      loader.classList.remove("loader-hidden");
+      let userCheck = await updateUser(formData, indexUser, position);
+      loader.classList.add("loader-hidden");
       switch (userCheck) {
         case true: {
+          alert("User has been updated successfully");
           closeForm();
           break;
         }
@@ -444,10 +415,9 @@ const validateForm = async () => {
           msg.innerHTML = userCheck;
       }
     }
-    if (users.length !== 0) {
+    if (users.length > 1) {
       clearEventListeners();
     }
-    users = await fetchData();
     table[0].innerHTML = "";
     renderUsersTable(users);
   }
@@ -460,7 +430,10 @@ const main = async () => {
   let form = document.getElementById("form_add_user");
 
   try {
-    users = await fetchData();
+    loader.classList.remove("loader-hidden");
+    const listUsers = await getAllUsers();
+    Array.isArray(listUsers) ? (users = listUsers) : alert(listUsers);
+    loader.classList.add("loader-hidden");
   } catch (err) {
     console.log("err", err);
   }
