@@ -1,0 +1,27 @@
+.add-group-section {
+  position: absolute;
+  height: 100%;
+  padding: 20px 0px;
+  top: 0;
+  animation: leftSideBarMove 0.5s;
+  z-index: 1;
+}
+
+.sidebar-add-group-section input {
+  margin-top: 20px;
+  height: 40px;
+}
+
+.sidebar-add-group-title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: solid 1px var(--borderGray);
+}
+
+.btn-submit-add-group {
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  transform: translate(-100%, 0%);
+}

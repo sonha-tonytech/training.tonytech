@@ -1,0 +1,48 @@
+.form-add-user-in-group {
+  background-color: var(--backgroundWhite);
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  top: 300px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+  border: solid 1px var(--borderGray);
+  border-radius: 5px;
+}
+
+.form-add-user-in-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--Green);
+  padding: 5px 10px;
+}
+
+.form-add-user-in-group-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 10px 10px 10px;
+}
+
+.form-add-user-in-group-content input {
+  margin-right: 5px;
+  height: 40px;
+  border: solid 1px var(--borderGray);
+  border-radius: 5px;
+  padding: 10px 10px;
+}
+
+.exit-form-add-user-in-group {
+  border-radius: 5px !important;
+}
+
+.form-add-user-in-group-content button{
+  height: 40px;
+  /* border-radius: 10px !important; */
+}
+
+#msg {
+  color: var(--Red);
+  padding: 0px 10px;
+}

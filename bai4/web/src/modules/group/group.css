@@ -1,0 +1,38 @@
+.group-section{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-right: solid 1px var(--borderGray);
+}
+
+.toggle{
+    text-align: center;
+    background-color: var(--backgroundWhite);
+    border: none;
+}
+
+
+@keyframes leftSideBarMove {
+  0%{
+    transform: translate(-100%,0%);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+
+
+
+
+.profile-option{
+  padding: 20px 10px;
+  font-weight: bold;
+}
+
+.profile-option:hover{
+  cursor: pointer;
+  background-color: var(--selectPage);
+}
+
+
+
