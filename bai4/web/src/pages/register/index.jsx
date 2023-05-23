@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import withAuth from "src/HOCs/withAuth";
-import AuthLayout from "src/layouts/auth-layout";
+import withAuth from "HOCs/withAuth";
+import AuthLayout from "layouts/auth-layout";
 import "./register.css";
 
 class Register extends React.Component {

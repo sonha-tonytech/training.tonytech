@@ -1,5 +1,5 @@
 import React from "react";
-import cookies from "src/utils/cookies";
+import cookies from "utils/cookies";
 
 import { loginAPI, registerAPI, getProfileAPI } from "api/auth";
 
@@ -9,6 +9,7 @@ class AuthProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      token: cookies.get("token") || null,
       userLogin: null,
     };
   }
@@ -42,8 +43,8 @@ class AuthProvider extends React.Component {
   };
 
   logoutUser = () => {
-    cookies.set("token", "");
-    this.setState({ userLogin: null });
+    cookies.remove("token");
+    this.setState({ token: null, userLogin: null });
   };
 
   handleGetUserProfile = async () => {
@@ -61,13 +62,13 @@ class AuthProvider extends React.Component {
       if (userLogin) {
         this.setState({ userLogin: userLogin });
       } else {
-        cookies.set("token", "");
+        cookies.remove("token");
       }
     }
   };
 
   render() {
-    const { userLogin } = this.state;
+    const { token, userLogin } = this.state;
     const {
       handleSetToken,
       handleSetUserLogin,
@@ -80,6 +81,7 @@ class AuthProvider extends React.Component {
     return (
       <AuthContext.Provider
         value={{
+          token,
           userLogin,
           handleSetToken,
           handleSetUserLogin,

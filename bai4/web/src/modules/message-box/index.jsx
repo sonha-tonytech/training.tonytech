@@ -1,7 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { withRouter } from "react-router-dom";
 import withAuth from "HOCs/withAuth";
-import withUser from "HOCs/withUser";
 import withGroup from "HOCs/withGroup";
 import withMessage from "HOCs/withMessage";
 import AddUserForm from "components/adduserform";
@@ -52,7 +51,7 @@ class MessageBox extends React.Component {
   };
 
   handleDeleteUserInGroup = async (newGroup) => {
-    const notice = await this.props.groupContext.deleteUserInGroup(this.state.selectedGroup._id,newGroup);
+    const notice = await this.props.groupContext.updateGroup(newGroup);
     if (notice) {
       const groupIndex = this.props.groupContext.groups.findIndex(
         (group) => group._id === this.state.selectedGroup._id
@@ -67,9 +66,8 @@ class MessageBox extends React.Component {
   getMessageByParamId = async (id) => {
     const selectedGroup = await this.props.groupContext.getGroupById(id);
     if (selectedGroup) {
-      const messagesInGroup = await this.props.messageContext.getMessagesByGroupId(
-        id
-      );
+      const messagesInGroup =
+        await this.props.messageContext.getMessagesByGroupId(id);
       this.setState({ selectedGroup: selectedGroup });
       this.props.messageContext.handleSetMessages(messagesInGroup);
     } else {
@@ -86,6 +84,12 @@ class MessageBox extends React.Component {
   componentDidUpdate = async (prevProps) => {
     if (this.props.match.params.id !== prevProps.match.params.id) {
       await this.getMessageByParamId(this.props.match.params.id);
+      this.setState({
+        selectedMessages: [],
+        isAddUserInGroupOpen: false,
+        isMessageSelect: false,
+        isRightSideBarOpen: false,
+      });
     }
   };
 
@@ -121,7 +125,6 @@ class MessageBox extends React.Component {
           />
           {this.state.isAddUserInGroupOpen && (
             <AddUserForm
-              users={this.props.userContext.users}
               selectedGroup={this.state.selectedGroup}
               handleAddUserInGroup={this.handleAddUserInGroup}
               handleOpenAddUserInGroup={this.handleOpenAddUserInGroup}
@@ -134,7 +137,7 @@ class MessageBox extends React.Component {
             userLogin={this.props.authContext.userLogin}
             selectedGroup={this.state.selectedGroup}
             handleOpenRightSideBar={this.handleOpenRightSideBar}
-            handleUpdateUserInGroup={this.handleUpdateUserInGroup}
+            handleDeleteUserInGroup={this.handleDeleteUserInGroup}
             handleSelectedGroup={this.handleSelectedGroup}
           />
         )}
@@ -143,6 +146,4 @@ class MessageBox extends React.Component {
   }
 }
 
-export default withRouter(
-  withAuth(withUser(withGroup(withMessage(MessageBox))))
-);
+export default withRouter(withAuth(withGroup(withMessage(MessageBox))));

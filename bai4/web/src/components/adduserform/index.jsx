@@ -17,8 +17,9 @@ class AddUserForm extends React.Component {
       if (addedUserName) {
         const addedUser = await this.props.handleAddUserInGroup(addedUserName);
         if (typeof addedUser === "object") {
-          this.props.selectedGroup.members.push(addedUserName);
+          this.props.selectedGroup.members.push({user_id: addedUser});
           this.props.handleSelectedGroup(this.props.selectedGroup);
+          this.closeFormAddUser(); 
         } else {
           this.setState({ msg: addedUser });
         }

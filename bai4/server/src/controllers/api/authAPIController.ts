@@ -1,3 +1,4 @@
+require("dotenv").config();
 import { Request, Response, NextFunction } from "express";
 import UserService from "../../service/userService";
 import jwt from "jsonwebtoken";
@@ -27,7 +28,7 @@ const apiLoginUser = async (
           name: user.name,
           role: user.role,
         },
-        "hello",
+        process.env.JWT_SECRET_KEY,
         { expiresIn: "2h" }
       );
       res.status(200).json(token);

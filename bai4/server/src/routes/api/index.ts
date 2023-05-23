@@ -8,7 +8,7 @@ const router = express.Router();
 
 // API
 router.use("/auth", authRoute);
-router.use("/users", userRoute);
+router.use("/user", userRoute);
 router.use("/groups", groupRoute);
 router.use("/messages", messageRoute);
 

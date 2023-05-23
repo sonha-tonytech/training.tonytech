@@ -1,7 +1,7 @@
+require("dotenv").config();
 import { Request, Response, NextFunction } from "express";
 import UserService from "../../service/userService";
 import jwt from "jsonwebtoken";
-
 
 const apiGetAllUsers = async (
   req: Request,
@@ -57,19 +57,18 @@ const apiUpdateUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {    
+  try {
     const userByUserName = await UserService.getUserbyUserName(
       req.body.userName
-      );
-      if (userByUserName) {
+      );    
+    if (userByUserName) {
       return res.status(200).json("Username already exists");
-    }
+    }    
     const data = {
       _id: req.params.id,
       userName: req.body.userName,
       name: req.body.name,
     };
-    
     const updatedUser = await UserService.updateUser(data);
     if (updatedUser) {
       const token = jwt.sign(
@@ -79,10 +78,9 @@ const apiUpdateUser = async (
           name: data.name,
           role: "user",
         },
-        "hello",
+        process.env.JWT_SECRET_KEY,
         { expiresIn: "2h" }
       );
-      res.cookie("token", token, { httpOnly: true });
       res.status(200).json({ token: token });
     } else {
       res.status(400).json("User could not be updated");

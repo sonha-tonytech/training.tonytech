@@ -5,7 +5,7 @@ import {
   addNewMessageAPI,
   updateMessageAPI,
   deleteMessageAPI,
-} from "src/api/message";
+} from "api/message";
 
 const MessageContext = React.createContext();
 

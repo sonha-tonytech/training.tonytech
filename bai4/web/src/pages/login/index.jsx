@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import AuthLayout from "src/layouts/auth-layout";
-import withAuth from "src/HOCs/withAuth";
+import AuthLayout from "layouts/auth-layout";
+import withAuth from "HOCs/withAuth";
 import "./login.css";
 
 class Login extends React.Component {

@@ -1,5 +1,6 @@
 import axios from "axios";
-import cookies from "utils/cookies"
+import cookies from "utils/cookies";
+
 
 const instance = axios.create({
   baseURL: "http://localhost:3001/api",

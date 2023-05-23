@@ -1,5 +1,4 @@
 import React from "react";
-import cookies from "src/utils/cookies";
 import {
   getGroupsAPI,
   getGroupByIdAPI,
@@ -7,7 +6,6 @@ import {
   updateGroupAPI,
   deleteGroupAPI,
   addUserInGroupAPI,
-  deleteUserInGroupAPI,
 } from "api/group";
 
 const GroupContext = React.createContext();
@@ -81,31 +79,17 @@ class GroupProvider extends React.Component {
 
   addUserInGroup = async (idGroup, userName) => {
     try {
-      const user = await addUserInGroupAPI(idGroup, userName);
+      const user = await addUserInGroupAPI(idGroup, { userName: userName });
       return user.data;
     } catch (error) {
       return error.response.data;
     }
   };
 
-  deleteUserInGroup = async (idGroup, newGroup) => {
-    try {
-      const notice = await deleteUserInGroupAPI(idGroup, newGroup);
-      if (notice === "Success") {
-        return true;
-      }
-      return false;
-    } catch (error) {
-      return error.response.data;
-    }
-  };
-
   componentDidMount = async () => {
-    if (cookies.get("token")) {
-      const groups = await this.getAllGroups();
-      if (groups) {
-        this.setState({ groups: groups });
-      }
+    const groups = await this.getAllGroups();
+    if (groups) {
+      this.setState({ groups: groups });
     }
   };
 

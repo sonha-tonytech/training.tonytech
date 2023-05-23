@@ -1,9 +1,9 @@
 import React from "react";
-import withAuth from "src/HOCs/withAuth";
-import withUser from "src/HOCs/withUser";
-import SidebarLayout from "src/layouts/sidebar-layout";
-import Input from "src/components/core/input";
-import Button from "src/components/core/button";
+import withAuth from "HOCs/withAuth";
+import withUser from "HOCs/withUser";
+import SidebarLayout from "components/core/sidebar-layout";
+import Input from "components/core/input";
+import Button from "components/core/button";
 import "./groupprofile.css";
 
 class GroupProfile extends React.Component {

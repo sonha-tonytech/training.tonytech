@@ -1,10 +1,11 @@
 import React from "react";
-import withGroup from "src/HOCs/withGroup";
-import SidebarLayout from "src/layouts/sidebar-layout";
-import Button from "src/components/core/button";
-import Input from "src/components/core/input";
-import GroupWrapper from "src/components/groupwrapper";
-import "./groupinformation.css"
+import { withRouter } from "react-router-dom";
+import withGroup from "HOCs/withGroup";
+import SidebarLayout from "components/core/sidebar-layout";
+import Button from "components/core/button";
+import Input from "components/core/input";
+import GroupWrapper from "components/groupwrapper";
+import "./groupinformation.css";
 
 class GroupInformation extends React.Component {
   constructor(props) {
@@ -37,6 +38,10 @@ class GroupInformation extends React.Component {
     }
   };
 
+  handleSelectedGroup = (id) => {
+    this.props.history.push(`/groups/${id}`);
+  };
+
   render() {
     return (
       <div className="col-des-12 information-group-section">
@@ -66,6 +71,7 @@ class GroupInformation extends React.Component {
                 ? this.state.searchedGroups
                 : this.props.groupContext.groups
             }
+            handleSelectedGroup={this.handleSelectedGroup}
           />
           <Button className="btn-add-group" onClick={this.handleOpenGroupForm}>
             +
@@ -76,4 +82,4 @@ class GroupInformation extends React.Component {
   }
 }
 
-export default withGroup(GroupInformation);
+export default withRouter(withGroup(GroupInformation));

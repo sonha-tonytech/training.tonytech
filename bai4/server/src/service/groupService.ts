@@ -17,12 +17,14 @@ const getAllGroups = async (id: string) => {
   }
 };
 
-const getGroupsByUserId = async (userId: string) => {
+const getGroupsByOwner = async (userId: string) => {
   try {
     const groupsByUserId = await GroupModel.find({
       owner: userId,
       isActived: true,
-    });
+    })
+      .populate({ path: "owner", select: "userName name" })
+      .populate({ path: "members.user_id", select: "userName name" });
     const data = groupsByUserId.length > 0 ? groupsByUserId : null;
     return data;
   } catch (error) {
@@ -40,6 +42,20 @@ const getGroupById = async (groupId: string) => {
     )
       .populate({ path: "owner", select: "userName name" })
       .populate({ path: "members.user_id", select: "userName name" });
+    return groupById;
+  } catch (error) {
+    console.log(`Could not find group ${error}`);
+  }
+};
+
+const getGroupByIdForAddUser = async (groupId: string) => {
+  try {
+    const groupById = await GroupModel.findById(
+      {
+        _id: groupId,
+      },
+      "_id name members"
+    )
     return groupById;
   } catch (error) {
     console.log(`Could not find group ${error}`);
@@ -96,10 +112,11 @@ const deleteGroup = async (groupId: string) => {
   }
 };
 
-export {
+export default {
   getAllGroups,
-  getGroupsByUserId,
+  getGroupsByOwner,
   getGroupById,
+  getGroupByIdForAddUser,
   createGroup,
   updateGroup,
   deleteGroup,

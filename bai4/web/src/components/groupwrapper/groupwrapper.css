@@ -1,0 +1,11 @@
+.chatbox-section {
+    word-wrap: break-word;
+    height: 60px;
+    border-bottom: solid 1px var(--borderGray);
+    padding: 5px 10px;
+  }
+  
+  .chatbox-section:hover {
+    cursor: pointer;
+    background-color: var(--selectPage);
+  }

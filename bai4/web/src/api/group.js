@@ -23,7 +23,3 @@ export const deleteGroupAPI = async (id) => {
 export const addUserInGroupAPI = async (idGroup,data) => {
   return await request().post(`/groups/${idGroup}/user`,data);
 }
-
-export const deleteUserInGroupAPI = async (idGroup, data) => {
-  return await request().delete(`/groups/${idGroup}/user/${idUser}`);
-}

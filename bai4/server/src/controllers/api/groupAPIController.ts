@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import * as GroupService from "../../service/groupService";
+import GroupService from "../../service/groupService";
+import UserService from "../../service/userService";
 
 export interface CustomRequest extends Request {
   user: Object;
@@ -7,6 +8,8 @@ export interface CustomRequest extends Request {
 
 export interface Object {
   id: string;
+  user_id: object;
+  name: string;
 }
 
 const apiGetAllGroups = async (
@@ -38,7 +41,7 @@ const apiGetGroupsByUserId = async (
 ) => {
   try {
     const userId = req.params.id;
-    const groups = await GroupService.getGroupsByUserId(userId);
+    const groups = await GroupService.getGroupsByOwner(userId);
     groups
       ? res.status(200).json(groups)
       : res.status(404).json("Error 404: Do not find data");
@@ -116,7 +119,42 @@ const apiDeleteGroup = async (
     deletedGroup
       ? res.status(200).json("Success")
       : res.status(400).json("Group could not be deleted");
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+const apiAddNewUserInGroup = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userFind = await UserService.getUserbyUserName(req.body.userName);    
+    if (userFind) {
+      const groupFind = await GroupService.getGroupByIdForAddUser(req.params.id);      
+      if (groupFind) {  
+        if (groupFind.members.some((user) => String(user.user_id) === String(userFind._id))) {
+          return res.status(200).json("User has already in group");
+        } else {
+          groupFind.members.push({ user_id: userFind._id });
+          const updatedGroup = await GroupService.updateGroup(groupFind);
+          if (updatedGroup) {
+            const resUser = {
+              _id: userFind._id,
+              username: userFind.userName,
+              name: userFind.name,
+            };
+            return res.status(200).json(resUser);
+          }
+          return res.status(400).json("Could not be add user in group");
+        }
+      }
+    }
+    res.status(200).json("Invalid User");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 export default {
@@ -126,4 +164,5 @@ export default {
   apiCreateNewGroup,
   apiUpdateGroup,
   apiDeleteGroup,
+  apiAddNewUserInGroup,
 };

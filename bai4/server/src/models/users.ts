@@ -8,30 +8,33 @@ interface IUser extends Document {
   isActived: boolean;
 }
 
-const UserSchema = new Schema({
-  userName: {
-    type: String,
-    required: true,
+const UserSchema = new Schema(
+  {
+    userName: {
+      type: String,
+      required: true,
+    },
+    passWord: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: String,
+      required: true,
+    },
+    isActived: {
+      type: Boolean,
+      required: true,
+    },
   },
-  passWord: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    required: true,
-  },
-  isActived: {
-    type: Boolean,
-    required: true,
-  },
-}, {
-  timestamps: true
-});
+  {
+    timestamps: true,
+  }
+);
 
 const User = model<IUser>("User", UserSchema);
 

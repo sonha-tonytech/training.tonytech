@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Login from "src/pages/login";
-import Register from "src/pages/register";
-import AuthProvider from "src/contexts/authcontext";
+import Login from "pages/login";
+import Register from "pages/register";
+import AuthProvider from "contexts/authcontext";
 
 class Authentication extends React.Component {
   getRoute = (path) => this.props.match.path + path;

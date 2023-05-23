@@ -1,8 +1,8 @@
 import React from "react";
-import withGroup from "src/HOCs/withGroup";
-import SidebarLayout from "src/layouts/sidebar-layout";
-import Button from "src/components/core/button";
-import Input from "src/components/core/input";
+import withGroup from "HOCs/withGroup";
+import SidebarLayout from "components/core/sidebar-layout";
+import Button from "components/core/button";
+import Input from "components/core/input";
 import "./groupaddform.css"
 
 class AddGroupForm extends React.Component {

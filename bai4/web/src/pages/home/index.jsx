@@ -1,10 +1,10 @@
 import React from "react";
-import { Redirect, withRouter } from "react-router-dom/cjs/react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import Group from "modules/group";
 import MessageBox from "modules/message-box";
 import withAuth from "HOCs/withAuth";
 import "./home.css";
-import { AuthContext } from "src/context/authcontext";
+import { AuthContext } from "contexts/authcontext";
 
 class Home extends React.Component {
   render() {
