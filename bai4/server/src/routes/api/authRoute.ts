@@ -1,5 +1,5 @@
 import express from "express";
-import * as LoginController from "../../controllers/api/authAPIController";
+import LoginController from "../../controllers/api/authAPIController";
 import ApiMiddleWare from "../../middleware/api/auth";
 const router = express.Router();
 

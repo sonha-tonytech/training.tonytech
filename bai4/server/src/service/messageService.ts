@@ -97,7 +97,9 @@ const deleteMessage = async (messageId: string) => {
     );
     const result = deletedMessage.modifiedCount === 1 ? true : false;
     return result;
-  } catch (error) {}
+  } catch (error) {
+    console.log(`Could not delete message ${error}`);
+  }
 };
 
 export {

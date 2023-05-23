@@ -1,11 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import withAuth from "../../hoc/withAuth";
-import withUser from "../../hoc/withUser";
-import withGroup from "../../hoc/withGroup";
-import withMessage from "../../hoc/withMessage";
-import AddUserForm from "../../components/adduserform";
-import DeleteUserForm from "../../components/deleteuserform";
+import withAuth from "HOCs/withAuth";
+import withUser from "HOCs/withUser";
+import withGroup from "HOCs/withGroup";
+import withMessage from "HOCs/withMessage";
+import AddUserForm from "components/adduserform";
+import DeleteUserForm from "components/deleteuserform";
 import MessageBoxHeader from "./messagebox-header";
 import MessageBoxContent from "./messagebox-content";
 import MessageBoxTool from "./messagebox-tool";
@@ -43,8 +43,16 @@ class MessageBox extends React.Component {
     this.setState({ isRightSideBarOpen: isOpen });
   };
 
-  handleUpdateUserInGroup = async (newGroup) => {
-    const notice = await this.props.groupContext.updateGroup(newGroup);
+  handleAddUserInGroup = async (userName) => {
+    const user = await this.props.groupContext.addUserInGroup(
+      this.state.selectedGroup._id,
+      userName
+    );
+    return user;
+  };
+
+  handleDeleteUserInGroup = async (newGroup) => {
+    const notice = await this.props.groupContext.deleteUserInGroup(this.state.selectedGroup._id,newGroup);
     if (notice) {
       const groupIndex = this.props.groupContext.groups.findIndex(
         (group) => group._id === this.state.selectedGroup._id
@@ -56,43 +64,33 @@ class MessageBox extends React.Component {
     return false;
   };
 
+  getMessageByParamId = async (id) => {
+    const selectedGroup = await this.props.groupContext.getGroupById(id);
+    if (selectedGroup) {
+      const messagesInGroup = await this.props.messageContext.getMessagesByGroupId(
+        id
+      );
+      this.setState({ selectedGroup: selectedGroup });
+      this.props.messageContext.handleSetMessages(messagesInGroup);
+    } else {
+      this.setState({ selectedGroup: null });
+    }
+  };
+
   componentDidMount = async () => {
     if (this.props.match.params.id) {
-      const selectedGroup = await this.props.groupContext.getGroupById(
-        this.props.match.params.id
-      );
-      if (selectedGroup) {
-        const messagesInGroup = await this.props.messageContext.getMessagesByGroupId(
-          this.props.match.params.id
-        );
-        this.setState({ selectedGroup: selectedGroup });
-        this.props.messageContext.handleSetMessages(messagesInGroup);
-      } else {
-        this.setState({ selectedGroup: null });
-      }
+      await this.getMessageByParamId(this.props.match.params.id);
     }
   };
 
   componentDidUpdate = async (prevProps) => {
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      const selectedGroup = await this.props.groupContext.getGroupById(
-        this.props.match.params.id
-      );
-      if (selectedGroup) {
-        const messagesInGroup = await this.props.messageContext.getMessagesByGroupId(
-          this.props.match.params.id
-        );
-        this.setState({ selectedGroup: selectedGroup });
-        this.props.messageContext.handleSetMessages(messagesInGroup);
-      } else {
-        this.setState({ selectedGroup: null });
-      }
+      await this.getMessageByParamId(this.props.match.params.id);
     }
   };
 
   render() {
-    if (!this.state.selectedGroup || !this.props.authContext.userLogin)
-      return null;
+    if (!this.state.selectedGroup) return null;
 
     return (
       <div className={`message-box-container ${this.props.className || ""}`}>
@@ -125,7 +123,7 @@ class MessageBox extends React.Component {
             <AddUserForm
               users={this.props.userContext.users}
               selectedGroup={this.state.selectedGroup}
-              handleUpdateUserInGroup={this.handleUpdateUserInGroup}
+              handleAddUserInGroup={this.handleAddUserInGroup}
               handleOpenAddUserInGroup={this.handleOpenAddUserInGroup}
               handleSelectedGroup={this.handleSelectedGroup}
             />

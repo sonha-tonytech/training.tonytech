@@ -1,8 +1,8 @@
 import React from "react";
-import withAuth from "../../../hoc/withAuth";
-import withMessage from "../../../hoc/withMessage";
-import MessageSelection from "../../../components/messageselection";
-import SendMessageBox from "../../../components/sendmessagebox";
+import withAuth from "src/HOCs/withAuth";
+import withMessage from "src/HOCs/withMessage";
+import MessageSelection from "src/components/messageselection";
+import SendMessageBox from "src/components/sendmessagebox";
 
 class MessageBoxTool extends React.Component {
   closeMessageSelection = () => {

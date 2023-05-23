@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import withAuth from "../../hoc/withAuth";
-import AuthLayout from "../../layouts/auth-layout";
+import withAuth from "src/HOCs/withAuth";
+import AuthLayout from "src/layouts/auth-layout";
 import "./register.css";
 
 class Register extends React.Component {
@@ -35,6 +35,12 @@ class Register extends React.Component {
       } else this.setState({ msg_register: notice });
     } else
       this.setState({ msg_register: "Register requires full information!" });
+  };
+
+  componentDidMount = () => {
+    if (this.props.authContext.token) {
+      this.props.authContext.logoutUser();
+    }
   };
 
   render() {

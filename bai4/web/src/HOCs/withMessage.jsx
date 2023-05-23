@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageContext } from "../context/messagecontext";
+import { MessageContext } from "../contexts/messagecontext";
 
 const withMessage = (Component) => {
   return class extends React.Component {

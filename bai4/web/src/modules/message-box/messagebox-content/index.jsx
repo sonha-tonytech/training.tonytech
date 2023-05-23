@@ -1,6 +1,6 @@
 import React from "react";
-import withMessage from "../../../hoc/withMessage";
-import withAuth from "../../../hoc/withAuth";
+import withMessage from "src/HOCs/withMessage";
+import withAuth from "src/HOCs/withAuth";
 import "./messageboxcontent.css";
 
 class MessageBoxContent extends React.Component {

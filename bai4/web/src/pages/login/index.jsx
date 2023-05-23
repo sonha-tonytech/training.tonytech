@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import AuthLayout from "../../layouts/auth-layout";
-import withAuth from "../../hoc/withAuth";
+import AuthLayout from "src/layouts/auth-layout";
+import withAuth from "src/HOCs/withAuth";
 import "./login.css";
 
 class Login extends React.Component {
@@ -19,7 +19,7 @@ class Login extends React.Component {
     const username = this.userNameInput.current.value.toLowerCase();
     const password = this.passwordInput.current.value;
     if (username && password) {
-      const data = {userName: username, passWord: password};
+      const data = { userName: username, passWord: password };
       const userLogin = await this.props.authContext.loginUser(data);
       if (userLogin) {
         this.props.authContext.handleSetToken(userLogin);
@@ -29,6 +29,12 @@ class Login extends React.Component {
       this.setState({
         msg_login: "Login requires full username and password!",
       });
+  };
+
+  componentDidMount = () => {
+    if (this.props.authContext.token) {
+      this.props.authContext.logoutUser();
+    }
   };
 
   render() {

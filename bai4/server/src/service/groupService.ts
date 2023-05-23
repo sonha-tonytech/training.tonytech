@@ -56,10 +56,6 @@ const createGroup = async (data: { name: string; owner: string }) => {
       isActived: true,
     };
     const res = await GroupModel.create(newGroup);
-
-    console.log(res);
-    
-
     return res;
   } catch (error) {
     console.log(`Could not add new group ${error}`);

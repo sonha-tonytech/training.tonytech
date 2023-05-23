@@ -30,7 +30,6 @@ const apiLoginUser = async (
         "hello",
         { expiresIn: "2h" }
       );
-      res.cookie("token", token, { httpOnly: true });
       res.status(200).json(token);
     } else res.status(405).json(null);
   } catch (error) {
@@ -63,13 +62,15 @@ const getProfileUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {    
+  try {
     const loginUser = await UserService.getUserById(req.user.id);
     if (loginUser) {
-      res.status(200).json(loginUser);
+      return res.status(200).json(loginUser);
     }
     res.status(404).json("User not found");
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
-export { apiLoginUser, apiRegisterUser, getProfileUser };
+export default { apiLoginUser, apiRegisterUser, getProfileUser };

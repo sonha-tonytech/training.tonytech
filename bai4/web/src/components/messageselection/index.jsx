@@ -28,7 +28,7 @@ class MessageSelection extends React.Component {
             <button
               className={`btn btn-selection btn-delete-message ${
                 this.props.authContext.userLogin._id ===
-                  this.props.selectedGroup.owner ||
+                  this.props.selectedGroup.owner._id ||
                 this.props.selectedMessages.every(
                   (message) =>
                     message.user_id._id === this.props.authContext.userLogin._id

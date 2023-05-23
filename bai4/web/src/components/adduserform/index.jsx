@@ -15,35 +15,12 @@ class AddUserForm extends React.Component {
     if (e.type === "click" || e.key === "Enter") {
       const addedUserName = this.addUserInGroupInput.current.returnValue();
       if (addedUserName) {
-        const addedUser = this.props.users.find(
-          (user) => user.userName === addedUserName
-        );
-        if (!addedUser) this.setState({ msg: "Username doesn't exist" });
-        else {
-          if (
-            this.props.selectedGroup.members.some(
-              (user) => user.user_id._id === addedUser._id
-            )
-          )
-            this.setState({ msg: "User already in the group" });
-          else {
-            this.props.selectedGroup.members.push({ user_id: addedUser });
-            const newListUsersInGroup = {
-              _id: this.props.selectedGroup._id,
-              name: this.props.selectedGroup.name,
-              owner: this.props.selectedGroup.owner,
-              members: this.props.selectedGroup.members.map((user) => ({
-                user_id: user.user_id._id,
-              })),
-            };
-            const notice = await this.props.handleUpdateUserInGroup(
-              newListUsersInGroup
-            );
-            if (notice) {
-              this.props.handleSelectedGroup(this.props.selectedGroup);
-              this.closeFormAddUser();
-            }
-          }
+        const addedUser = await this.props.handleAddUserInGroup(addedUserName);
+        if (typeof addedUser === "object") {
+          this.props.selectedGroup.members.push(addedUserName);
+          this.props.handleSelectedGroup(this.props.selectedGroup);
+        } else {
+          this.setState({ msg: addedUser });
         }
       }
     }

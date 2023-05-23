@@ -1,9 +1,9 @@
 import React from "react";
-import withGroup from "../../../hoc/withGroup";
-import SidebarLayout from "../../../layouts/sidebar-layout";
-import Button from "../../../components/core/button";
-import Input from "../../../components/core/input";
-import GroupWrapper from "../../../components/groupwrapper";
+import withGroup from "src/HOCs/withGroup";
+import SidebarLayout from "src/layouts/sidebar-layout";
+import Button from "src/components/core/button";
+import Input from "src/components/core/input";
+import GroupWrapper from "src/components/groupwrapper";
 import "./groupinformation.css"
 
 class GroupInformation extends React.Component {

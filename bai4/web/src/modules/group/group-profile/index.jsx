@@ -1,9 +1,9 @@
 import React from "react";
-import withAuth from "../../../hoc/withAuth";
-import withUser from "../../../hoc/withUser";
-import SidebarLayout from "../../../layouts/sidebar-layout";
-import Input from "../../../components/core/input";
-import Button from "../../../components/core/button";
+import withAuth from "src/HOCs/withAuth";
+import withUser from "src/HOCs/withUser";
+import SidebarLayout from "src/layouts/sidebar-layout";
+import Input from "src/components/core/input";
+import Button from "src/components/core/button";
 import "./groupprofile.css";
 
 class GroupProfile extends React.Component {
@@ -85,7 +85,7 @@ class GroupProfile extends React.Component {
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
                 </button>
-                <h2 className="col-des-10">User Profile</h2>
+                <h2 className="col-des-10">User Settings</h2>
               </div>
               <div className="sidebar-profile-content">
                 <div

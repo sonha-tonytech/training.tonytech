@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import withAuth from "../../../hoc/withAuth";
-import withGroup from "../../../hoc/withGroup";
-import Ripple from "../../../components/ripple";
+import withAuth from "src/HOCs/withAuth";
+import withGroup from "src/HOCs/withGroup";
+import Ripple from "src/components/ripple";
 import "./messageboxheader.css";
 
 class MessageBoxHeader extends React.Component {

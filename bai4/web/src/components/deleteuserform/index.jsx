@@ -1,14 +1,31 @@
 import React from "react";
-import SidebarLayout from "../../layouts/sidebar-layout";
+import SidebarLayout from "../core/sidebar-layout";
+import Input from "../core/input";
 import "./deleteuserform.css";
 
 class DeleteUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      listUsers: this.props.selectedGroup.members,
       checkedUsers: [],
     };
+    this.searchInput = React.createRef();
+    this.handleSearchUsersInGroup = this.handleSearchUsersInGroup.bind(this);
   }
+
+  handleSearchUsersInGroup = (e) => {
+    if (e.key === "Enter") {
+      const foundUsers = this.searchInput.current.returnValue();
+      if (foundUsers) {
+        const listUsersAfterSearch = this.props.selectedGroup.members.filter(
+          (member) =>
+            member.user_id.name.toUpperCase().includes(foundUsers.toUpperCase())
+        );
+        this.setState({ listUsers: listUsersAfterSearch });
+      } else this.setState({ listUsers: this.props.selectedGroup.members });
+    }
+  };
 
   handleCheckedUserInGroup = (e) => {
     const target = e.target;
@@ -27,7 +44,7 @@ class DeleteUserForm extends React.Component {
   handleDeleteUsersInGroup = async () => {
     this.state.checkedUsers.forEach((userId) => {
       const userInGroupIndex = this.props.selectedGroup.members.findIndex(
-        (member) => member.user_id === userId
+        (member) => member.user_id._id === userId
       );
       this.props.selectedGroup.members.splice(userInGroupIndex, 1);
     });
@@ -39,10 +56,13 @@ class DeleteUserForm extends React.Component {
         user_id: user.user_id._id,
       })),
     };
-    const notice = await this.props.handleUpdateUserInGroup(newGroup);
+    const notice = await this.props.handleDeleteUserInGroup(newGroup);
     if (notice) {
       this.props.handleSelectedGroup(this.props.selectedGroup);
-      this.setState({ checkedUsers: [] });
+      this.setState({
+        listUsers: this.props.selectedGroup.members,
+        checkedUsers: [],
+      });
     }
   };
 
@@ -69,17 +89,18 @@ class DeleteUserForm extends React.Component {
                 <path d="M12 10.585L7.757 6.343a2 2 0 10-2.828 2.828L9.172 13l-4.243 4.243a2 2 0 102.828 2.828L12 15.172l4.243 4.243a2 2 0 102.828-2.828L14.828 13l4.243-4.243a2 2 0 10-2.828-2.828L12 10.585z"></path>
               </svg>
             </button>
-            <input
+            <Input
+              ref={this.searchInput}
               type="search"
               className="ip-search col-des-11"
-              id="ip_search"
               placeholder="Search..."
+              onKeyDown={this.handleSearchUsersInGroup}
             />
           </div>
           <div className="sidebar-content-section">
             <h4 className="sidebar-content-title">Users in Group</h4>
             <div className="sidebar-content">
-              {this.props.selectedGroup.members
+              {this.state.listUsers
                 .filter(
                   (member) => member.user_id._id !== this.props.userLogin._id
                 )

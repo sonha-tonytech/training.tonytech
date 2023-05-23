@@ -1,5 +1,14 @@
 import React from "react";
-import { cookies, instance } from "../../until";
+import cookies from "src/utils/cookies";
+import {
+  getGroupsAPI,
+  getGroupByIdAPI,
+  addNewGroupAPI,
+  updateGroupAPI,
+  deleteGroupAPI,
+  addUserInGroupAPI,
+  deleteUserInGroupAPI,
+} from "api/group";
 
 const GroupContext = React.createContext();
 
@@ -8,11 +17,6 @@ class GroupProvider extends React.Component {
     super(props);
     this.state = {
       groups: [],
-    };
-    this.config = {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token") || ""}`,
-      },
     };
   }
 
@@ -24,7 +28,7 @@ class GroupProvider extends React.Component {
 
   getAllGroups = async () => {
     try {
-      const groups = await instance.get("/groups", this.config);
+      const groups = await getGroupsAPI();
       return groups.data;
     } catch (error) {
       return error.response.data;
@@ -33,7 +37,7 @@ class GroupProvider extends React.Component {
 
   getGroupById = async (id) => {
     try {
-      const group = await instance.get(`/groups/${id}`, this.config);
+      const group = await getGroupByIdAPI(id);
       if (typeof group.data === "object") {
         return group.data;
       }
@@ -44,11 +48,7 @@ class GroupProvider extends React.Component {
 
   addNewGroup = async (data) => {
     try {
-      const newGroup = await instance.post(
-        "/groups",
-        { name: data },
-        this.config
-      );
+      const newGroup = await addNewGroupAPI({ name: data });
       return newGroup.data;
     } catch (error) {
       return error.response.data;
@@ -57,11 +57,7 @@ class GroupProvider extends React.Component {
 
   updateGroup = async (data) => {
     try {
-      const notice = await instance.put(
-        `/groups/${data._id}`,
-        data,
-        this.config
-      );
+      const notice = await updateGroupAPI(data);
       if (notice.data === "Success") {
         return true;
       }
@@ -73,8 +69,29 @@ class GroupProvider extends React.Component {
 
   deleteGroup = async (id) => {
     try {
-      const notice = await instance.delete(`/groups/${id}`, this.config);
+      const notice = await deleteGroupAPI(id);
       if (notice.data === "Success") {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return error.response.data;
+    }
+  };
+
+  addUserInGroup = async (idGroup, userName) => {
+    try {
+      const user = await addUserInGroupAPI(idGroup, userName);
+      return user.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  };
+
+  deleteUserInGroup = async (idGroup, newGroup) => {
+    try {
+      const notice = await deleteUserInGroupAPI(idGroup, newGroup);
+      if (notice === "Success") {
         return true;
       }
       return false;
@@ -102,6 +119,8 @@ class GroupProvider extends React.Component {
       addNewGroup,
       updateGroup,
       deleteGroup,
+      addUserInGroup,
+      deleteUserInGroup,
     } = this;
 
     return (
@@ -114,6 +133,8 @@ class GroupProvider extends React.Component {
           addNewGroup,
           updateGroup,
           deleteGroup,
+          addUserInGroup,
+          deleteUserInGroup,
         }}
       >
         {this.props.children}

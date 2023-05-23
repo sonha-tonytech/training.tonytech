@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupContext } from "../context/groupcontext";
+import { GroupContext } from "../contexts/groupcontext";
 
 const withGroup = (Component) => {
   return class extends React.Component {

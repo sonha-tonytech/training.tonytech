@@ -12,12 +12,14 @@
 .user-group-section {
   display: flex;
   justify-content: right;
+  align-items: center;
 }
 
 .ripple {
   position: relative;
   display: flex;
   height: auto;
+  aspect-ratio: 1/1;
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,11 @@
 import React from "react";
-import { cookies, instance } from "../../until";
+import {
+  getMessageByIdAPI,
+  getMessagesByGroupIdAPI,
+  addNewMessageAPI,
+  updateMessageAPI,
+  deleteMessageAPI,
+} from "src/api/message";
 
 const MessageContext = React.createContext();
 
@@ -9,11 +15,6 @@ class MessageProvider extends React.Component {
     this.state = {
       messages: [],
     };
-    this.config = {
-      headers: {
-        Authorization: `Bearer ${cookies.get("token") || ""}`,
-      },
-    };
   }
 
   handleSetMessages = (messages) => {
@@ -22,14 +23,9 @@ class MessageProvider extends React.Component {
     });
   };
 
-  // getAllMessages = async () => {
-  //   const messages = await axios.get(getURL("/api/messages"), this.config);
-  //   return messages.data;
-  // };
-
   getMessageById = async (id) => {
     try {
-      const message = await instance.get(`/messages/${id}`, this.config);
+      const message = await getMessageByIdAPI(id);
       return message.data;
     } catch (error) {
       return error.response.data;
@@ -38,10 +34,7 @@ class MessageProvider extends React.Component {
 
   getMessagesByGroupId = async (id) => {
     try {
-      const messages = await instance.get(
-        `/groups/${id}/messages`,
-        this.config
-      );
+      const messages = await getMessagesByGroupIdAPI(id);
       return messages.data;
     } catch (error) {
       return error.response.data;
@@ -50,7 +43,7 @@ class MessageProvider extends React.Component {
 
   addNewMessage = async (data) => {
     try {
-      const notice = await instance.post("/messages", data, this.config);
+      const notice = await addNewMessageAPI(data);
       return notice.data;
     } catch (error) {
       return error.response.data;
@@ -59,11 +52,7 @@ class MessageProvider extends React.Component {
 
   updateMessage = async (data) => {
     try {
-      const notice = await instance.put(
-        `/messages/${data.id}`,
-        data,
-        this.config
-      );
+      const notice = await updateMessageAPI(data);
       if (notice === "Success") {
         return true;
       }
@@ -74,11 +63,15 @@ class MessageProvider extends React.Component {
   };
 
   deleteMessage = async (id) => {
-    const notice = await instance.delete(`/messages/${id}`, this.config);
-    if (notice === "Success") {
-      return true;
+    try {
+      const notice = await deleteMessageAPI(id);
+      if (notice.data === "Success") {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return error.response.data;
     }
-    return false;
   };
 
   render() {
