@@ -1,0 +1,44 @@
+/* right side bar section */
+
+.right-sidebar-section {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  opacity: 1;
+  animation: rightSideBarMove 0.5s;
+}
+
+@keyframes rightSideBarMove {
+  0% {
+    transform: translate(100%, 0%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+.toggle {
+  border: none !important;
+}
+
+.sidebar-title-section {
+  padding: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-content-section {
+  text-align: center;
+}
+
+.user-in-group {
+  display: flex;
+  padding: 10px 40px;
+  justify-content: space-between;
+}
+
+.btn-submit-delete-users {
+  padding: 10px 0px;
+}

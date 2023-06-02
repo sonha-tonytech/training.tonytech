@@ -1,10 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import withAuth from "HOCs/withAuth";
-import withGroup from "HOCs/withGroup";
-import withMessage from "HOCs/withMessage";
-import AddUserForm from "components/adduserform";
-import DeleteUserForm from "components/deleteuserform";
+import withContext from "HOCs/withContext";
+import { AuthContext } from "contexts/authcontext";
+import { GroupContext } from "contexts/groupcontext";
+import { MessageContext } from "contexts/messagecontext";
+import AddUserForm from "components/group-add-user";
+import DeleteUserForm from "components/group-delete-users";
 import MessageBoxHeader from "./messagebox-header";
 import MessageBoxContent from "./messagebox-content";
 import MessageBoxTool from "./messagebox-tool";
@@ -43,14 +44,17 @@ class MessageBox extends React.Component {
   };
 
   handleAddUserInGroup = async (userName) => {
+    this.props.handleSetLoading(true);
     const user = await this.props.groupContext.addUserInGroup(
       this.state.selectedGroup._id,
       userName
     );
+    this.props.handleSetLoading(false);
     return user;
   };
 
   handleDeleteUserInGroup = async (newGroup) => {
+    this.props.handleSetLoading(true);
     const notice = await this.props.groupContext.updateGroup(newGroup);
     if (notice) {
       const groupIndex = this.props.groupContext.groups.findIndex(
@@ -58,13 +62,17 @@ class MessageBox extends React.Component {
       );
       this.props.groupContext.groups.splice(groupIndex, 1, newGroup);
       this.props.groupContext.handleSetGroups(this.props.groupContext.groups);
+      this.props.handleSetLoading(false);
       return true;
     }
+    this.props.handleSetLoading(false);
     return false;
   };
 
   getMessageByParamId = async (id) => {
+    this.props.handleSetLoading(true);
     const selectedGroup = await this.props.groupContext.getGroupById(id);
+
     if (selectedGroup) {
       const messagesInGroup =
         await this.props.messageContext.getMessagesByGroupId(id);
@@ -73,6 +81,7 @@ class MessageBox extends React.Component {
     } else {
       this.setState({ selectedGroup: null });
     }
+    this.props.handleSetLoading(false);
   };
 
   componentDidMount = async () => {
@@ -146,4 +155,10 @@ class MessageBox extends React.Component {
   }
 }
 
-export default withRouter(withAuth(withGroup(withMessage(MessageBox))));
+export default withRouter(
+  withContext(MessageBox, [
+    { authContext: AuthContext },
+    { groupContext: GroupContext },
+    { messageContext: MessageContext },
+  ])
+);

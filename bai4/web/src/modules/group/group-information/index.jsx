@@ -1,10 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import withGroup from "HOCs/withGroup";
 import SidebarLayout from "components/core/sidebar-layout";
 import Button from "components/core/button";
 import Input from "components/core/input";
-import GroupWrapper from "components/groupwrapper";
+import GroupWrapper from "components/group-wrapper";
+import { GroupContext } from "contexts/groupcontext";
+import withContext from "HOCs/withContext";
 import "./groupinformation.css";
 
 class GroupInformation extends React.Component {
@@ -42,6 +43,15 @@ class GroupInformation extends React.Component {
     this.props.history.push(`/groups/${id}`);
   };
 
+  componentDidMount = async () => {
+    this.props.handleSetLoading(true);
+    const groups = await this.props.groupContext.getAllGroups();
+    if (groups) {
+      this.props.groupContext.handleSetGroups(groups);
+    }
+    this.props.handleSetLoading(false);
+  }
+ 
   render() {
     return (
       <div className="col-des-12 information-group-section">
@@ -82,4 +92,6 @@ class GroupInformation extends React.Component {
   }
 }
 
-export default withRouter(withGroup(GroupInformation));
+export default withRouter(
+  withContext(GroupInformation, [{ groupContext: GroupContext }])
+);

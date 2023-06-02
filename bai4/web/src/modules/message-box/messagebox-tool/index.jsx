@@ -1,8 +1,9 @@
 import React from "react";
-import withAuth from "HOCs/withAuth";
-import withMessage from "HOCs/withMessage";
-import MessageSelection from "components/messageselection";
-import SendMessageBox from "components/sendmessagebox";
+import withContext from "HOCs/withContext";
+import { AuthContext } from "contexts/authcontext";
+import { MessageContext } from "contexts/messagecontext";
+import MessageSelection from "components/message-selection";
+import SendMessageBox from "components/message-sendbox";
 
 class MessageBoxTool extends React.Component {
   closeMessageSelection = () => {
@@ -11,6 +12,7 @@ class MessageBoxTool extends React.Component {
   };
 
   handleAddMessage = async (data) => {
+    this.props.handleSetLoading(true);
     const newMessage = {
       group_id: this.props.selectedGroup._id,
       message: data,
@@ -22,13 +24,17 @@ class MessageBoxTool extends React.Component {
         this.props.messageContext.messages
       );
     }
+    this.props.handleSetLoading(false);
   };
 
   handleDeleteMessage = () => {
+    this.props.handleSetLoading(true);
     if (
-      this.props.authContext.userLogin._id === this.props.selectedGroup.owner._id ||
+      this.props.authContext.userLogin._id ===
+        this.props.selectedGroup.owner._id ||
       this.props.selectedMessages.every(
-        (message) => message.user_id._id === this.props.authContext.userLogin._id
+        (message) =>
+          message.user_id._id === this.props.authContext.userLogin._id
       )
     ) {
       this.props.selectedMessages.forEach(async (selectedMessage) => {
@@ -48,6 +54,7 @@ class MessageBoxTool extends React.Component {
       this.props.handleSelectMessage(false);
       this.props.handleSelectedMessages([]);
     }
+    this.props.handleSetLoading(false);
   };
 
   render() {
@@ -69,4 +76,7 @@ class MessageBoxTool extends React.Component {
   }
 }
 
-export default withAuth(withMessage(MessageBoxTool));
+export default withContext(MessageBoxTool, [
+  { authContext: AuthContext },
+  { messageContext: MessageContext },
+]);

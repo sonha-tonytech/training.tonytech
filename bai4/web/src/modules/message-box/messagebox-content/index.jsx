@@ -1,6 +1,7 @@
 import React from "react";
-import withMessage from "HOCs/withMessage";
-import withAuth from "HOCs/withAuth";
+import withContext from "HOCs/withContext";
+import { AuthContext } from "contexts/authcontext";
+import { MessageContext } from "contexts/messagecontext";
 import "./messageboxcontent.css";
 
 class MessageBoxContent extends React.Component {
@@ -64,4 +65,7 @@ class MessageBoxContent extends React.Component {
   }
 }
 
-export default withAuth(withMessage(MessageBoxContent));
+export default withContext(MessageBoxContent, [
+  { authContext: AuthContext },
+  { messageContext: MessageContext },
+]);

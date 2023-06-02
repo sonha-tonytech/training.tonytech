@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import withAuth from "HOCs/withAuth";
 import AuthLayout from "layouts/auth-layout";
+import withAuth from "HOCs/withAuth";
 import "./register.css";
 
 class Register extends React.Component {
@@ -16,6 +16,7 @@ class Register extends React.Component {
   }
 
   onSubmit = async (e) => {
+    this.props.handleSetLoading(true);
     e.preventDefault();
     const userName = this.userNameInput.current.value.toLowerCase();
     const passWord = this.passwordInput.current.value;
@@ -35,6 +36,7 @@ class Register extends React.Component {
       } else this.setState({ msg_register: notice });
     } else
       this.setState({ msg_register: "Register requires full information!" });
+    this.props.handleSetLoading(false);
   };
 
   componentDidMount = () => {

@@ -1,0 +1,18 @@
+.message-box-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 100%;
+}
+
+.message-box-section {
+  width: 100%;
+  transition: width 0.5s;
+  position: relative;
+  height: 100%;
+}
+
+.narrow {
+  width: 66.66666%;
+}

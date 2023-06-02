@@ -4,8 +4,6 @@ import Group from "modules/group";
 import MessageBox from "modules/message-box";
 import withAuth from "HOCs/withAuth";
 import "./home.css";
-import { AuthContext } from "contexts/authcontext";
-
 class Home extends React.Component {
   render() {
     if (!this.props.authContext.token) {

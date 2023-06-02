@@ -1,0 +1,37 @@
+.selection-wrapper {
+  position: absolute;
+  top: 90vh;
+  display: flex;
+  justify-content: center;
+}
+
+.selection-container {
+  background-color: var(--backgroundWhite);
+  height: 50px;
+  border-radius: 20px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-selection {
+  display: flex;
+  align-items: center;
+  border-radius: 50% !important;
+  border: none !important;
+  background-color: var(--backgroundWhite);
+}
+
+.btn-selection:hover {
+  background-color: var(--selectPage);
+}
+
+.btn-delete-message.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.sp-delete-selection {
+  color: var(--Red);
+}

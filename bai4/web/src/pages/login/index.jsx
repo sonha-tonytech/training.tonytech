@@ -15,6 +15,7 @@ class Login extends React.Component {
   }
 
   onSubmit = async (e) => {
+    this.props.handleSetLoading(true);
     e.preventDefault();
     const username = this.userNameInput.current.value.toLowerCase();
     const password = this.passwordInput.current.value;
@@ -29,6 +30,7 @@ class Login extends React.Component {
       this.setState({
         msg_login: "Login requires full username and password!",
       });
+    this.props.handleSetLoading(false);
   };
 
   componentDidMount = () => {

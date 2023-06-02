@@ -11,6 +11,7 @@ class AuthProvider extends React.Component {
     this.state = {
       token: cookies.get("token") || null,
       userLogin: null,
+      loader: false,
     };
   }
 
@@ -22,6 +23,10 @@ class AuthProvider extends React.Component {
 
   handleSetToken = (token) => {
     cookies.set("token", token);
+  };
+
+  handleLoading = (loader) => {
+    this.setState({ loader: loader });
   };
 
   loginUser = async (data) => {
@@ -56,13 +61,14 @@ class AuthProvider extends React.Component {
     }
   };
 
-  componentDidMount = async () => {
+  checkToken = async () => {
     if (this.state.token) {
       const userLogin = await this.handleGetUserProfile();
       if (userLogin) {
         this.setState({ userLogin: userLogin });
       } else {
         cookies.remove("token");
+        this.setState({ token: null });
       }
     }
   };
@@ -72,10 +78,10 @@ class AuthProvider extends React.Component {
     const {
       handleSetToken,
       handleSetUserLogin,
-      handleGetUserProfile,
       loginUser,
       registerUser,
       logoutUser,
+      checkToken,
     } = this;
 
     return (
@@ -85,10 +91,10 @@ class AuthProvider extends React.Component {
           userLogin,
           handleSetToken,
           handleSetUserLogin,
-          handleGetUserProfile,
           loginUser,
           registerUser,
           logoutUser,
+          checkToken,
         }}
       >
         {this.props.children}

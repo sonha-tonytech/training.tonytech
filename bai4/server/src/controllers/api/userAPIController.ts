@@ -58,17 +58,19 @@ const apiUpdateUser = async (
   next: NextFunction
 ) => {
   try {
+    const userById = await UserService.getUserById(req.params.id);
     const userByUserName = await UserService.getUserbyUserName(
       req.body.userName
-      );    
-    if (userByUserName) {
+    );
+    if (userByUserName && userByUserName.userName != userById.userName) {
       return res.status(200).json("Username already exists");
-    }    
+    }
     const data = {
       _id: req.params.id,
       userName: req.body.userName,
       name: req.body.name,
     };
+
     const updatedUser = await UserService.updateUser(data);
     if (updatedUser) {
       const token = jwt.sign(

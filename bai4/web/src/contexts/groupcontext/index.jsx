@@ -86,13 +86,6 @@ class GroupProvider extends React.Component {
     }
   };
 
-  componentDidMount = async () => {
-    const groups = await this.getAllGroups();
-    if (groups) {
-      this.setState({ groups: groups });
-    }
-  };
-
   render() {
     const groups = this.state.groups;
 

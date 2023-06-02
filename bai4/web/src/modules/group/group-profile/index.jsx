@@ -1,9 +1,10 @@
 import React from "react";
-import withAuth from "HOCs/withAuth";
-import withUser from "HOCs/withUser";
 import SidebarLayout from "components/core/sidebar-layout";
 import Input from "components/core/input";
 import Button from "components/core/button";
+import { AuthContext } from "contexts/authcontext";
+import { UserContext } from "contexts/usercontext";
+import withContext from "HOCs/withContext";
 import "./groupprofile.css";
 
 class GroupProfile extends React.Component {
@@ -36,6 +37,7 @@ class GroupProfile extends React.Component {
 
   handleSubmit = async (e) => {
     if (e.type === "click" || e.key === "Enter") {
+      this.props.handleSetLoading(true);
       const userName = this.userName.current.returnValue();
       const name = this.name.current.returnValue();
       if (userName && name) {
@@ -50,13 +52,11 @@ class GroupProfile extends React.Component {
           this.props.authContext.handleSetUserLogin(data);
           this.setState({ msg: "" });
           alert("Success!!");
-        } else if (
-          notice &&
-          userName !== this.props.authContext.userLogin.userName
-        ) {
+        } else if (notice) {
           this.setState({ msg: notice });
         }
       }
+      this.props.handleSetLoading(false);
     }
   };
 
@@ -172,5 +172,7 @@ class GroupProfile extends React.Component {
     );
   }
 }
-
-export default withAuth(withUser(GroupProfile));
+export default withContext(GroupProfile, [
+  { authContext: AuthContext },
+  { userContext: UserContext },
+]);

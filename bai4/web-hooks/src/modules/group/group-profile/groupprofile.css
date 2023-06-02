@@ -1,0 +1,85 @@
+.profile-section {
+  position: absolute;
+  height: 100%;
+  padding: 20px 0px;
+  top: 0;
+  animation: leftSideBarMove 0.5s;
+  z-index: 1;
+  background-color: var(--backgroundWhite);
+}
+
+.profile-option-section {
+  height: 100%;
+}
+
+.profile-information-section {
+  position: relative;
+  height: 100%;
+  animation: leftSideBarMove 0.5s;
+}
+
+.sidebar-profile-title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: solid 1px var(--borderGray);
+}
+
+.profile-option {
+  padding: 20px 10px;
+  font-weight: bold;
+}
+
+.profile-option:hover {
+  cursor: pointer;
+  background-color: var(--selectPage);
+}
+
+.sidebar-profile-content {
+  padding: 20px 10px;
+}
+
+.sidebar-profile-content .msg {
+  padding-left: 20px;
+  color: red;
+  font-size: 16px;
+}
+
+.information-user {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.information-user label {
+  position: absolute;
+  top: -20%;
+  left: 5%;
+  padding: 0px 5px;
+  font-size: 14px;
+  color: var(--borderGray);
+  background-color: var(--backgroundWhite);
+  z-index: 1;
+}
+
+.information-user input {
+  padding: 0px 20px;
+  border: solid 1px var(--borderGray);
+}
+
+.btn-update-user-information {
+  position: absolute;
+  top: 90%;
+  right: 10%;
+  opacity: 0;
+  transform: translate(-100%, 0%);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.btn-update-user-information:hover svg path {
+  fill: black;
+}
+
+.profile-information-section:hover .btn-update-user-information {
+  opacity: 1;
+  transform: translate(0%, 0%);
+}

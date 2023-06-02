@@ -1,0 +1,15 @@
+.send-message-section {
+  position: absolute;
+  top: 90vh;
+  display: flex;
+  justify-content: center;
+}
+
+.send-message-section input {
+  height: 60px;
+  padding: 0px 20px;
+}
+
+.btn-submit-message {
+  margin-left: 10px;
+}

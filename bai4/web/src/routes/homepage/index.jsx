@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import AuthProvider from "../../contexts/authcontext";
-import Home from "../../pages/home";
-import UserProvider from "../../contexts/usercontext";
-import GroupProvider from "../../contexts/groupcontext";
-import MessageProvider from "../../contexts/messagecontext";
+import AuthProvider from "contexts/authcontext";
+import Home from "pages/home";
+import UserProvider from "contexts/usercontext";
+import GroupProvider from "contexts/groupcontext";
+import MessageProvider from "contexts/messagecontext";
 
 class HomePage extends React.Component {
   getRoute = (path = "") => this.props.match.path + path;

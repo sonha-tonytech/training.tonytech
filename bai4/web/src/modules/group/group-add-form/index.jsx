@@ -1,9 +1,10 @@
 import React from "react";
-import withGroup from "HOCs/withGroup";
 import SidebarLayout from "components/core/sidebar-layout";
 import Button from "components/core/button";
 import Input from "components/core/input";
-import "./groupaddform.css"
+import { GroupContext } from "contexts/groupcontext";
+import withContext from "HOCs/withContext";
+import "./groupaddform.css";
 
 class AddGroupForm extends React.Component {
   constructor(props) {
@@ -17,18 +18,22 @@ class AddGroupForm extends React.Component {
   };
 
   handleSubmit = async (e) => {
+    this.props.handleSetLoading(true);
     if (e.type === "click" || e.key === "Enter") {
       const groupName = this.addGroupInput.current.returnValue();
       if (groupName) {
         const newGroup = await this.props.groupContext.addNewGroup(groupName);
-        if (typeof newGroup === "object"){
-            this.props.groupContext.groups.push(newGroup);
-            this.props.groupContext.handleSetGroups(this.props.groupContext.groups);
-            this.props.handleOpenAddGroupForm(false);
+        if (typeof newGroup === "object") {
+          this.props.groupContext.groups.push(newGroup);
+          this.props.groupContext.handleSetGroups(
+            this.props.groupContext.groups
+          );
+          this.props.handleOpenAddGroupForm(false);
         }
         this.addGroupInput.current.resetValue();
       }
     }
+    this.props.handleSetLoading(false);
   };
 
   render() {
@@ -74,4 +79,4 @@ class AddGroupForm extends React.Component {
   }
 }
 
-export default withGroup(AddGroupForm);
+export default withContext(AddGroupForm, [{ groupContext: GroupContext }]);

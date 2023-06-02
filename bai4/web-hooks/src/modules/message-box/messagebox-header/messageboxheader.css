@@ -1,0 +1,40 @@
+.message-box-header-section {
+  background-color: var(--backgroundWhite);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  height: 60px;
+  padding: 0% 5%;
+}
+
+.user-group-section {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.ripple {
+  position: relative;
+  display: flex;
+  height: auto;
+  aspect-ratio: 1/1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 0px;
+  border-radius: 50%;
+}
+
+.ripple:hover {
+  background-color: var(--selectPage);
+}
+
+.ripple div {
+  width: 5px;
+  height: 5px;
+  margin: 0.5px 0px;
+  border-radius: 50%;
+  background-color: var(--Grey);
+}

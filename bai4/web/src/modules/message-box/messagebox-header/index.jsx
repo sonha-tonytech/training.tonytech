@@ -1,8 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import withAuth from "HOCs/withAuth";
-import withGroup from "HOCs/withGroup";
-import Ripple from "components/ripple";
+import withContext from "HOCs/withContext";
+import { AuthContext } from "contexts/authcontext";
+import { GroupContext } from "contexts/groupcontext";
+import Ripple from "components/group-actions-menu";
 import "./messageboxheader.css";
 
 class MessageBoxHeader extends React.Component {
@@ -25,6 +26,7 @@ class MessageBoxHeader extends React.Component {
   };
 
   handleDeleteUserInGroup = async () => {
+    this.props.handleSetLoading(true);
     const userInGroupIndex = this.props.selectedGroup.members.findIndex(
       (member) => member.user_id._id === this.props.authContext.userLogin._id
     );
@@ -45,9 +47,11 @@ class MessageBoxHeader extends React.Component {
       this.props.handleSelectedGroup(null);
       this.props.history.push("/");
     }
+    this.props.handleSetLoading(false);
   };
 
   handleDeleteGroup = async () => {
+    this.props.handleSetLoading(true);
     const notice = await this.props.groupContext.deleteGroup(
       this.props.selectedGroup._id
     );
@@ -60,6 +64,7 @@ class MessageBoxHeader extends React.Component {
       this.props.handleSelectedGroup(null);
       this.props.history.push("/");
     }
+    this.props.handleSetLoading(false);
   };
 
   handleClickOutSide = (e) => {
@@ -114,4 +119,7 @@ class MessageBoxHeader extends React.Component {
   }
 }
 
-export default withRouter(withAuth(withGroup(MessageBoxHeader)));
+export default withRouter(withContext(MessageBoxHeader, [
+  { authContext: AuthContext },
+  { groupContext: GroupContext },
+]));
