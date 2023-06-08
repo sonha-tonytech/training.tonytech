@@ -16,22 +16,24 @@ import {
   ADD_USER_IN_GROUP,
   ADD_USER_IN_GROUP_SUCCESS,
   ADD_USER_IN_GROUP_FAILURE,
-} from "../types/grouptypes";
+  SET_CALLBACK_VALUE,
+} from "../types/groupTypes";
 
 const initialState = {
   groups: [],
+  callBackValue: null,
 };
 
 const groupReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_GROUP:
-      return { groups: action.payload };
+      return { ...state, groups: action.payload };
 
     case GET_ALL_GROUPS:
       return state;
 
     case GET_ALL_GROUP_SUCCESS:
-      return { groups: action.payload };
+      return { ...state, groups: action.payload };
 
     case GET_ALL_GROUP_FAILURE:
       return state;
@@ -43,7 +45,7 @@ const groupReducer = (state = initialState, action) => {
       return state;
 
     case ADD_NEW_GROUP_SUCCESS:
-      return { groups: state.groups.concat(action.payload) };
+      return { ...state, groups: state.groups.concat(action.payload) };
 
     case ADD_NEW_GROUP_FAILURE:
       return state;
@@ -57,7 +59,7 @@ const groupReducer = (state = initialState, action) => {
       );
       const newUpdatedGroups = [...state.groups];
       newUpdatedGroups.splice(updateGroupIndex, 1, action.payload);
-      return { groups: newUpdatedGroups };
+      return { ...state, groups: newUpdatedGroups };
 
     case UPDATE_GROUP_FAILURE:
       return state;
@@ -70,7 +72,7 @@ const groupReducer = (state = initialState, action) => {
       );
       const newDeletedGroups = [...state.groups];
       newDeletedGroups.splice(deleteGroupIndex, 1);
-      return { groups: newDeletedGroups };
+      return { ...state, groups: newDeletedGroups };
 
     case DELETE_GROUP_FAILURE:
       return state;
@@ -88,15 +90,17 @@ const groupReducer = (state = initialState, action) => {
       );
       const newGroups = [...state.groups];
       newGroups.splice(updatedGroupIndex, 1, updatedGroup);
-      return { groups: newGroups };
+      return { ...state, groups: newGroups };
 
     case ADD_USER_IN_GROUP_FAILURE:
       return state;
+
+    case SET_CALLBACK_VALUE:
+      return { ...state, callBackValue: action.payload };
 
     default:
       return state;
   }
 };
-
 
 export default groupReducer;

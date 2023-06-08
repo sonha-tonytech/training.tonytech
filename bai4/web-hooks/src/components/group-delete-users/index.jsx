@@ -56,14 +56,12 @@ class DeleteUserForm extends React.Component {
         user_id: user.user_id._id,
       })),
     };
-    const notice = await this.props.handleDeleteUserInGroup(newGroup);
-    if (notice) {
-      this.props.handleSelectedGroup({ ...this.props.selectedGroup });
-      this.setState({
-        listUsers: this.props.selectedGroup.members,
-        checkedUsers: [],
-      });
-    }
+    this.props.handleDeleteUserInGroup(newGroup);
+    this.props.handleSelectedGroup({ ...this.props.selectedGroup });
+    this.setState({
+      listUsers: this.props.selectedGroup.members,
+      checkedUsers: [],
+    });
   };
 
   handleCloseDeleteUserForm = () => {

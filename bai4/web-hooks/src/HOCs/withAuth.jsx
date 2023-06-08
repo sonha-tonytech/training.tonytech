@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {getUserProfile} from "redux/actions/authactions"
+import {getUserProfile} from "redux/actions/authActions"
 
 const withAuth = (Component) => {
   return (props) => {

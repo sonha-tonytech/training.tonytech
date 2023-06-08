@@ -6,23 +6,16 @@ class AddUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      msg: "",
+      msg: null,
     };
     this.addUserInGroupInput = React.createRef();
   }
 
-  handleAddUserInGroup = async (e) => {
+  handleAddUserInGroup = (e) => {
     if (e.type === "click" || e.key === "Enter") {
       const addedUserName = this.addUserInGroupInput.current.returnValue();
       if (addedUserName) {
-        const addedUser = await this.props.handleAddUserInGroup(addedUserName);
-        if (typeof addedUser === "object") {
-          this.props.selectedGroup.members.push({user_id: addedUser});
-          this.props.handleSelectedGroup(this.props.selectedGroup);
-          this.closeFormAddUser(); 
-        } else {
-          this.setState({ msg: addedUser });
-        }
+        this.props.handleAddUserInGroup(addedUserName);
       }
     }
   };
@@ -32,6 +25,12 @@ class AddUserForm extends React.Component {
     this.setState({ msg: "" });
     this.addUserInGroupInput.current.resetValue();
   };
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.callBackValue !== this.props.callBackValue){
+      this.setState({msg: this.props.callBackValue});
+    }
+  }
 
   render() {
     return (

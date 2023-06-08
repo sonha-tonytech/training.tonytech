@@ -1,33 +1,34 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { loginUser} from "redux/actions/authactions";
+import { connect } from "react-redux";
+import { loginUser } from "redux/actions/authActions";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "layouts/auth-layout";
 import "./login.css";
 
-const Login = () => {
+const Login = (props) => {
   const [msg, setMsg] = useState("");
   const userNameInput = useRef(null);
   const passwordInput = useRef(null);
   const navigate = useNavigate();
-  const token = useSelector((reducer) => reducer.authReducer.token);
-  const dispatch = useDispatch();
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const username = userNameInput.current.value.toLowerCase();
     const password = passwordInput.current.value;
     if (username && password) {
       const data = { userName: username, passWord: password };
-      const userLogin = await dispatch(loginUser(data));
-      userLogin ? navigate("/") : setMsg("Invalid User Login");
+      props.loginUser(data, (token) => {
+        token ? navigate("/") : setMsg("Invalid User Login");
+      });
+
     } else setMsg("Login requires full username and password!");
   };
 
   useEffect(() => {
-    if (token) {
+    if (props.token) {
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -82,4 +83,14 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return { token: state.authReducer.token };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (data, callback) => dispatch(loginUser(data, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateGroup, deleteGroup } from "redux/actions/groupactions";
+import { updateGroup, deleteGroup } from "redux/actions/groupActions";
 import { useNavigate } from "react-router-dom";
 import Ripple from "components/group-actions-menu";
 import "./messageboxheader.css";
@@ -22,24 +22,25 @@ const MessageBoxHeader = (props) => {
     setIsRippleOpen(false);
   };
 
-  const handleDeleteUserInGroup = async () => {
+  const handleDeleteUserInGroup = () => {
     const userInGroupIndex = props.selectedGroup.members.findIndex(
       (member) => member.user_id._id === userLogin._id
     );
     props.selectedGroup.members.splice(userInGroupIndex, 1);
-    const notice = await dispatch(updateGroup(props.selectedGroup));
-    if (notice) {
-      props.handleSelectedGroup(null);
-      navigate("/");
-    }
+    dispatch(updateGroup(props.selectedGroup));
+    props.handleSelectedGroup(null);
+    navigate("/");
   };
 
-  const handleDeleteGroup = async () => {
-    const notice = await dispatch(deleteGroup(props.selectedGroup._id));
-    if (notice) {
-      props.handleSelectedGroup(null);
-      navigate("/");
-    }
+  const handleDeleteGroup = () => {
+    dispatch(
+      deleteGroup(props.selectedGroup._id, (notice) => {
+        if (notice) {
+          props.handleSelectedGroup(null);
+          navigate("/");
+        }
+      })
+    );
   };
 
   const handleClickOutSide = (e) => {

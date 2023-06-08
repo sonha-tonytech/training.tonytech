@@ -21,13 +21,17 @@ import {
   DELETE_MESSAGE,
   DELETE_MESSAGE_SUCCESS,
   DELETE_MESSAGE_FAILURE,
-} from "../types/messagetypes";
+} from "../types/messageTypes";
 
+
+//sync function
 export const handleSetMessages = (messages) => ({
   type: SET_MESSAGES,
   payload: messages,
 });
 
+
+//async function
 export const getMessageById = (id) => {
   return async (dispatch) => {
     dispatch({ type: GET_MESSAGE_BY_ID });

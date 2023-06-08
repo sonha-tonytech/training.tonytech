@@ -11,7 +11,7 @@ import {
   REGISTER_USER_FAILURE,
   LOGOUT_USER,
   GET_USER_PROFILE,
-} from "../types/authtypes";
+} from "../types/authTypes";
 
 const initialState = {
   token: readCookie(key),

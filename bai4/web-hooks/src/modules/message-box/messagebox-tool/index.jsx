@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addNewMessage, deleteMessage } from "redux/actions/messageactions";
+import { addNewMessage, deleteMessage } from "redux/actions/messageActions";
 import MessageSelection from "components/message-selection";
 import SendMessageBox from "components/message-sendbox";
 

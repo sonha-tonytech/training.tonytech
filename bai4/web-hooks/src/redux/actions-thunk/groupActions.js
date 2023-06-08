@@ -25,12 +25,17 @@ import {
   ADD_USER_IN_GROUP,
   ADD_USER_IN_GROUP_SUCCESS,
   ADD_USER_IN_GROUP_FAILURE,
-} from "../types/grouptypes";
+} from "../types/groupTypes";
 
+
+// sync function
 export const handleSetGroups = (groups) => ({
   type: SET_GROUP,
   payload: groups,
 });
+
+
+//async function
 
 export const getAllGroups = () => {
   return async (dispatch) => {

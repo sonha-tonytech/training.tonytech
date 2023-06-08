@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { addNewGroup } from "redux/actions/groupactions";
+import { addNewGroup } from "redux/actions/groupActions";
 import Button from "components/core/button";
 import Input from "components/core/input";
 import "./groupaddform.css";

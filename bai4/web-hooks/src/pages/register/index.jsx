@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "redux/actions/authactions";
+import { registerUser } from "redux/actions/authActions";
 import AuthLayout from "layouts/auth-layout";
 import "./register.css";
 
@@ -14,7 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const userName = userNameInput.current.value.toLowerCase();
     const passWord = passwordInput.current.value;
@@ -25,11 +25,14 @@ const Register = () => {
         passWord: passWord,
         name: name,
       };
-      const notice = await dispatch(registerUser(newUser));
-      if (notice === "Success") {
-        alert("Success to register !!!");
-        navigate("/login");
-      } else setMsg(notice);
+      dispatch(
+        registerUser(newUser, (notice) => {
+          if (notice === "Success") {
+            alert("Success to register !!!");
+            navigate("/login");
+          } else setMsg(notice);
+        })
+      );
     } else setMsg("Register requires full information!");
   };
 
@@ -37,6 +40,7 @@ const Register = () => {
     if (token) {
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -95,7 +99,7 @@ const Register = () => {
         </div>
       </div>
     </AuthLayout>
-  );  
+  );
 };
 
 export default Register;

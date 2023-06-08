@@ -13,7 +13,7 @@ import {
   DELETE_MESSAGE,
   DELETE_MESSAGE_SUCCESS,
   DELETE_MESSAGE_FAILURE,
-} from "../types/messagetypes";
+} from "../types/messageTypes";
 
 const initialState = {
   messages: [],

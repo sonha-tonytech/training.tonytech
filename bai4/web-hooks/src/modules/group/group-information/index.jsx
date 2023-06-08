@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllGroups } from "redux/actions/groupactions";
+import { getAllGroups } from "redux/actions/groupActions";
 import Button from "components/core/button";
 import Input from "components/core/input";
 import GroupWrapper from "components/group-wrapper";

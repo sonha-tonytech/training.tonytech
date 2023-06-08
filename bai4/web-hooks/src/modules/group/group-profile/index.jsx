@@ -4,8 +4,8 @@ import {
   logoutUser,
   handleSetToken,
   handleSetUserLogin,
-} from "redux/actions/authactions";
-import { updateUser } from "redux/actions/useractions";
+} from "redux/actions/authActions";
+import { updateUser } from "redux/actions/userActions";
 import Input from "components/core/input";
 import Button from "components/core/button";
 import "./groupprofile.css";
@@ -35,7 +35,7 @@ const GroupProfile = (props) => {
     setIsOpenUserProfile(false);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     if (e.type === "click" || e.key === "Enter") {
       const userNameInput = userName.current.returnValue();
       const nameInput = name.current.returnValue();
@@ -45,15 +45,18 @@ const GroupProfile = (props) => {
           userName: userNameInput,
           name: nameInput,
         };
-        const notice = await dispatch(updateUser(data));
-        if (typeof notice === "object") {
-          dispatch(handleSetToken(notice.token));
-          dispatch(handleSetUserLogin(data));
-          setMsg("");
-          alert("Success!!");
-        } else if (notice) {
-          setMsg(notice);
-        }
+        dispatch(
+          updateUser(data, (notice) => {
+            if (typeof notice === "object") {
+              dispatch(handleSetToken(notice.token));
+              dispatch(handleSetUserLogin(data));
+              setMsg("");
+              alert("Success!!");
+            } else if (notice) {
+              setMsg(notice);
+            }
+          })
+        );
       }
     }
   };

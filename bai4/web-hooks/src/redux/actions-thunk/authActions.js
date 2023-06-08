@@ -11,8 +11,11 @@ import {
   REGISTER_USER_FAILURE,
   LOGOUT_USER,
   GET_USER_PROFILE,
-} from "../types/authtypes";
+} from "../types/authTypes";
 
+
+
+// sync function
 
 export const handleSetUserLogin = (userLogin) => ({
   type: SET_USERLOGIN,
@@ -23,6 +26,14 @@ export const handleSetToken = (token) => ({
   type: SET_TOKEN,
   payload: {key, token: token}
 })
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER,
+  payload: key,
+});
+
+
+//async function
 
 export const loginUser = (data) => {
   return async (dispatch) => {
@@ -52,11 +63,6 @@ export const registerUser = (data) => {
     }
   };
 };
-
-export const logoutUser = () => ({
-  type: LOGOUT_USER,
-  payload: key,
-});
 
 export const handleGetUserProfile = () => {
   return async (dispatch) => {

@@ -1,0 +1,12 @@
+const type = "authTypes.";
+export const key = "token";
+export const SET_USERLOGIN = type + "SET_USERLOGIN";
+export const SET_TOKEN = type + "SET_TOKEN";
+export const LOGIN_USER = type + "LOGIN_USER";
+export const LOGIN_USER_SUCCESS = type + "LOGIN_USER_SUCCESS";
+export const LOGIN_USER_FAILURE = type + "LOGIN_USER_FAILURE";
+export const REGISTER_USER = type + "REGISTER_USER";
+export const REGISTER_USER_SUCCESS = type + "REGISTER_USER_SUCCESS";
+export const REGISTER_USER_FAILURE = type + "REGISTER_USER_FAILURE";
+export const LOGOUT_USER = type + "LOGOUT_USER";
+export const GET_USER_PROFILE = type + "GET_USER_PROFILE";

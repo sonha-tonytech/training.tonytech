@@ -5,8 +5,8 @@ import {
   addUserInGroup,
   updateGroup,
   getGroupById,
-} from "redux/actions/groupactions";
-import { getMessagesByGroupId } from "redux/actions/messageactions";
+} from "redux/actions/groupActions";
+import { getMessagesByGroupId } from "redux/actions/messageActions";
 import AddUserForm from "components/group-add-user";
 import DeleteUserForm from "components/group-delete-users";
 import MessageBoxHeader from "./messagebox-header";
@@ -20,8 +20,9 @@ const MessageBox = (props) => {
   const [isAddUserInGroupOpen, setIsAddUserInGroupOpen] = useState(false);
   const [isMessageSelect, setIsMessageSelect] = useState(false);
   const [isRightSideBarOpen, setIsRightSideBarOpen] = useState(false);
-  const { id } = useParams();
+  const callBackValue= useSelector((reducer) => reducer.groupReducer.callBackValue);
   const userLogin = useSelector((reducer) => reducer.authReducer.userLogin);
+  const { id } = useParams();
   const dispatch = useDispatch();
 
   const handleSelectedGroup = (selectedGroup) => {
@@ -44,30 +45,40 @@ const MessageBox = (props) => {
     setIsRightSideBarOpen(isOpen);
   };
 
-  const handleAddUserInGroup = async (userName) => {
-    const user = await dispatch(addUserInGroup(selectedGroup._id, userName));
-    return user;
+  const handleAddUserInGroup =  (userName) => {
+     dispatch(
+      addUserInGroup(selectedGroup._id, userName, (user) => {
+        if (typeof user === "object") {
+          const newUpdatedGroup = { ...selectedGroup };
+          newUpdatedGroup.members.push({ user_id: user });
+          setSelectedGroup(newUpdatedGroup);
+          setIsAddUserInGroupOpen(false);
+        }
+      })
+    );
   };
 
-  const handleDeleteUserInGroup = async (newGroup) => {
-    const notice = await dispatch(updateGroup(newGroup));
-    return notice;
+  const handleDeleteUserInGroup = (newGroup) => {
+    dispatch(updateGroup(newGroup));
   };
 
-  const getMessageByParamId = async (id) => {
-    const selectedGroup = await dispatch(getGroupById(id));
-    if (selectedGroup) {
-      dispatch(getMessagesByGroupId(id));
-      setSelectedGroup(selectedGroup);
-    } else {
-      setSelectedGroup(null);
-    }
+  const getMessageByParamId = (id) => {
+    dispatch(
+      getGroupById(id, (selectedGroup) => {
+        if (selectedGroup) {
+          dispatch(getMessagesByGroupId(id));
+          setSelectedGroup(selectedGroup);
+        } else {
+          setSelectedGroup(null);
+        }
+      })
+    );
   };
 
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        await getMessageByParamId(id);
+        getMessageByParamId(id);
         setSelectedMessages([]);
         setIsAddUserInGroupOpen(false);
         setIsMessageSelect(false);
@@ -75,7 +86,7 @@ const MessageBox = (props) => {
       }
     };
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   if (!selectedGroup) return null;
@@ -111,6 +122,7 @@ const MessageBox = (props) => {
             handleAddUserInGroup={handleAddUserInGroup}
             handleOpenAddUserInGroup={handleOpenAddUserInGroup}
             handleSelectedGroup={handleSelectedGroup}
+            callBackValue={callBackValue}
           />
         )}
       </div>
