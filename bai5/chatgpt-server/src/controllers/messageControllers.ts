@@ -22,7 +22,7 @@ const apiCreateNewMessage = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {
+  try {    
     // const messagesById = await MessageServices.getMessagesByRoomId(req.body.room_id);
     // const questionsById = messagesById.map(message => (message.question));
     // questionsById.push(req.body.question);
@@ -30,12 +30,14 @@ const apiCreateNewMessage = async (
     const room_id = JSON.stringify(req.body.room_id);    
     const question = JSON.stringify(req.body.question);
     const answer = await getAnswerFromOpenAPI(req.body.question);
+    
         
     const data = {
       room_id: room_id.slice(1,room_id.length-1),
       question: question.slice(1,question.length-1),
       answer: answer,
     };
+    
     const newMessage = await MessageServices.createMessage(data);
     !Object.values(newMessage).length
       ? res.status(400).json(null)

@@ -50,7 +50,7 @@ const ContentBox = (props: Props) => {
           onClick={() => {
             setIsAddNewMessage(true);
           }}
-        />
+        >+</Button>
       </div>
     </div>
   );

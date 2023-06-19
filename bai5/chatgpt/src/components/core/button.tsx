@@ -1,4 +1,6 @@
-type Props = {
+import {PropsWithChildren} from "react"
+
+interface Props extends PropsWithChildren {
   className?: string;
   onClick?: () => void;
 };
@@ -11,7 +13,7 @@ const Button = (props: Props) => {
       }`}
       onClick={props.onClick}
     >
-      +
+      {props.children}
     </button>
   );
 };
